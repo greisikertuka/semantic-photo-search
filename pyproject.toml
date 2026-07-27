@@ -1,0 +1,41 @@
+[project]
+name = "photosearch"
+version = "0.1.0"
+description = "Semantic photo search over 25k Unsplash photos using CLIP embeddings and vector search."
+readme = "README.md"
+authors = [
+    { name = "Greisi Kertuka", email = "greisikertuka@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi[standard]>=0.140.0",
+    "pandas>=3.0.5",
+    "pillow>=12.3.0",
+    "pyarrow>=25.0.0",
+    "sentence-transformers>=5.6.1",
+    "torch>=2.13.0",
+]
+
+[project.scripts]
+photosearch = "photosearch:main"
+
+[build-system]
+requires = ["uv_build>=0.11.32,<0.12.0"]
+build-backend = "uv_build"
+
+# Pin the CPU-only PyTorch wheels. On Windows PyPI serves CPU torch anyway, but on
+# Linux (any deploy target) the default resolves to multi-GB CUDA builds. Pinning the
+# CPU index here keeps every future Linux build small — an inverted "works on my machine".
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[tool.uv.sources]
+torch = [{ index = "pytorch-cpu" }]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "ruff>=0.16.0",
+]

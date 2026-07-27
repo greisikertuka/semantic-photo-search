@@ -1,0 +1,28 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Managed Python interpreters (installed outside the repo, but ignore if nested)
+.uvpython/
+
+# Data: TSV, parquet, embeddings, Chroma, thumbnails. Never commit (licensing) — see PLAN.md / README.
+# Rebuilt via the indexing pipeline or downloaded as a GitHub Release asset (Session 12).
+/data/*
+!/data/.gitkeep
+
+# Local photo library index (Session 9) and model caches
+/space/*.npy
+/space/*.parquet
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

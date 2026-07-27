@@ -1,0 +1,13 @@
+# Normalize line endings: LF in the repo, checked out as-is per platform.
+# Keeps diffs clean and matches the Linux deploy targets (HF Space, Render).
+* text=auto eol=lf
+
+# Binary / generated artifacts — never touch line endings.
+*.npy binary
+*.parquet binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.gif binary
+uv.lock -diff
