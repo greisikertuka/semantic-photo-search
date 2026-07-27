@@ -1,0 +1,33 @@
+name: CI
+
+# Runs lint + tests on every push and PR. The whole suite is model-free and
+# artifact-free (stubbed encoder, synthetic fixtures), so it finishes in seconds
+# and needs no data download — which is exactly why the tests were designed that way.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - name: Set up Python
+        run: uv python install 3.12
+
+      - name: Sync dependencies
+        run: uv sync --dev
+
+      - name: Lint
+        run: uv run ruff check .
+
+      - name: Test
+        run: uv run pytest -q

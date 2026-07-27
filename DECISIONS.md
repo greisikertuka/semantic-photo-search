@@ -60,3 +60,70 @@ Verified: the resolved install reports `torch==2.13.0+cpu`.
 **Decision:** `data/` is gitignored; the TSV and images are never committed.
 
 **Why:** The Lite dataset's terms permit use but prohibit *redistributing* the data. We ship only derived/display-minimum artifacts later (Session 11/12), credit photographers in the UI, and hotlink images via Unsplash's CDN (which is how Unsplash wants images used).
+
+---
+
+## Session 3 — The indexer
+
+### Fetch downsized images, not originals
+**Decision:** Request each photo at `?w=336&q=80` (Unsplash imgix CDN params) rather than full resolution.
+
+**Why:** CLIP resizes every input to 224×224 internally, so any pixels beyond ~336px are decoded and immediately thrown away. Downsizing at the CDN turns a ~tens-of-GB download into ~1–1.5 GB with zero effect on the embeddings — the cheapest 20× win in the project.
+
+### Store L2-normalized float32 vectors
+**Decision:** `model.encode(..., normalize_embeddings=True)`, saved as float32.
+
+**Why:** If every vector has length 1, cosine similarity *is* the dot product — so the entire search becomes one matrix-vector product (Session 4), no per-query normalization. float32 keeps the matrix at 25k×512×4 B ≈ 51 MB, small enough to hold in RAM on any free tier. (fp16 storage is a Session 11 deploy optimization, not the working format — NumPy has no fast fp16 matmul.)
+
+### Chunked, resumable pipeline with per-chunk checkpoints
+**Decision:** Process in 500-row chunks; write each chunk's embeddings + ids to its own `.npz`; on restart, skip chunks that already exist; record (never crash on) per-photo download failures.
+
+**Why:** A 25k-item job over the network *will* hit 404s (deleted photos) and timeouts. Checkpointing per chunk means a failure at photo 24,000 costs one chunk, not the whole run — and the job can run unattended and survive a laptop sleep. This is the shape of essentially every real batch-inference pipeline.
+
+### Index-keyed futures preserve row alignment; validate element-wise
+**Decision:** Submit downloads as `{pool.submit(fetch, url): position}` and reassemble each chunk in dataframe order before encoding. At the end, assert `(photo_ids == photos.photo_id.values).all()` — element-wise, not just shape.
+
+**Why:** Concurrent downloads finish out of order. If row *i* of the embedding matrix stops being the same photo as row *i* of the metadata, search returns *plausible-looking but wrong* photos with **no error anywhere** — the nastiest bug class in the system. A shape check can't catch a scrambled order; an ID-equality check can. The invariant is worth a hard assert on every build.
+
+---
+
+## Session 4 — Search core (NumPy) & the FilterSpec seam
+
+### Brute-force NumPy search before any vector DB
+**Decision:** v1 search is `embeddings @ query_vec` over the full matrix, top-k via `np.argpartition`.
+
+**Why:** 25k×512 ≈ 25M multiply-adds over 51 MB ≈ a few ms on a laptop CPU — measured, not assumed. A vector DB's ANN index earns its keep at ~1M+ vectors; adopting one here would be complexity with no payoff. Writing brute force by hand is also the thing that lets me actually *explain* vector search in an interview. `argpartition` finds the top k in O(n) then sorts only those k, instead of an O(n log n) full sort — the right habit even when n is small.
+
+### FilterSpec: one filter language, two back-ends
+**Decision:** A frozen `FilterSpec` dataclass (aperture_max, iso_max, focal_min/max, camera_make) is the *store-agnostic* filter interface. `NumpyStore` compiles it to a boolean mask; Session 7's `ChromaStore` will compile the *same* object to a Chroma `where=` clause.
+
+**Why:** This seam is the architectural spine of the project. It means the store is swappable by config, tests run against NumPy, and the deployed HF Space (Session 11) can do filtered search with NumPy alone — no Chroma in the container. Designing the interface *before* the second implementation exists is what keeps the two honest.
+
+### Pre-filter (mask), never post-filter
+**Decision:** Apply the filter mask to the candidate set *first*, then rank the survivors.
+
+**Why:** Post-filtering (rank top-k, then drop non-matches) breaks under selective filters — ask for top-50, filter to f/1.8, and you might keep 2 results. Pre-filtering restricts the candidate set, then ranks, so k is honoured. Rows with no EXIF have NaN in the filter columns, and every comparison against NaN is False — so "no EXIF ⇒ excluded when a filter is active" falls out for free, which is the correct behaviour (and drives the "searching N photos with EXIF" UI note later).
+
+### Encoder as an injectable interface
+**Decision:** `SearchService` depends on an `encoder` object with `encode_text`/`encode_image`, not on SentenceTransformer directly.
+
+**Why:** That one seam gives model-free tests (a fixed-vector `StubEncoder`) *and* the Session 11b path to swap in an ONNX text encoder — same interface, different weights. The dependency injection is the test seam made visible.
+
+---
+
+## Session 5 — API & CI
+
+### Load the model once, at startup (lifespan), not per request
+**Decision:** Build the single `SearchService` in FastAPI's `lifespan` context manager and warm the encoder with a throwaway query before serving.
+
+**Why:** The model is ~600 MB; loading it per request would be absurd. `lifespan` is Python's try-with-resources — startup code before `yield`, shutdown after — and is the modern replacement for the deprecated `@app.on_event("startup")`. Warming the encoder means visitor #1 doesn't pay the first-call setup cost.
+
+### Sync `def` for the search endpoint, not `async def`
+**Decision:** The search endpoint is a plain `def`.
+
+**Why:** CLIP inference is CPU-bound. FastAPI runs a sync endpoint in its thread pool, keeping the event loop free; marking it `async` would block the loop on CPU work and help nothing. Knowing *when not* to reach for async is the senior move.
+
+### Tests (and CI) are model-free and artifact-free by construction
+**Decision:** API tests override the `get_service` dependency with a `StubEncoder` + the 6×4 synthetic store; CI runs only `ruff check` + `pytest`, no data download, no model.
+
+**Why:** CI that needs a 600 MB model or a 51 MB index is slow and flaky. Designing the encoder as an injectable interface (Session 4) means the entire HTTP layer — routing, 422 validation, response shape — is testable in seconds with zero AI dependency. The green CI badge is the cheapest strong signal of engineering culture the repo carries. (One config note: ruff's B008 flags FastAPI's `Depends()`/`Query()`-in-defaults idiom as a false positive, so they're whitelisted via `extend-immutable-calls`.)

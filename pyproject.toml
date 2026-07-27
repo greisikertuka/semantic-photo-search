@@ -40,3 +40,8 @@ dev = [
     "pytest>=9.1.1",
     "ruff>=0.16.0",
 ]
+
+[tool.ruff.lint.flake8-bugbear]
+# FastAPI's whole DI design is `Depends(...)` / `Query(...)` as parameter defaults,
+# so B008 ("no function calls in defaults") is a false positive for these.
+extend-immutable-calls = ["fastapi.Depends", "fastapi.Query"]
