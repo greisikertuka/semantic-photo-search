@@ -646,6 +646,7 @@ version = "0.1.0"
 source = { editable = "." }
 dependencies = [
     { name = "fastapi", extra = ["standard"] },
+    { name = "httpx" },
     { name = "pandas" },
     { name = "pillow" },
     { name = "pyarrow" },
@@ -663,6 +664,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "fastapi", extras = ["standard"], specifier = ">=0.140.0" },
+    { name = "httpx", specifier = ">=0.28.1" },
     { name = "pandas", specifier = ">=3.0.5" },
     { name = "pillow", specifier = ">=12.3.0" },
     { name = "pyarrow", specifier = ">=25.0.0" },
