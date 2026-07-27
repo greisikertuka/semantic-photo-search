@@ -34,8 +34,11 @@ def client() -> TestClient:
     # Query aligned with p0 — same ordering the store tests assert on.
     service = SearchService(StubEncoder(np.array([1.0, 0.0, 0.0, 0.0])), store)
     app.dependency_overrides[get_service] = lambda: service
-    with TestClient(app) as c:
-        yield c
+    # NB: no `with` — we deliberately DON'T run the lifespan, which would load the
+    # real 600 MB model whenever the index artifacts happen to exist on disk. The
+    # DI override is the whole point; the real service must never boot in tests.
+    client = TestClient(app)
+    yield client
     app.dependency_overrides.clear()
 
 
@@ -99,7 +102,8 @@ class TestHealth:
 
 
 def test_search_unavailable_without_service() -> None:
-    # No override: app.state.service is None (index not loaded) -> 503, not a crash.
+    # No override and no lifespan (no `with`): app.state has no `service`, so
+    # get_service sees None and returns 503 instead of crashing.
     app.dependency_overrides.clear()
-    with TestClient(app) as c:
-        assert c.get("/api/search", params={"q": "x"}).status_code == 503
+    client = TestClient(app)
+    assert client.get("/api/search", params={"q": "x"}).status_code == 503

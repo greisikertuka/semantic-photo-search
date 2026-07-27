@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "photosearch-api",
+      "runtimeExecutable": "uv",
+      "runtimeArgs": ["run", "fastapi", "dev", "src/photosearch/api.py", "--port", "8000"],
+      "port": 8000
+    }
+  ]
+}

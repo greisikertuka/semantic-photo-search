@@ -1,0 +1,729 @@
+/* ============================================================================
+   latent — semantic photo search
+   Aesthetic: editorial darkroom. Near-black warm ground, safelight-amber accent,
+   Fraunces serif display against Space Mono technical readouts. The chrome stays
+   quiet so the photographs carry all the color.
+   ============================================================================ */
+
+:root {
+  --bg: #0e0c0a;
+  --bg-2: #131009;
+  --surface: #1a1611;
+  --surface-2: #221d16;
+  --line: #2c261d;
+  --line-2: #3a3327;
+
+  --text: #f4efe3;
+  --muted: #9c9384;
+  --faint: #6d6557;
+
+  --ember: #e8863f; /* golden-hour safelight — strong matches, focus, accents */
+  --ember-deep: #c26a2a;
+  --gold: #cba24c; /* decent matches */
+  --grey: #877f70; /* weak matches */
+
+  --radius: 4px;
+  --maxw: 1360px;
+
+  --serif: "Fraunces", Georgia, "Times New Roman", serif;
+  --sans: "Archivo", system-ui, -apple-system, sans-serif;
+  --mono: "Space Mono", ui-monospace, "SFMono-Regular", monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(120% 90% at 50% -10%, var(--bg-2) 0%, var(--bg) 55%) fixed,
+    var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--ember);
+  color: #14100b;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* --- atmosphere: fine film grain + a faint safelight glow ------------------- */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: screen;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.safelight {
+  position: fixed;
+  top: -30vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120vw;
+  height: 70vh;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    50% 60% at 50% 50%,
+    rgba(232, 134, 63, 0.09) 0%,
+    rgba(232, 134, 63, 0.03) 40%,
+    transparent 70%
+  );
+  filter: blur(10px);
+}
+
+/* --- top bar --------------------------------------------------------------- */
+.topbar {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 22px clamp(18px, 4vw, 48px) 0;
+}
+
+.wordmark {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 22px;
+  letter-spacing: -0.02em;
+  font-optical-sizing: auto;
+}
+
+.wordmark .dot {
+  color: var(--ember);
+}
+
+.corpus {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+/* --- hero ------------------------------------------------------------------ */
+main {
+  position: relative;
+  z-index: 2;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 clamp(18px, 4vw, 48px) 80px;
+}
+
+.hero {
+  padding: clamp(48px, 12vh, 130px) 0 40px;
+  max-width: 760px;
+  transition:
+    padding 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+body.searched .hero {
+  padding: 34px 0 26px;
+}
+
+.hero-title {
+  font-family: var(--serif);
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-size: clamp(34px, 6vw, 62px);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  margin: 0 0 20px;
+}
+
+.hero-title em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--ember);
+}
+
+.hero-sub {
+  color: var(--muted);
+  font-size: clamp(15px, 1.6vw, 17px);
+  max-width: 52ch;
+  margin: 0 0 34px;
+}
+
+body.searched .hero-sub {
+  display: none;
+}
+
+/* --- search field ---------------------------------------------------------- */
+.search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+.search:focus-within {
+  border-color: var(--ember);
+  background: var(--surface-2);
+  box-shadow:
+    0 0 0 1px var(--ember),
+    0 18px 50px -24px rgba(232, 134, 63, 0.5);
+}
+
+.search-icon {
+  width: 20px;
+  height: 20px;
+  flex: none;
+  fill: none;
+  stroke: var(--muted);
+  stroke-width: 2;
+  stroke-linecap: round;
+  transition: stroke 0.25s ease;
+}
+
+.search:focus-within .search-icon {
+  stroke: var(--ember);
+}
+
+#q {
+  flex: 1;
+  min-width: 0;
+  background: none;
+  border: none;
+  outline: none;
+  color: var(--text);
+  font-family: var(--serif);
+  font-size: clamp(18px, 2.4vw, 24px);
+  font-weight: 300;
+  letter-spacing: -0.01em;
+}
+
+#q::placeholder {
+  color: var(--faint);
+  font-style: italic;
+}
+
+/* strip the native search clear button so the field stays editorial */
+#q::-webkit-search-decoration,
+#q::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+
+.slash {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--faint);
+  border: 1px solid var(--line-2);
+  border-radius: 3px;
+  padding: 3px 8px;
+  flex: none;
+}
+
+body.searched .slash {
+  display: none;
+}
+
+/* --- example chips --------------------------------------------------------- */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 20px;
+}
+
+.chip {
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 100px;
+  padding: 7px 15px;
+  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.chip:hover {
+  color: var(--text);
+  border-color: var(--ember-deep);
+  background: rgba(232, 134, 63, 0.07);
+  transform: translateY(-1px);
+}
+
+body.searched .chips {
+  display: none;
+}
+
+/* --- status line ----------------------------------------------------------- */
+.status {
+  min-height: 22px;
+  margin: 6px 0 22px;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--faint);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.status .warn {
+  color: var(--gold);
+}
+
+.status .stat {
+  color: var(--muted);
+}
+
+.status .stat b {
+  color: var(--text);
+  font-weight: 700;
+}
+
+/* --- results: masonry via CSS columns -------------------------------------- */
+.grid {
+  column-count: 4;
+  column-gap: 16px;
+}
+
+@media (max-width: 1100px) {
+  .grid {
+    column-count: 3;
+  }
+}
+@media (max-width: 720px) {
+  .grid {
+    column-count: 2;
+    column-gap: 12px;
+  }
+}
+@media (max-width: 420px) {
+  .grid {
+    column-count: 1;
+  }
+}
+
+.card {
+  position: relative;
+  display: block;
+  width: 100%;
+  margin: 0 0 16px;
+  break-inside: avoid;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--surface);
+  cursor: zoom-in;
+  border: 1px solid var(--line);
+  transform: translateY(8px);
+  opacity: 0;
+  animation: rise 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+}
+
+@keyframes rise {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.card-frame {
+  position: relative;
+  width: 100%;
+}
+
+/* blurhash canvas sits behind the photo and shows until it loads */
+.card-frame canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.card-frame img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.card-frame img.loaded {
+  opacity: 1;
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+  border-radius: var(--radius);
+  pointer-events: none;
+  transition: box-shadow 0.25s ease;
+}
+
+.card:hover {
+  border-color: var(--line-2);
+}
+
+.card:hover::after {
+  box-shadow: inset 0 0 0 1px rgba(232, 134, 63, 0.4);
+}
+
+/* score badge — raw cosine, colored by calibrated verdict */
+.badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 2;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 4px 8px;
+  border-radius: 3px;
+  background: rgba(14, 12, 10, 0.72);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: var(--grey);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.badge.strong {
+  color: var(--ember);
+  border-color: rgba(232, 134, 63, 0.45);
+}
+.badge.decent {
+  color: var(--gold);
+  border-color: rgba(203, 162, 76, 0.4);
+}
+
+/* photographer credit slides up on hover */
+.credit {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  padding: 26px 12px 11px;
+  font-size: 12px;
+  color: #ece6da;
+  background: linear-gradient(transparent, rgba(10, 8, 6, 0.85));
+  opacity: 0;
+  transform: translateY(6px);
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+}
+
+.card:hover .credit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.credit .by {
+  color: var(--muted);
+}
+
+/* --- empty / no-results state --------------------------------------------- */
+.empty {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 22px;
+  color: var(--muted);
+  padding: 40px 0;
+  max-width: 46ch;
+}
+
+.empty span {
+  color: var(--text);
+  font-style: normal;
+}
+
+/* --- detail modal ---------------------------------------------------------- */
+.modal[hidden] {
+  display: none;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(12px, 3vw, 40px);
+}
+
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(6, 5, 4, 0.86);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  animation: fade 0.3s ease;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+
+.modal-card {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 0;
+  width: min(1100px, 100%);
+  max-height: 88vh;
+  background: var(--surface);
+  border: 1px solid var(--line-2);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 40px 120px -30px rgba(0, 0, 0, 0.8);
+  animation: pop 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+@keyframes pop {
+  from {
+    transform: scale(0.97) translateY(10px);
+    opacity: 0;
+  }
+}
+
+.modal-image {
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+}
+
+.modal-image img {
+  max-width: 100%;
+  max-height: 88vh;
+  object-fit: contain;
+  display: block;
+}
+
+.modal-meta {
+  padding: 24px 22px;
+  overflow-y: auto;
+  border-left: 1px solid var(--line);
+}
+
+.modal-score {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ember);
+  margin-bottom: 16px;
+}
+
+.modal-desc {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 19px;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  margin: 0 0 22px;
+  color: var(--text);
+}
+
+.modal-desc:empty {
+  display: none;
+}
+
+.spec {
+  margin: 0 0 22px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 8px 16px;
+  font-family: var(--mono);
+  font-size: 12.5px;
+}
+
+.spec dt {
+  color: var(--faint);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 10.5px;
+  align-self: center;
+}
+
+.spec dd {
+  margin: 0;
+  color: var(--text);
+  text-align: right;
+}
+
+.spec .none {
+  color: var(--faint);
+}
+
+.modal-credit {
+  border-top: 1px solid var(--line);
+  padding-top: 16px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.modal-credit a {
+  color: var(--text);
+  border-bottom: 1px solid var(--ember-deep);
+  padding-bottom: 1px;
+  transition: color 0.2s ease;
+}
+
+.modal-credit a:hover {
+  color: var(--ember);
+}
+
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 3;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--line-2);
+  background: rgba(14, 12, 10, 0.7);
+  color: var(--text);
+  font-size: 13px;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.modal-close:hover {
+  background: var(--ember);
+  color: #14100b;
+  transform: rotate(90deg);
+}
+
+@media (max-width: 760px) {
+  .modal-card {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  .modal-image img {
+    max-height: 55vh;
+  }
+  .modal-meta {
+    border-left: none;
+    border-top: 1px solid var(--line);
+  }
+}
+
+/* --- footer ---------------------------------------------------------------- */
+.footer {
+  position: relative;
+  z-index: 2;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 30px clamp(18px, 4vw, 48px) 40px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 24px;
+  justify-content: space-between;
+  border-top: 1px solid var(--line);
+  font-size: 12px;
+  color: var(--faint);
+}
+
+.footer a {
+  color: var(--muted);
+  border-bottom: 1px solid var(--line-2);
+}
+
+.footer a:hover {
+  color: var(--ember);
+}
+
+.footer-tech {
+  font-family: var(--mono);
+  letter-spacing: 0.04em;
+}
+
+/* --- focus accessibility --------------------------------------------------- */
+:focus-visible {
+  outline: 2px solid var(--ember);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* --- loading skeleton shimmer (shown while a search is in flight) ---------- */
+.card.skeleton {
+  cursor: default;
+  animation: rise 0.4s ease forwards;
+}
+
+.card.skeleton .card-frame {
+  background: linear-gradient(
+    100deg,
+    var(--surface) 30%,
+    var(--surface-2) 50%,
+    var(--surface) 70%
+  );
+  background-size: 220% 100%;
+  animation: shimmer 1.3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  to {
+    background-position: -220% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto;
+  }
+  .card {
+    opacity: 1;
+    transform: none;
+  }
+}

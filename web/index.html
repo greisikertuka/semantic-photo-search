@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>latent · semantic photo search</title>
+    <meta
+      name="description"
+      content="Search 25,000 Unsplash photographs by meaning, not tags — powered by CLIP embeddings and vector search."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=Archivo:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div class="grain" aria-hidden="true"></div>
+    <div class="safelight" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <a class="wordmark" href="/">latent<span class="dot">.</span></a>
+      <div class="corpus" id="corpus" aria-live="polite">&nbsp;</div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <h1 class="hero-title">
+          Search photographs by <em>meaning</em>,<br />not by keyword.
+        </h1>
+        <p class="hero-sub">
+          Type a scene, a mood, a feeling. CLIP finds the closest frames across
+          the whole archive — even ones no one ever tagged.
+        </p>
+
+        <form class="search" id="form" role="search" autocomplete="off">
+          <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="11" cy="11" r="7" />
+            <line x1="16.5" y1="16.5" x2="21" y2="21" />
+          </svg>
+          <input
+            id="q"
+            name="q"
+            type="search"
+            placeholder="golden hour by the sea…"
+            aria-label="Search photographs"
+            enterkeyhint="search"
+          />
+          <kbd class="slash" aria-hidden="true">/</kbd>
+        </form>
+
+        <div class="chips" id="chips" aria-label="Example searches">
+          <button class="chip" type="button">golden hour by the sea</button>
+          <button class="chip" type="button">foggy empty street</button>
+          <button class="chip" type="button">a man in a red jacket on a mountain</button>
+          <button class="chip" type="button">rain on a neon window at night</button>
+          <button class="chip" type="button">quiet minimalist interior</button>
+        </div>
+      </section>
+
+      <section class="status" id="status" aria-live="polite"></section>
+      <section class="grid" id="grid"></section>
+    </main>
+
+    <!-- Detail lightbox -->
+    <div class="modal" id="modal" hidden>
+      <div class="modal-backdrop" data-close></div>
+      <div class="modal-card" role="dialog" aria-modal="true" aria-label="Photo detail">
+        <button class="modal-close" data-close aria-label="Close">✕</button>
+        <div class="modal-image">
+          <img id="modal-img" alt="" />
+        </div>
+        <aside class="modal-meta">
+          <div class="modal-score" id="modal-score"></div>
+          <p class="modal-desc" id="modal-desc"></p>
+          <dl class="spec" id="modal-spec"></dl>
+          <div class="modal-credit" id="modal-credit"></div>
+        </aside>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <span
+        >Photographs via
+        <a href="https://unsplash.com/data" target="_blank" rel="noopener"
+          >Unsplash Lite</a
+        >
+        · hotlinked, never redistributed.</span
+      >
+      <span class="footer-tech">CLIP ViT-B/32 · cosine over 25k vectors</span>
+    </footer>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

@@ -127,3 +127,27 @@ Verified: the resolved install reports `torch==2.13.0+cpu`.
 **Decision:** API tests override the `get_service` dependency with a `StubEncoder` + the 6×4 synthetic store; CI runs only `ruff check` + `pytest`, no data download, no model.
 
 **Why:** CI that needs a 600 MB model or a 51 MB index is slow and flaky. Designing the encoder as an injectable interface (Session 4) means the entire HTTP layer — routing, 422 validation, response shape — is testable in seconds with zero AI dependency. The green CI badge is the cheapest strong signal of engineering culture the repo carries. (One config note: ruff's B008 flags FastAPI's `Depends()`/`Query()`-in-defaults idiom as a false positive, so they're whitelisted via `extend-immutable-calls`.)
+
+### Tests must not boot the real service — skip the lifespan
+**Decision:** The API test fixtures construct `TestClient(app)` **without** the `with` context manager, so FastAPI's `lifespan` never runs during tests.
+
+**Why:** Once the index artifacts exist on disk (i.e. after Session 3, on the dev machine), a `with TestClient(app)` would run `lifespan`, which calls `build_service()` → loads the real 600 MB CLIP model — turning a 3-second suite into a 98-second one and breaking the "index-not-loaded → 503" test. Skipping the lifespan keeps `app.state.service` unset, so the dependency override is the only thing wiring a service in. (CI never hit this because `data/` is gitignored, so the model load failed fast there — but the dev machine did. The fix makes both paths identical and fast.)
+
+---
+
+## Session 6 — The web UI
+
+### Vanilla HTML/JS/CSS, no build step
+**Decision:** Hand-write `web/index.html + style.css + app.js`, served by FastAPI `StaticFiles` mounted at `/` (after the `/api/*` routes so they win). No framework, no bundler.
+
+**Why:** I'm a frontend dev — a hand-rolled grid is *less* work than standing up a framework, has zero build/deploy complexity, and looks better in a portfolio than a template. The mount is guarded by `WEB_DIR.is_dir()` so the app still imports headless (CI, or before this session existed).
+
+### Score calibration: the distributions overlap, so flag conservatively
+**Decision:** Show the **raw** cosine score on every card (e.g. `.316`), color-coded by band (strong ≥ 0.28 ember, decent ≥ 0.24 gold, else grey), and show a "⚠ no strong matches — showing the closest anyway" banner only when the *best* hit is below **0.26**.
+
+**Why:** I measured top-1 scores over 16 queries (10 sensible, 6 absurd) against the live index. Sensible queries landed **0.264–0.340**; absurd/gibberish landed **0.246–0.292**. The ranges **overlap**: "purple elephant playing chess" scores 0.292 (CLIP genuinely finds purple imagery) — *higher* than the legitimate "a bowl of ramen" at 0.264. So there is **no threshold that cleanly separates sense from nonsense**, and any "did you mean nothing?" feature that claims otherwise is lying. The honest design is: always show raw scores (not fake confidence %s), and reserve the warning for a *clearly* weak best match (< 0.26, which catches pure gibberish like "xqzptn wobble" at 0.246 while leaving real-but-weak queries alone). This overlap is itself the interview-worthy finding — CLIP scores are *relative rankings, not probabilities*.
+
+### BlurHash placeholders decoded client-side
+**Decision:** Decode each photo's `blur_hash` (shipped in the dataset) into a tiny `<canvas>` behind the image, and crossfade the real CDN image in on load; images are `loading="lazy"`.
+
+**Why:** The grid should never flash empty grey boxes. BlurHash is ~30 chars → an instant, color-accurate blur, so the layout paints meaningfully before any image arrives — photographer-grade polish for almost nothing. A per-card `padding-bottom` reserves the true aspect ratio (from the photo's width/height), so masonry never reflows when images load. Thumbnails are hotlinked from the Unsplash CDN at `?w=480&auto=format&q=75` (detail view `?w=1400`), with UTM attribution params and an `onerror` guard for the occasional deleted photo.

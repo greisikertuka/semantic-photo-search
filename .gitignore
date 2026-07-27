@@ -26,3 +26,6 @@ wheels/
 Thumbs.db
 .idea/
 .vscode/
+
+# Windows crash dumps
+*.stackdump

@@ -20,13 +20,17 @@ Run locally:  ``uv run fastapi dev src/photosearch/api.py``
 from __future__ import annotations
 
 from contextlib import asynccontextmanager
+from pathlib import Path
 
 from fastapi import Depends, FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
 from photosearch.models import FilterSpec, Result
 from photosearch.search import SearchService
+
+WEB_DIR = Path(__file__).resolve().parent.parent.parent / "web"
 
 
 class ResultModel(BaseModel):
@@ -152,3 +156,11 @@ def search(
         search_ms=round(timing.search_ms, 3),
         results=[ResultModel.from_result(r) for r in results],
     )
+
+
+# Serve the static frontend (web/) at the root. Mounted LAST so the /api/* routes
+# above take precedence; the mount is a catch-all for everything else. html=True
+# makes "/" serve index.html. Guarded so importing the app without a web/ dir (e.g.
+# in CI, or before Session 6) still works.
+if WEB_DIR.is_dir():
+    app.mount("/", StaticFiles(directory=WEB_DIR, html=True), name="web")
