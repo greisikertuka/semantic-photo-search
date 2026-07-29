@@ -11,6 +11,9 @@ golden-hour seascapes).
 
 Filters (optional, combine freely):
     uv run python scripts/03_search_cli.py --aperture-max 2.0 --iso-max 800 "night street"
+
+Store toggle (the FilterSpec seam — same results, two back-ends):
+    uv run python scripts/03_search_cli.py --store chroma "night street"
 """
 
 from __future__ import annotations
@@ -19,15 +22,15 @@ import argparse
 
 from photosearch.models import FilterSpec
 from photosearch.search import SearchService
-from photosearch.store import NumpyStore
+from photosearch.store import load_store
 
 
-def build_service() -> SearchService:
+def build_service(store_kind: str | None = None) -> SearchService:
     from photosearch.encoder import Encoder
 
-    print("[load] embeddings + parquet...")
-    store = NumpyStore.load()
-    print(f"[load] {len(store.photo_ids):,} photos indexed")
+    print(f"[load] store ({store_kind or 'numpy'}) + parquet...")
+    store = load_store(store_kind)
+    print(f"[load] {store.count():,} photos indexed ({store.exif_count:,} with EXIF)")
     print("[load] CLIP model (first run downloads ~600 MB)...")
     encoder = Encoder()
     return SearchService(encoder, store)
@@ -72,9 +75,13 @@ def main() -> None:
     parser.add_argument("--focal-min", type=float, default=None)
     parser.add_argument("--focal-max", type=float, default=None)
     parser.add_argument("--camera-make", type=str, default=None)
+    parser.add_argument(
+        "--store", choices=["numpy", "chroma", "library"], default=None,
+        help="which corpus/back-end to search (default: numpy, or $PHOTOSEARCH_STORE)",
+    )
     args = parser.parse_args()
 
-    service = build_service()
+    service = build_service(args.store)
     filters = filters_from_args(args)
 
     if args.query:

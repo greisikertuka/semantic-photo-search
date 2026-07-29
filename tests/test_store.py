@@ -140,6 +140,28 @@ class TestFilters:
         assert len(store.search(QUERY, k=10, filters=FilterSpec())) == 6
 
 
+class TestCorpusIntrospection:
+    def test_count_is_the_corpus_size(self, store: NumpyStore) -> None:
+        assert store.count() == 6
+
+    def test_exif_count_excludes_no_exif_rows(self, store: NumpyStore) -> None:
+        # p4 has all-NaN EXIF; the other five have at least aperture/iso/focal.
+        assert store.exif_count == 5
+
+    def test_get_embedding_round_trips(self, store: NumpyStore) -> None:
+        vec = store.get_embedding("p0")
+        assert vec is not None
+        assert np.array_equal(vec, EMB[0])
+
+    def test_get_embedding_unknown_id_is_none(self, store: NumpyStore) -> None:
+        assert store.get_embedding("does-not-exist") is None
+
+    def test_stored_embedding_is_its_own_nearest_neighbor(self, store: NumpyStore) -> None:
+        # the backbone of "more like this": a photo's embedding ranks itself first.
+        vec = store.get_embedding("p2")
+        assert store.search(vec, k=1)[0].photo_id == "p2"
+
+
 class TestAlignmentGuard:
     def test_scrambled_ids_raise(self) -> None:
         bad = np.array([f"x{i}" for i in range(6)], dtype=object)
