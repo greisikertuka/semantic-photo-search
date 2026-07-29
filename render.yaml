@@ -1,0 +1,50 @@
+# Session 11b — the real FastAPI app + hand-built UI, on Render's free tier.
+#
+# A Blueprint: infrastructure as a file in the repo, so the deploy is reviewable in a
+# diff instead of being clicked into a dashboard and forgotten.
+#
+# The whole design problem here is 512 MB of RAM. What makes it fit:
+#
+#   * no PyTorch — the CLIP text tower runs on onnxruntime (see PHOTOSEARCH_ENCODER)
+#   * no vector DB — filtering is a NumPy boolean mask, thanks to the FilterSpec seam
+#   * no image encoder — image vectors were computed offline in Session 3
+#   * the ONNX weights live in an external .data file, so they're memory-mapped
+#     rather than copied into RAM (598 MB peak -> 400 MB; the single biggest win)
+#
+# Measured on the same corpus the local app serves: ~400 MB peak RSS, ~25 ms/query
+# encode, and retrieval identical to the full model (eval/run_eval.py --system deploy).
+
+services:
+  - type: web
+    name: semantic-photo-search
+    runtime: python
+    plan: free
+    region: frankfurt
+
+    # One worker. The free tier is 0.1 vCPU, so a second worker would double the
+    # memory for no throughput — search is CPU-bound and there is only one CPU.
+    buildCommand: |
+      python scripts/fetch_deploy_artifacts.py --into .
+      pip install --no-cache-dir -r deploy/requirements.txt
+    startCommand: uvicorn photosearch.api:app --host 0.0.0.0 --port $PORT --workers 1
+
+    healthCheckPath: /api/health
+
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12"
+      # The package isn't pip-installed (that would drag in torch); it's pure Python,
+      # so putting src/ on the path is the whole "install".
+      - key: PYTHONPATH
+        value: src
+      - key: PHOTOSEARCH_ENCODER
+        value: onnx
+      - key: PHOTOSEARCH_STORE
+        value: numpy
+      - key: PHOTOSEARCH_DATA_DIR
+        value: data/space
+      - key: PHOTOSEARCH_ONNX_DIR
+        value: data/encoder
+      # 0.1 vCPU: extra intra-op threads only add contention and memory.
+      - key: PHOTOSEARCH_ONNX_THREADS
+        value: "1"

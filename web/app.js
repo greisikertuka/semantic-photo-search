@@ -393,7 +393,20 @@ async function execute(fetchFn) {
   showSkeletons();
   statusEl.innerHTML = `<span class="stat">searching…</span>`;
   try {
-    const resp = await fetchFn();
+    let resp;
+    try {
+      resp = await fetchFn();
+    } catch (networkError) {
+      // A *network* failure (not an HTTP error) on a deployed free tier almost always
+      // means one thing: the container went to sleep while this tab stayed open. So
+      // explain it, wait for it to come back, and re-fire the search the user already
+      // asked for — rather than showing "search failed" for something they can't fix.
+      if (reqId !== currentReq) return;
+      const woke = await waitForBackend();
+      if (reqId !== currentReq) return;
+      if (!woke) throw networkError;
+      resp = await fetchFn();
+    }
     if (reqId !== currentReq) return; // a newer request superseded this one
     if (!resp.ok) {
       const msg = resp.status === 404 ? "photo not in the index" : `HTTP ${resp.status}`;
@@ -534,6 +547,7 @@ const dropzone = $("#dropzone");
 let dragDepth = 0;
 
 function hasFiles(e) {
+  if (!imagesSupported) return false; // text-only deploy: no vision tower to encode with
   return e.dataTransfer && Array.from(e.dataTransfer.types || []).includes("Files");
 }
 
@@ -601,15 +615,79 @@ function loadHealth() {
   return fetch(`/api/health?source=${encodeURIComponent(activeSource)}`)
     .then((r) => (r.ok ? r.json() : null))
     .then((h) => {
-      if (!h || !h.indexed) return;
+      if (!h || !h.indexed) return null;
       const label = h.source === "library" ? "my library" : h.store;
       $("#corpus").textContent = `${h.indexed.toLocaleString()} frames · ${label}`;
       updateExifNote({ corpus: h.indexed, exif_count: h.exif_count });
       if (h.sources && h.sources.length > 1) sourceToggle.hidden = false;
+      applyCapabilities(h);
+      return h;
     })
-    .catch(() => {});
+    .catch(() => null);
 }
 
-loadHealth();
+/* --- cold start (Session 11b) ---------------------------------------------
+   The deployed API sleeps after 15 minutes of inactivity; waking it takes about a
+   minute. The banner is deliberately NOT shown immediately — locally, and on a warm
+   container, health answers in milliseconds and a flash of "waking the server…"
+   would be a lie. It appears only once the wait is long enough to need explaining.
+*/
+const wakingEl = $("#waking");
+const WAKING_HTML = wakingEl.innerHTML; // kept so the give-up message is reversible
+const WAKE_BANNER_AFTER_MS = 1500;
+const WAKE_GIVE_UP_AFTER_MS = 180000;
+let waking = null; // in-flight wait, shared so concurrent callers don't each poll
+
+function waitForBackend() {
+  return (waking ??= pollUntilAwake().finally(() => (waking = null)));
+}
+
+async function pollUntilAwake() {
+  const startedAt = Date.now();
+  let attempt = 0;
+  // A timer, not a check inside the loop: the loop spends most of its time asleep in
+  // the backoff, so an inline check would only notice the deadline had passed on the
+  // *next* iteration — showing a "please wait" notice several seconds after the wait
+  // it is meant to explain had already started.
+  const banner = setTimeout(() => (wakingEl.hidden = false), WAKE_BANNER_AFTER_MS);
+
+  try {
+    while (Date.now() - startedAt < WAKE_GIVE_UP_AFTER_MS) {
+      const health = await loadHealth();
+      if (health) {
+        wakingEl.hidden = true;
+        wakingEl.innerHTML = WAKING_HTML;
+        return health;
+      }
+      attempt++;
+      // Back off to 5s: a booting container is loading a 254 MB model, and hammering
+      // it with retries competes for the one tenth of a CPU it has to do that with.
+      await new Promise((r) => setTimeout(r, Math.min(500 * 2 ** attempt, 5000)));
+    }
+  } finally {
+    clearTimeout(banner);
+  }
+
+  wakingEl.innerHTML =
+    `<span class="waking-text"><b>The server didn't wake up.</b> ` +
+    `It may be over the free tier's monthly hours — try again in a while.</span>`;
+  wakingEl.hidden = false;
+  return null;
+}
+
+/* Which features this backend actually has. The Render deploy runs the CLIP *text*
+   tower only — no vision model in 512 MB — so search-by-image can't work there. We
+   hide the affordance rather than letting someone drag a photo in and get a 501. */
+let imagesSupported = true;
+
+function applyCapabilities(health) {
+  if (typeof health.supports_images !== "boolean") return;
+  imagesSupported = health.supports_images;
+  const imageBtn = $("#image-btn");
+  if (imageBtn) imageBtn.hidden = !imagesSupported;
+  if (!imagesSupported) dropzone.hidden = true;
+}
+
+waitForBackend();
 refreshFilterChrome();
 inputEl.focus();

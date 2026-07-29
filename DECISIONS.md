@@ -299,3 +299,52 @@ Two transcription details bite here and are worth stating: the Space installs fr
 **Decision:** The Gradio app re-implements `web/style.css`'s palette, type, masonry grid, score badge and hover credit rather than accepting Gradio defaults, and shares the Session 6 score calibration constants (0.28 / 0.24 / 0.26) verbatim.
 
 **Why:** The live demo is the first thing a recruiter clicks and the README GIF is the second. If they look like different products, the GIF reads as a mockup of something that doesn't exist. Sharing the calibration matters more than the CSS: a *different* "no strong matches" threshold in the demo would quietly contradict the finding Session 6 measured. (Gradio 6 gotcha, found by running it: `css` and `theme` moved off the `Blocks` constructor onto `.launch()` — passing them the old way is a `UserWarning` and silently unstyled output.)
+
+---
+
+## Session 11b — The real API on Render (ONNX, 512 MB)
+
+### The plan said "quantize to 64 MB". Measuring said the memory problem was somewhere else entirely.
+**Decision:** Deploy the **fp32** CLIP text encoder, unquantized, with its weights re-saved to an external `.data` file so ONNX Runtime memory-maps them instead of copying them into RAM.
+
+**Why:** The session opened with a plausible plan — Render's free tier is 512 MB, the fp32 text encoder is 254 MB, so use the ready-made 64 MB int8 export. Both halves of that turned out to be wrong, in an order worth recording.
+
+*First*, the 64 MB export is broken for this model. Measured against fp32 on the same twelve queries, it agrees at **cosine 0.88** and returns the same top-1 photo **8% of the time**; the top-10 overlap is 4.2/10. The cause is *per-tensor* quantization — one scale factor for an entire weight matrix — meeting a transformer's activation outliers. Re-quantizing it myself per-channel made it *worse* (0.84), which killed the idea that this was a packaging accident.
+
+*Then*, profiling the whole process showed the model's size was never the binding constraint. ONNX stores weights **inside** the graph protobuf by default, so loading a 254 MB model means parsing 254 MB and materializing every initializer again — the app peaked at **598 MB**. Moving those same weights to a sidecar file lets ORT map them from disk:
+
+| encoder | app peak RSS | encode | agreement with fp32 |
+|---|---|---|---|
+| fp32, weights inline (the naive load) | **598 MB** — OOM | 26 ms | — |
+| ready-made int8, 64 MB (the plan's pick) | 366 MB | 5 ms | cos 0.88, top-1 8% |
+| ready-made 4-bit `q4f16`, 72 MB | 366 MB | 45 ms | cos 0.988, **−0.087 P@10** |
+| block-wise 8-bit, built here, 141 MB | 288 MB | 305 ms | cos 0.9999 |
+| **fp32, weights external (shipped)** | **400 MB** | **25 ms** | **exact** |
+
+The shipped row is the fastest, the most accurate, and fits — *without quantizing anything*. Quantization was an answer to a question nobody had measured. It also has a property raw numbers hide: mmapped pages are file-backed, so under memory pressure the kernel evicts them instead of the OOM killer taking the process.
+
+`scripts/07_build_encoder.py --sweep` reproduces every row. `--quantize` still builds the block-wise 8-bit model, kept as a documented fallback — and as the demonstration that **the fix was blocks, not bits**: same 8 bits as the broken export, ~200× more scale factors, cosine 0.88 → 0.9999.
+
+### "Cosine 0.988 is basically identical" — no. Ask the gold set.
+**Decision:** Gate the deploy encoder on **P@10 against Session 10's judgments** (`eval/run_eval.py --system deploy`), not on cosine similarity to the reference vectors.
+
+**Why:** 0.988 cosine *sounds* like a rounding error. Run the same 23 labeled queries through it and it costs **P@10 0.691 → 0.604** — a seventh of the retrieval quality, hidden behind a number that looked like agreement. Cosine between two query vectors is a measure of the embedding; P@10 is a measure of the product. Having built a gold set in Session 10, the marginal cost of asking it this question was one command, and it converted a judgment call into a measurement. The shipped encoder scores **0.691 / 0.517 / 0.873 — identical to the full model in every bucket**, which is a far stronger claim than any cosine.
+
+### No PyTorch, no Chroma, no vision tower — and each absence is load-bearing
+**Decision:** The Render service installs `deploy/requirements.txt` (FastAPI, uvicorn, numpy, pandas, pyarrow, onnxruntime, tokenizers) and puts `src/` on `PYTHONPATH`, rather than `pip install -e .`.
+
+**Why:** The project's own dependencies include torch, sentence-transformers and chromadb — gigabytes, and `import torch` alone costs hundreds of MB of RSS before a single weight loads. None are needed to *serve*: image vectors were computed offline in Session 3, filtering is a NumPy boolean mask because `FilterSpec` was designed store-agnostic in Session 4, and the text tower runs on onnxruntime. The package is pure Python, so `PYTHONPATH=src` is the entire "install". Every seam this leans on was built for a different reason in an earlier session, which is the argument for building seams.
+
+The vision tower's absence is a *user-visible* API decision: `POST /api/search/by-image` returns **501 Not Implemented**, and `/api/health` advertises `supports_images: false` so the frontend hides the upload affordance rather than letting someone drag a photo in and receive an error. 501 is the honest code — this server doesn't implement it; the local one does.
+
+### Artifacts by GitHub Release, not by LFS or by rebuild
+**Decision:** The 210 MB payload (index + encoder) is published as release `deploy-artifacts-v1`; `scripts/fetch_deploy_artifacts.py` (stdlib only) downloads and unpacks it in Render's build step.
+
+**Why:** Committing it would bloat every clone forever and blow GitHub's 100 MB per-file limit; Git LFS on a public repo has bandwidth quotas that a build-on-every-push burns through. Rebuilding the encoder during the build would need `onnx` and ~1 GB of peak RAM to rewrite a 254 MB graph — on the tier we're trying to fit inside. A release asset is a plain cacheable URL, and **the tag pins exactly which index the deployed app is serving**. The script is stdlib-only because it runs *before* `pip install`, and it extracts with `filter="data"` — these are our own archives, but an extractor that trusts its input is a habit worth not having.
+
+### Say "waking up", and mean it
+**Decision:** A cold-start banner that appears only after **1.5 s** of waiting, retries `/api/health` with exponential backoff to 5 s, hides itself the moment the backend answers — and, on a *network* failure mid-session, re-fires the search the user already asked for.
+
+**Why:** The free tier spins down after 15 minutes idle; waking takes about a minute. The naive version of this feature shows the notice immediately, which is a lie on every warm load and locally — hence the delay, so the banner only ever appears when there is genuinely something to explain. The subtler half is the failure path: the realistic cold start isn't page load (Render holds that request while booting), it's a **search fired from a tab that stayed open while the container fell asleep**. That surfaces as a `TypeError`, not an HTTP status, and the first implementation here showed "search failed" for something the user cannot act on. Now it explains, waits, and retries the original query. Backoff caps at 5 s deliberately: a booting container is loading a 254 MB model on a tenth of a CPU, and retry traffic competes with it for exactly that.
+
+One implementation detail worth the comment it carries: the delay is a `setTimeout`, not a check inside the retry loop. The loop spends most of its time asleep in the backoff, so an inline check would only notice the deadline on the *next* iteration — showing a "please wait" notice several seconds after the wait it explains had begun.

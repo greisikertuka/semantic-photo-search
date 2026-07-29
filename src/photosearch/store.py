@@ -187,11 +187,18 @@ class NumpyStore:
 
     @classmethod
     def load(cls, data_dir: Path | str = DATA_DIR) -> NumpyStore:
-        """Load ``embeddings.npy`` + ``photo_ids.npy`` + ``photos.parquet`` from disk."""
+        """Load ``embeddings.npy`` + ``photo_ids.npy`` + ``photos.parquet`` from disk.
+
+        Falls back to the Session 11 deploy artifacts (``embeddings.f16.npy`` +
+        ``photos.slim.parquet``) when the full-precision pair isn't there, so the
+        29.3 MB payload the Space and Render both ship loads through this same
+        class. float16 is a *storage* format only — the constructor widens it back
+        to float32, because NumPy has no fast half-precision matmul.
+        """
         data_dir = Path(data_dir)
-        embeddings = np.load(data_dir / "embeddings.npy")
+        embeddings = _load_first(data_dir, "embeddings.npy", "embeddings.f16.npy")
         photo_ids = np.load(data_dir / "photo_ids.npy", allow_pickle=True)
-        photos = pd.read_parquet(data_dir / "photos.parquet")
+        photos = _read_first_parquet(data_dir, "photos.parquet", "photos.slim.parquet")
         return cls(embeddings, photo_ids, photos)
 
     def _compile_mask(self, filters: FilterSpec) -> np.ndarray:
@@ -341,13 +348,36 @@ class ChromaStore:
         return results
 
 
-def load_store(kind: str | None = None, data_dir: Path | str = DATA_DIR):
+def _pick(data_dir: Path, *names: str) -> Path:
+    """First of ``names`` that exists in ``data_dir``; raises naming all of them."""
+    for name in names:
+        candidate = data_dir / name
+        if candidate.is_file():
+            return candidate
+    raise FileNotFoundError(f"none of {', '.join(names)} found in {data_dir}")
+
+
+def _load_first(data_dir: Path, *names: str) -> np.ndarray:
+    return np.load(_pick(data_dir, *names))
+
+
+def _read_first_parquet(data_dir: Path, *names: str) -> pd.DataFrame:
+    return pd.read_parquet(_pick(data_dir, *names))
+
+
+def data_dir_from_env(default: Path | str = DATA_DIR) -> Path:
+    """``PHOTOSEARCH_DATA_DIR`` if set — the deploy points it at the unpacked release."""
+    return Path(os.environ.get("PHOTOSEARCH_DATA_DIR") or default)
+
+
+def load_store(kind: str | None = None, data_dir: Path | str | None = None):
     """Return the store selected by ``kind`` (or the ``PHOTOSEARCH_STORE`` env var).
 
     ``"numpy"`` (default) or ``"chroma"`` — the config seam that lets the API swap
     back-ends without either endpoint knowing which one answered.
     """
     kind = (kind or os.environ.get("PHOTOSEARCH_STORE", "numpy")).strip().lower()
+    data_dir = data_dir_from_env() if data_dir is None else Path(data_dir)
     if kind == "numpy":
         return NumpyStore.load(data_dir)
     if kind == "chroma":

@@ -43,6 +43,12 @@ dev = [
     "pytest>=9.1.1",
     "ruff>=0.16.0",
 ]
+render = [
+    "huggingface-hub>=1.24.0",
+    "onnx>=1.22.0",
+    "onnxruntime>=1.28.0",
+    "tokenizers>=0.22.2",
+]
 space = [
     "gradio>=6.20.0",
 ]

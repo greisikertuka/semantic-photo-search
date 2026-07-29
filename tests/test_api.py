@@ -179,7 +179,46 @@ class TestHealth:
             "store": "numpy",
             "source": "unsplash",
             "sources": ["unsplash"],
+            "encoder": "stubencoder",
+            "supports_images": True,
         }
+
+
+class TestTextOnlyDeploy:
+    """Session 11b: Render runs the CLIP *text* tower only — no vision model in RAM.
+
+    The frontend reads ``supports_images`` from /api/health and hides the upload zone,
+    so the 501 is a backstop rather than something a user is expected to hit.
+    """
+
+    @pytest.fixture
+    def text_only_client(self) -> TestClient:
+        encoder = StubEncoder(np.array([1.0, 0.0, 0.0, 0.0]))
+        encoder.supports_images = False
+        store = NumpyStore(EMB.copy(), IDS.copy(), PHOTOS.copy())
+        app.dependency_overrides[get_service] = lambda: SearchService(encoder, store)
+        client = TestClient(app)
+        yield client
+        app.dependency_overrides.clear()
+
+    def test_health_advertises_no_image_support(self, text_only_client: TestClient) -> None:
+        assert text_only_client.get("/api/health").json()["supports_images"] is False
+
+    def test_by_image_is_501_not_500(self, text_only_client: TestClient) -> None:
+        from PIL import Image
+
+        buf = io.BytesIO()
+        Image.new("RGB", (8, 8)).save(buf, format="PNG")
+        resp = text_only_client.post(
+            "/api/search/by-image",
+            files={"file": ("probe.png", buf.getvalue(), "image/png")},
+        )
+        assert resp.status_code == 501
+        assert "text-only" in resp.json()["detail"]
+
+    def test_text_search_is_unaffected(self, text_only_client: TestClient) -> None:
+        body = text_only_client.get("/api/search", params={"q": "x", "k": 3}).json()
+        assert [r["photo_id"] for r in body["results"]] == ["p0", "p4", "p5"]
 
 
 class StubLibraryStore(NumpyStore):

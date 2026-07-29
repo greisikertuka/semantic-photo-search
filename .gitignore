@@ -21,6 +21,11 @@ wheels/
 /space/*.npy
 /space/*.parquet
 
+# Session 11b: the deploy payload (index + ONNX encoder, ~210 MB) is built by
+# scripts/06 and scripts/07 and published as a GitHub Release asset, never committed.
+# `dist/` is already ignored above as a Python build dir, which is where the tarballs go.
+/data/encoder/
+
 # Eval: the judgments and the pool ARE committed (they're the gold set — photo ids
 # and labels, no pixels). The downloaded thumbnails and rendered contact sheets are
 # images, so they follow the same never-redistribute rule as data/.

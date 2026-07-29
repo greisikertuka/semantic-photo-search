@@ -86,20 +86,24 @@ class HealthResponse(BaseModel):
     store: str
     source: str
     sources: list[str]
+    encoder: str  # "encoder" | "onnxtextencoder" — which model answered
+    supports_images: bool  # False on the text-only deploy, so the UI can hide upload
 
 
 def build_service() -> SearchService:
     """Load the configured store + CLIP encoder. Separate so lifespan can try/except it.
 
-    The store is chosen by ``PHOTOSEARCH_STORE`` (``numpy`` default, or ``chroma``) —
-    the FilterSpec seam means neither the endpoints nor the encoder know or care which
-    back-end answered.
+    Two env-var seams, both defaulting to the full local setup: ``PHOTOSEARCH_STORE``
+    (``numpy`` | ``chroma``) picks the back-end — the FilterSpec seam means no endpoint
+    knows which one answered — and ``PHOTOSEARCH_ENCODER`` (``clip`` | ``onnx``) picks
+    the model. Session 11b's Render deploy sets the second one to ``onnx`` and gets a
+    torch-free process out of it.
     """
-    from photosearch.encoder import Encoder
+    from photosearch.encoder import load_encoder
     from photosearch.store import load_store
 
     store = load_store()
-    encoder = Encoder()
+    encoder = load_encoder()
     return SearchService(encoder, store)
 
 
@@ -236,6 +240,8 @@ def health(service: SearchService = Depends(get_service)) -> HealthResponse:
         store=store_kind(store),
         source=getattr(service, "source", DEFAULT_SOURCE),
         sources=list(available_sources()) or [DEFAULT_SOURCE],
+        encoder=type(service.encoder).__name__.lower(),
+        supports_images=bool(getattr(service.encoder, "supports_images", True)),
     )
 
 
@@ -295,6 +301,16 @@ def search_by_image(
     blocking, so FastAPI runs it in its thread pool (the sync ``file.file.read()`` is
     correct here — no event loop to await).
     """
+    # The Render deploy carries the CLIP *text* tower only (Session 11b) — there is no
+    # vision model in the process to encode an upload with. 501 says "this server
+    # doesn't implement it", which is the honest status code; the local app does.
+    # Checked *before* importing Pillow, so the deploy needn't install it at all.
+    if not getattr(service.encoder, "supports_images", True):
+        raise HTTPException(
+            status_code=501,
+            detail="this deployment runs a text-only encoder; search-by-image is local-only",
+        )
+
     from PIL import Image
 
     raw = file.file.read()

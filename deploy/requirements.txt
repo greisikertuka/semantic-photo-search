@@ -1,0 +1,22 @@
+# Session 11b — the Render runtime's entire dependency list.
+#
+# Deliberately NOT `pip install -e .`: the project's own dependencies include torch,
+# sentence-transformers and chromadb, which together are several gigabytes and would
+# not fit the free tier's disk, let alone its 512 MB of RAM. None of them are needed
+# to *serve* search — the image vectors were computed offline (Session 3) and the text
+# tower runs on onnxruntime (Session 11b). So the deploy installs this list instead
+# and puts `src/` on PYTHONPATH; the package is pure Python and needs no build step.
+#
+# Pinned exactly, because a deploy that resolves differently from the machine it was
+# tested on is not a deploy, it's a coin flip.
+
+fastapi==0.140.0
+uvicorn[standard]==0.51.0
+python-multipart==0.0.32   # FastAPI needs it to *declare* the upload route, which 501s
+
+numpy==2.5.1
+pandas==3.0.5
+pyarrow==25.0.0            # reads photos.slim.parquet
+
+onnxruntime==1.28.0        # the CLIP text tower, without PyTorch
+tokenizers==0.22.2         # CLIP's BPE, without transformers

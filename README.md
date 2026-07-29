@@ -24,6 +24,47 @@ was designed as a store-agnostic interface back in Session 4. The only model tha
 runs at query time is the CLIP *text* encoder, on CPU; the photographs themselves
 are hotlinked from Unsplash's CDN and never touch the server.
 
+### The full app, on Render
+
+The hand-built UI above — filters, "more like this", the lot — running the real
+FastAPI backend on a **512 MB free instance**, with **no PyTorch in the process**.
+
+**▶ <!-- RENDER_URL -->_deploying — see below_<!-- /RENDER_URL -->**
+
+The interesting part is what it took to fit. The CLIP text encoder is 254 MB and the
+obvious move was to quantize it to the ready-made 64 MB int8 export. Measuring that
+export against the full model killed the idea: it agrees at **cosine 0.88** and returns
+the same top result **8% of the time**. Profiling then showed the model's size was
+never the binding constraint — ONNX stores weights *inside* the graph by default, so
+loading it parsed 254 MB and materialized every weight again, peaking at **598 MB**.
+
+Moving the weights to a sidecar file so ONNX Runtime memory-maps them:
+
+| encoder | app peak RSS | encode | vs. the full model |
+|---|---|---|---|
+| fp32, weights inline *(the naive load)* | **598 MB** — doesn't fit | 26 ms | — |
+| ready-made int8, 64 MB *(the plan's pick)* | 366 MB | 5 ms | cosine 0.88, top-1 **8%** |
+| ready-made 4-bit, 72 MB | 366 MB | 45 ms | cosine 0.988, **−0.087 P@10** |
+| **fp32, weights external** *(shipped)* | **400 MB** | **25 ms** | **identical** |
+
+Fastest, most accurate, and it fits — *without quantizing anything*. Reproduce the
+whole table with `scripts/07_build_encoder.py --sweep`.
+
+That third row is the one worth staring at. Cosine 0.988 reads like a rounding error;
+running the same 23 labeled queries from the evaluation above through it costs **P@10
+0.691 → 0.604**. Cosine between query vectors measures the embedding, not the product.
+Because Session 10 left a gold set lying around, checking cost one command:
+
+```bash
+uv run python eval/run_eval.py --system deploy    # deployed encoder vs. the real one
+```
+
+The shipped encoder scores **0.691 / 0.517 / 0.873 — identical in every bucket.**
+
+*The instance sleeps after 15 minutes idle and takes ~a minute to wake; the UI says so
+while you wait, then re-runs your query. Search-by-image returns **501** there — the
+vision tower doesn't ship, so the upload button hides itself rather than lying.*
+
 ## What this is
 
 A web app that turns a natural-language query into a vector, compares it against precomputed image vectors, and returns the closest photos. The CLIP model is **frozen** — nothing is trained. Indexing runs every image through the encoder once; search runs the query text through the encoder and finds the nearest saved vectors.
@@ -39,6 +80,7 @@ The differentiator: **EXIF-aware search** — combine a semantic query with real
 | Embeddings | CLIP `clip-ViT-B-32` via sentence-transformers |
 | Vector store | NumPy brute force → Chroma (for filtering) |
 | API | FastAPI + uvicorn |
+| Deploy encoder | ONNX Runtime + `tokenizers` — CLIP text tower, no PyTorch |
 | UI | Static HTML/JS (+ Gradio for the deployed demo) |
 | Tests & CI | pytest + ruff + GitHub Actions |
 
@@ -175,6 +217,29 @@ stops — **you** review the file list and push. Everything it copies becomes
 public, so the review is the point; see the licensing reasoning in
 [`DECISIONS.md`](DECISIONS.md#session-11--deployment-hugging-face-space).
 
+### The Render app
+
+[`render.yaml`](render.yaml) is a Blueprint — the whole service definition lives in
+the repo, so the deploy is reviewable in a diff instead of clicked into a dashboard.
+Point Render at the repo (**New → Blueprint Instance**) and it builds itself:
+
+```bash
+uv run --group render python scripts/07_build_encoder.py   # data/encoder/, ~256 MB
+python scripts/fetch_deploy_artifacts.py --into .          # or just download them
+```
+
+The ~210 MB payload ships as a [GitHub Release][release] asset rather than living in
+the repo: committing it would bloat every clone forever and exceed GitHub's 100 MB
+per-file limit, and the release tag pins exactly which index the deployed app serves.
+
+To run the deploy configuration locally — same encoder, same store, same env:
+
+```bash
+PHOTOSEARCH_ENCODER=onnx PHOTOSEARCH_DATA_DIR=data/space uv run uvicorn photosearch.api:app --port 8012
+```
+
+[release]: https://github.com/greisikertuka/semantic-photo-search/releases/tag/deploy-artifacts-v1
+
 ## Development
 
 ```bash
@@ -198,7 +263,7 @@ uv run pytest           # (tests arrive from Session 2)
 - [x] **Session 9** — your own photo library: incremental indexing + source toggle
 - [x] **Session 10** — evaluation harness, BM25 baseline, failure analysis
 - [x] **Session 11** — HF Space: fp16 artifacts, NumPy-only filtered search, 29.3 MB payload
-- [ ] Session 11b — FastAPI on Render with a quantized ONNX text encoder
+- [x] **Session 11b** — FastAPI on Render: torch-free ONNX encoder, mmapped weights, cold-start UX
 - [ ] Session 12 — README, reproducibility, portfolio polish
 
 ## License

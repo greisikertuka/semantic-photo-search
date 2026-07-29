@@ -63,6 +63,19 @@
           <kbd class="slash" aria-hidden="true">/</kbd>
         </form>
 
+        <!--
+          Cold start (Session 11b). The free Render tier spins the container down
+          after 15 minutes of inactivity, so the first visitor after a quiet spell
+          waits ~a minute for it to boot. Saying so beats a page that looks broken.
+        -->
+        <div class="waking" id="waking" hidden role="status" aria-live="polite">
+          <span class="waking-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="waking-text">
+            <b>Waking the server.</b> It sleeps after 15 minutes of quiet on the free
+            tier — this takes up to a minute, and only the first visitor pays it.
+          </span>
+        </div>
+
         <!-- tools: corpus toggle + the photographer's filter panel + search-by-image -->
         <div class="tools">
           <!-- shown only when Session 9a has indexed a local folder -->

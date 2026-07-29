@@ -12,6 +12,8 @@ Two reasons this is its own class rather than loose functions:
 
 from __future__ import annotations
 
+import os
+
 import numpy as np
 
 MODEL_NAME = "clip-ViT-B-32"
@@ -19,6 +21,10 @@ MODEL_NAME = "clip-ViT-B-32"
 
 class Encoder:
     """Owns a SentenceTransformer CLIP model; encodes text and images to unit vectors."""
+
+    # Both towers are present, so search-by-image works. The ONNX deployment
+    # encoder sets this False; the API checks it instead of type-sniffing.
+    supports_images = True
 
     def __init__(self, model_name: str = MODEL_NAME) -> None:
         # Imported lazily so importing this module (e.g. in tests using a stub) does
@@ -56,3 +62,21 @@ class Encoder:
             show_progress_bar=False,
         )
         return np.asarray(vecs, dtype=np.float32)
+
+
+def load_encoder(kind: str | None = None):
+    """Return the encoder selected by ``kind`` (or the ``PHOTOSEARCH_ENCODER`` env var).
+
+    ``"clip"`` (default) is the full sentence-transformers model — both towers, used
+    for indexing, search-by-image and every local run. ``"onnx"`` is the text-only
+    ONNX encoder Session 11b deploys, which fits a 512 MB box because no PyTorch is
+    ever imported. The config seam mirrors ``load_store``: same shape, chosen by env.
+    """
+    kind = (kind or os.environ.get("PHOTOSEARCH_ENCODER", "clip")).strip().lower()
+    if kind == "clip":
+        return Encoder()
+    if kind == "onnx":
+        from photosearch.onnx_encoder import OnnxTextEncoder
+
+        return OnnxTextEncoder()
+    raise ValueError(f"unknown encoder kind {kind!r} (expected 'clip' or 'onnx')")

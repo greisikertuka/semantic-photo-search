@@ -71,11 +71,16 @@ def build_system(name: str, store_kind: str):
 
         return Bm25Baseline.load(DATA_DIR)
 
-    from photosearch.encoder import Encoder
+    from photosearch.encoder import load_encoder
     from photosearch.search import SearchService
     from photosearch.store import load_store
 
-    return SearchService(Encoder(), load_store(store_kind, DATA_DIR))
+    # "clip-onnx" is the torch-free encoder Session 11b deploys. Running the *same*
+    # gold set through it turns "cosine 0.9999 vs the reference" — a number nobody can
+    # interpret — into "P@10 moved by this much", which is the only question that
+    # matters when deciding whether a deploy-shaped model is good enough to ship.
+    kind = "onnx" if name == "clip-onnx" else "clip"
+    return SearchService(load_encoder(kind), load_store(store_kind, DATA_DIR))
 
 
 def evaluate(system, judgments: dict) -> list[QueryScore]:
@@ -185,7 +190,12 @@ def report_failures(scores: list[QueryScore], n: int, system) -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Evaluate retrieval quality.")
-    parser.add_argument("--system", choices=["clip", "bm25", "both"], default="both")
+    parser.add_argument(
+        "--system",
+        choices=["clip", "clip-onnx", "bm25", "both", "deploy"],
+        default="both",
+        help='"deploy" runs clip vs clip-onnx — the deployed encoder against the real one',
+    )
     parser.add_argument("--store", choices=["numpy", "chroma"], default="numpy",
                         help="which back-end serves the CLIP system")
     parser.add_argument("--no-latency", action="store_true", help="skip the timing pass")
@@ -208,7 +218,8 @@ def main() -> None:
               f"{qid} — {judgments[qid]['query']!r}")
     judgments = kept
 
-    names = ["clip", "bm25"] if args.system == "both" else [args.system]
+    presets = {"both": ["clip", "bm25"], "deploy": ["clip", "clip-onnx"]}
+    names = presets.get(args.system, [args.system])
     results: dict[str, list[QueryScore]] = {}
     clip_system = None
     for name in names:

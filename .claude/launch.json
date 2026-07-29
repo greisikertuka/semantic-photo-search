@@ -15,6 +15,19 @@
       "env": { "PHOTOSEARCH_STORE": "chroma" }
     },
     {
+      "name": "photosearch-render",
+      "runtimeExecutable": "./.venv/Scripts/python.exe",
+      "runtimeArgs": ["-m", "uvicorn", "photosearch.api:app", "--port", "8012"],
+      "port": 8012,
+      "env": {
+        "PHOTOSEARCH_ENCODER": "onnx",
+        "PHOTOSEARCH_STORE": "numpy",
+        "PHOTOSEARCH_DATA_DIR": "data/space",
+        "PHOTOSEARCH_ONNX_DIR": "data/encoder",
+        "PHOTOSEARCH_ONNX_THREADS": "1"
+      }
+    },
+    {
       "name": "photosearch-space",
       "runtimeExecutable": "uv",
       "runtimeArgs": ["run", "--group", "space", "python", "space/app.py"],
