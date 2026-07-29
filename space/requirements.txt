@@ -1,0 +1,17 @@
+# Requirements for the Hugging Face Space. This is NOT uv.lock — a Space installs
+# from PyPI with plain pip, so two things differ from the local environment:
+#
+#  1. The local pin is `torch==2.13.0+cpu` (see pyproject.toml's pytorch-cpu index).
+#     `+cpu` is a *local version tag* and does not exist on PyPI, so transcribing it
+#     here would fail the build. The Space gets the stock PyPI wheel.
+#  2. `gradio` appears here but is a `--group space` dependency locally — the
+#     FastAPI app has no use for it.
+#
+# Versions mirror uv.lock so the Space and the laptop run the same code.
+
+gradio==6.20.0
+torch==2.13.0
+sentence-transformers==5.6.1
+numpy==2.5.1
+pandas==3.0.5
+pyarrow==25.0.0

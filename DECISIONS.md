@@ -151,3 +151,151 @@ Verified: the resolved install reports `torch==2.13.0+cpu`.
 **Decision:** Decode each photo's `blur_hash` (shipped in the dataset) into a tiny `<canvas>` behind the image, and crossfade the real CDN image in on load; images are `loading="lazy"`.
 
 **Why:** The grid should never flash empty grey boxes. BlurHash is ~30 chars → an instant, color-accurate blur, so the layout paints meaningfully before any image arrives — photographer-grade polish for almost nothing. A per-card `padding-bottom` reserves the true aspect ratio (from the photo's width/height), so masonry never reflows when images load. Thumbnails are hotlinked from the Unsplash CDN at `?w=480&auto=format&q=75` (detail view `?w=1400`), with UTM attribution params and an `onerror` guard for the occasional deleted photo.
+
+---
+
+## Session 7 — EXIF-aware search with Chroma
+
+### Create the collection with cosine space, and convert distance → similarity
+**Decision:** `create_collection(..., metadata={"hnsw:space": "cosine"})`, and in `ChromaStore` convert every returned distance with `similarity = 1 - distance`.
+
+**Why:** Chroma's default metric is **L2**, and `query()` returns *distances* (lower = better, scale ~0–2) — but the whole app speaks cosine *similarity* (higher = better, ~0.2–0.35): the Session 6 score bands and the "no strong matches" threshold are all calibrated in that space. On normalized vectors L2 and cosine give the *same ranking* but different numbers, so an L2 collection would rank correctly yet silently poison every score badge and the weak-match warning. Fixing it at the source (cosine space) plus the one-line conversion keeps both stores returning the *same numbers*, not just the same order. "Check what number your DB actually returns" is a lesson far cheaper here than in production.
+
+### Only filterable EXIF goes into Chroma; display fields stay in the parquet
+**Decision:** Ingest just the numeric/filter fields (aperture, iso, focal_length, exposure_s, camera_make/model) as metadata. URLs, photographer, blur_hash, descriptions stay in `photos.parquet`; `ChromaStore` joins results back by `photo_id`.
+
+**Why:** One source of truth for rendering data. The vector DB's job is vector-search-plus-filter; the parquet's job is display. Duplicating URLs into Chroma would mean two places to keep correct. `camera_make` is stored **lowercased** so Chroma's exact `$eq` matches the case-insensitive FilterSpec, and per-photo NaN fields are *omitted* — a document with no `aperture` key can't match an `aperture` `$lte` clause, which reproduces NumpyStore's "no EXIF ⇒ excluded when filtering" rule exactly. A `has_exif` bool is always added so Chroma never sees an empty metadata dict (which it rejects). Shared `exif_metadata()` in `photosearch.store` builds this for both the ingest script and the tests, so the mapping is defined once.
+
+### Filters must be typed numbers at ingest
+**Decision:** Ingest aperture/focal/exposure as `float`, iso as `int`.
+
+**Why:** Chroma's `$lt/$lte/$gte` operators only work on values *stored as numbers* — a stringy `"1.8"` silently matches nothing, with no error. This is the downstream payoff of Session 2 parsing `"f/1.8"` → `1.8`: typed-at-ingest is what makes the whole EXIF differentiator function. (A war story worth telling: the failure mode is "the filter returns zero results and nothing is wrong in the logs.")
+
+### The store is swappable by config, proven by a parity check
+**Decision:** `load_store()` selects `NumpyStore` or `ChromaStore` from the `PHOTOSEARCH_STORE` env var (default `numpy`); both implement the identical `search(query_vec, k, filters)` shape, and `scripts/04_ingest_chroma.py --verify` proves they agree.
+
+**Why:** This is the FilterSpec seam paying off — the API, CLI, and every test are written against the interface, not a back-end, so the deployed HF Space (Session 11) can filter with NumPy alone while local dev can exercise the real vector DB. The parity check is deliberately honest about **exact vs approximate**: NumpyStore is brute-force exact, ChromaStore rides an approximate HNSW index, so the invariant is *not* bit-identical top-10 lists. It decomposes into two guarantees that test different things — (1) for a photo **both** stores return, the scores must match to floating-point precision (~1e-6), which proves cosine-space + the distance conversion are correct and is immune to recall; (2) top-k **set overlap** measures ANN recall, which is <1.0 by design (HNSW swaps items at the rank boundary, and genuine score ties from duplicate photos make the exact order ambiguous anyway). Measured over 15 probe queries × 3 filter conditions: **max same-id score gap 1.07e-06, mean top-10 overlap 0.996**. A demanded-identical check would have "failed" on those duplicates and taught the wrong lesson; this one proves the seam *and* names the approximation.
+
+### Expose the EXIF-bearing corpus size in the API
+**Decision:** Every search response carries `corpus` (total indexed), `exif_count` (how many have filterable EXIF), and `store` (which back-end answered).
+
+**Why:** ~12–13% of photos have no EXIF and can *never* match a numeric filter, so an active filter searches a smaller universe than the corpus. Surfacing `exif_count` lets the UI say "searching 21,852 of 24,994 frames with EXIF" (Session 8) instead of leaving the shrunken candidate set mysterious. `store` makes the swappable seam visible in the response itself — handy for the parity demo in Swagger.
+
+---
+
+## Session 8 — Filter UI & image-to-image search
+
+### "More like this" needs no encoder — the query vector is already stored
+**Decision:** `GET /api/similar/{photo_id}` looks the photo's own embedding up in the store (`get_embedding`) and searches with it, dropping result #1 (a photo is always its own nearest neighbour).
+
+**Why:** This is the session's whole lesson: an image and a text query are *both* just vectors in the shared CLIP space, so "photos like this photo" is the identical dot product with a different query vector — and for an *already-indexed* photo that vector is sitting in the store, so no model call happens at all. Filters still apply ("like this one, but shot wide open"). The one subtlety is asking for `k+1` and filtering the seed out, since it scores 1.0 against itself.
+
+### Upload search runs the indexing-side encoder at query time
+**Decision:** `POST /api/search/by-image` takes a multipart upload → PIL → `encoder.encode_image()` → same search path (filters included). A decode failure is a 400, not a 500.
+
+**Why:** The *indexing-side* encoder (`encode_image`, Session 3/4) is exactly what a query-time upload needs — same 512-dim space, same `search()`. The endpoint is a plain `def` so FastAPI runs it in the thread pool (both the upload read and the CLIP encode are blocking); the sync `file.file.read()` is correct there. A client's un-decodable file is a client error, so it maps to 400 with a clean message rather than surfacing a 500.
+
+### One filter panel drives every search mode
+**Decision:** The web UI keeps a single `activeMode` (`text` | `similar` | `image`); changing any filter re-runs *whatever* is currently on screen through the same FilterSpec params. The panel shows an active-filter count, a clear button, and the "N of M frames carry EXIF" note.
+
+**Why:** The FilterSpec is one language on the backend, so the frontend should treat filters as one orthogonal axis too — "shot wide open" should mean the same thing whether you're doing a text search, browsing similar frames, or searching by an uploaded photo. Modelling the current query as state (rather than only reacting to keystrokes) is what lets a filter change re-issue an image or similar search without re-uploading logic scattered per mode. A request-id guard drops superseded responses so fast filter toggles never render stale results.
+
+---
+
+## Session 9 — Your own photo library
+
+### The library is a new *source*, not a new code path
+**Decision:** Local photos land in the same `Result` shape as Unsplash ones: `photosearch/library.py` writes a manifest parquet carrying every display column `build_result()` already reads, with `photo_image_url` set to `/api/photo/{id}/thumb` instead of a CDN URL. `LibraryStore` subclasses `ChromaStore` over a `library` collection.
+
+**Why:** This is the payoff of the seams built in Sessions 4 and 7. Nothing downstream — not `FilterSpec`, not `SearchService`, not the result renderer, not the "more like this" endpoint — learns that a second corpus exists. The only genuinely new code is *ingestion*, which is where a new source should be confined. The frontend needed one helper (`isRemote()`) to stop appending imgix sizing params to our own URLs; everything else rendered unchanged on the first try, which is the test of whether the abstraction was real.
+
+### Path-derived photo ids, mtime+size for the incremental diff
+**Decision:** `photo_id = sha1(absolute path)[:16]` (case-folded on Windows); a file is "modified" when its mtime or size differs from the manifest. Deletions are scoped to the folder currently being scanned.
+
+**Why:** A *content* hash would give a re-edited photo a new id, orphaning the old vector and losing the association with the file. A path hash keeps identity stable across edits, and mtime+size is what marks the row dirty — so `upsert` replaces the vector in place. Scoping deletions to the scanned root is what makes a multi-folder library possible: without it, indexing `D:\Photos` would silently wipe everything indexed from `E:\Archive`. mtime+size is cheap and wrong only for a same-size edit that preserves the timestamp; a content hash is the upgrade path if that ever bites.
+
+### Real EXIF is rationals, tuples and bytes — coerce before parsing
+**Decision:** `_rational()` converts `IFDRational`, `(numerator, denominator)` tuples and floats to a plain number *before* the Session 2 string parsers see it; ISO goes through `_num()` because `ISOSpeedRatings` is a SHORT array, not a fraction.
+
+**Why:** The bug this prevents is silent and total. Pillow returns `ExposureTime` as a bare `(1, 500)` tuple on some files; taking element `[0]` yields `1.0` — a one-second exposure recorded for every 1/500s frame, with no error anywhere. `str(IFDRational(9, 5))` is `"9/5"`, which a string parser reads as `9.0` — an f/1.8 lens recorded as f/9. Both were caught only by asserting against a file whose EXIF we wrote ourselves, which is why `tests/test_library.py` builds its own JPEGs rather than mocking Pillow.
+
+### Raise Pillow's decompression-bomb ceiling for local files only
+**Decision:** `load_photo` lifts `Image.MAX_IMAGE_PIXELS` to 300 MP for the duration of one open, in a `try/finally` that always puts the previous value back. The upload endpoint in `api.py` keeps Pillow's ~179 MP default.
+
+**Why:** Found by running the indexer over a real 5,919-photo archive rather than a fixture folder: two stitched phone panoramas (199,756,800 px) were refused as suspected decompression bombs. The guard is correct for `POST /api/search/by-image`, which decodes bytes from strangers, and wrong for a folder the user explicitly pointed the indexer at — there, a 200 MP panorama is data. So the lift is scoped to the local path.
+
+The `finally` is the part worth keeping: `MAX_IMAGE_PIXELS` is **global to the process**, and `api.py` imports this module for `LibraryStore`. Setting it and forgetting to restore it would silently disarm the upload endpoint's bomb guard for the life of the server — a security regression introduced by an ingestion convenience, with nothing failing to reveal it. `tests/test_library.py::TestDecompressionBombCeiling` asserts the value is restored on both the success and the exception path. 300 MP (≈900 MB decoded) is a deliberate ceiling rather than `None`: room for panoramas, still bounded.
+
+### File endpoints take an id, never a path
+**Decision:** `/api/photo/{id}/thumb` and `/full` resolve the id through the manifest to a path server-side; there is no filename in any URL.
+
+**Why:** The safest file-serving endpoint is one that cannot be told which file to serve. Path traversal isn't defended against here — it's *unrepresentable*, because the only paths reachable are the ones the user's own indexing run recorded. Thumbnails are generated at index time (640px long edge) so the grid never touches originals, and originals never leave the machine except through the explicit `/full` route.
+
+---
+
+## Session 10 — Evaluation
+
+### A metric without a baseline measures nothing
+**Decision:** Ship BM25-over-captions (`photosearch/baseline.py`) as a first-class system with the same `search(query, k)` shape as `SearchService`, and run both through the identical harness.
+
+**Why:** "P@10 = 0.69" is unfalsifiable on its own — good compared to what? The comparison is the finding: CLIP 0.691 vs BM25 0.283, and, more interestingly, *where*. On easy single-subject queries keywords reach 0.467 (captions often literally say the thing), and BM25 **beats** CLIP on two compositional queries. The gap opens on mood and photographic technique, where there is no lexical foothold at all. The baseline is deliberately un-crippled — no stopword list, no stemming, both caption columns, zero-score documents dropped rather than padded — because a baseline you tuned down proves nothing.
+
+### Pool from every system, and say what that costs
+**Decision:** Candidates per query = union of CLIP top-12, two hand-written rephrasings top-6 each, and BM25 top-12 (~28 avg, 679 total). Unjudged photos count as not relevant.
+
+**Why:** "Unjudged = irrelevant" is the standard convention, and it makes the pool's composition load-bearing: a system whose results were never looked at would score zero by construction, so *both* systems' top hits must be in the pool for the comparison to be fair. The cost is stated rather than hidden — pooling from your own systems makes **Recall@10 optimistic**, because a relevant photo none of the arms surfaced is invisible. That limitation is in the README, not just in `eval/POLICY.md`.
+
+### Write the relevance policy before labeling
+**Decision:** `eval/POLICY.md` fixes the rules (binary judgments, every clause counts, negation means negation, abstract queries judged on evoked feeling, undecidable → not relevant) and records the close calls, before a single judgment was made.
+
+**Why:** Without it, "is a sunrise a golden-hour match?" gets re-decided at photo 300 and the labels drift into noise. Labeling ran off numbered contact sheets (`eval/label.py sheets`) — thirty photos in one glance instead of thirty clicks — which is the difference between an eval that exists and one that doesn't.
+
+### Queries with no relevant photo are excluded, not scored zero
+**Decision:** `drop_unanswerable()` splits off any query whose pool contains nothing relevant; it's reported separately instead of dragging the averages down.
+
+**Why:** *"A black cat sitting on a windowsill"* has no match anywhere in 25k photos. Every system scores 0, which says nothing about ranking — it's a fact about the **corpus**. Averaging it in would understate every system equally and hide the real finding. Excluding it is standard TREC practice, and printing it explicitly is what keeps the exclusion honest rather than convenient.
+
+### Measure latency before claiming an index is needed
+**Decision:** The harness times encode-ms and search-ms separately for both stores over the eval queries.
+
+**Why:** It converts a Session 4 guess into a number: encoding is **34 ms**, search is **5 ms**, and Chroma's HNSW (5.33 ms) is *not faster* than exact brute force (5.10 ms) at 25k vectors. So the vector DB is justified by metadata filtering and incremental add/delete — the two things Sessions 7 and 9 actually needed — and not by speed. Being able to say "I measured brute force first and it was 5 ms, so an ANN index would have been premature" is worth more than any ANN benchmark.
+
+---
+
+## Session 11 — Deployment (Hugging Face Space)
+
+### The Space ships the *NumPy* store, and no vector DB at all
+**Decision:** `space/app.py` builds a `NumpyStore` over the shipped embeddings and passes it the same `FilterSpec` the FastAPI app uses. Chroma is not installed in the container; `scripts/sync_space.py` copies only six modules (`models`, `store`, `encoder`, `search`, `exif`, `__init__`) out of the package.
+
+**Why:** This is the Session 4 seam collecting its payment. The deployed demo does **aperture-and-ISO-filtered semantic search with a boolean mask over a 51 MB array** — no database, no server, no HNSW — because `FilterSpec` was designed as the store-agnostic language *before* the second store existed. Had the filters been written as Chroma `where=` clauses at the time, the free tier would now require shipping chromadb and a 35 MB SQLite file to get the project's headline feature onto the internet. Instead the whole payload is **29.3 MB**. A smoke test asserts `"chromadb" not in sys.modules` after importing the app, so the boundary can't rot silently.
+
+### float16 on disk, float32 in RAM
+**Decision:** Ship `embeddings.f16.npy` (25.6 MB, half the fp32 file) and call `.astype(np.float32)` immediately at load.
+
+**Why:** Halving the artifact halves the Git-LFS push, the container's cold-start download, and the Session 12 release asset — for a quantization error measured at **max |Δscore| = 4.7e-05** over 40 random unit-vector probes, which is two orders of magnitude below the score gap between adjacent search results. The trap is the second half of the sentence: **fp16 is a storage format, not a compute format.** NumPy has no fast half-precision matmul and would emulate it in software, turning a 5 ms search into a few hundred ms — a "deploy optimization" that silently makes the app 50× slower at the thing it exists to do. The conversion costs 51 MB of RAM, which the free tier has.
+
+Verification is deliberately model-free (`scripts/06_build_space_artifacts.py`): random unit vectors probe the same geometry real queries do, with a fixed seed, so the check runs in CI-like conditions and reproduces exactly. It reports one number that surprised me and is worth keeping honest — **36/40 probes had a bit-identical top-10 order**, not 40/40. Random probes produce near-tied scores in the tail of the top-10, so fp16 occasionally swaps ranks 9 and 10. Real queries have far wider score gaps, but "the ranking never changes" would have been a claim the measurement doesn't support.
+
+### ZeroGPU, used entirely on the CPU
+**Decision:** Target the free Gradio-on-ZeroGPU tier but run everything undecorated, on the Space's host CPU. Include exactly one `@spaces.GPU`-decorated function that is never called.
+
+**Why:** In 2026 the only free HF compute is up to 2 Gradio Spaces on ZeroGPU (account 30+ days old); CPU and Docker Spaces need PRO. ZeroGPU allocates a GPU slice *per decorated call*, so by never calling one we consume **zero visitor GPU quota** — and we don't need a GPU: the only model that runs at query time is the CLIP *text* encoder, which is tens of milliseconds on a CPU. The 25k images are never touched by the server at all; the browser hotlinks Unsplash's CDN. The unused decorated function is insurance against the platform's "no GPU function detected" startup validation, and is documented as inert when uncalled.
+
+### Ship precomputed; publish the display minimum — the licensing call, made explicitly
+**Decision:** The public Space carries three files: the fp16 embeddings, `photo_ids.npy`, and a **slim** display parquet with 13 columns — id, image URL, photo page URL, photographer name, dimensions, blur hash, and the numeric EXIF. The Unsplash `photo_description` and `ai_description` columns are **dropped**, and no TSV is published.
+
+**Why:** The Lite dataset's terms permit use but prohibit republishing the Licensed Data, so this needed a reasoned position rather than a shrug. What ships is (a) *model outputs* — embeddings are derived data, not the dataset — and (b) the minimum required to render a result and **credit its photographer**, which Unsplash's own attribution requirements make mandatory. Images are hotlinked from Unsplash's CDN, which is how Unsplash asks to be used. The captions were the one category that is plainly dataset content rather than display necessity, and the Space never rendered them, so dropping them costs nothing and makes "the corpus is not reconstructible from what we publish" an accurate statement instead of a hopeful one. The same reasoning is stated in the Space's README with a takedown contact. A documented judgment call reads as engineering judgment; the identical files with no commentary read as carelessness.
+
+`photo_ids.npy` ships even though the parquet has the same column, at a cost of 1.1 MB: it's what keeps `NumpyStore`'s element-wise alignment assert a *real* check at Space startup. A half-synced deploy — new embeddings pushed against a stale parquet — then dies loudly on boot instead of serving confidently mismatched photos, which is the Session 3 nightmare with a public URL attached.
+
+### `sync_space.py` copies; a human pushes
+**Decision:** A Space is its own git repo expecting `app.py` at *its* root, so `scripts/sync_space.py` flattens `src/photosearch/` → `photosearch/` beside `app.py`, copies the artifacts into `data/`, ensures `.gitattributes` tracks `*.npy`/`*.parquet` in LFS, prints a diff, and then **stops**. It never commits and never pushes.
+
+**Why:** Everything this script copies becomes public, including the licensing decision above. A tool that pushes on your behalf turns "what exactly did I republish?" into a question you answer *after* the fact. The `--check` mode prints the payload and byte count and writes nothing, so the review step is cheap enough to actually do. LFS isn't optional either — the Hub rejects non-LFS files over 10 MB, and a 26 MB `.npy` fails that at push time, i.e. the least convenient moment.
+
+Two transcription details bite here and are worth stating: the Space installs from PyPI, so the local `torch==2.13.0+cpu` pin must lose its `+cpu` local-version tag (it doesn't exist on PyPI), and `gradio` — a `--group space` dependency locally, invisible to the FastAPI app — has to be added by hand.
+
+### The demo mirrors the real UI, deliberately
+**Decision:** The Gradio app re-implements `web/style.css`'s palette, type, masonry grid, score badge and hover credit rather than accepting Gradio defaults, and shares the Session 6 score calibration constants (0.28 / 0.24 / 0.26) verbatim.
+
+**Why:** The live demo is the first thing a recruiter clicks and the README GIF is the second. If they look like different products, the GIF reads as a mockup of something that doesn't exist. Sharing the calibration matters more than the CSS: a *different* "no strong matches" threshold in the demo would quietly contradict the finding Session 6 measured. (Gradio 6 gotcha, found by running it: `css` and `theme` moved off the `Blocks` constructor onto `.launch()` — passing them the old way is a `UserWarning` and silently unstyled output.)
