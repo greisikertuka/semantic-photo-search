@@ -348,3 +348,31 @@ The vision tower's absence is a *user-visible* API decision: `POST /api/search/b
 **Why:** The free tier spins down after 15 minutes idle; waking takes about a minute. The naive version of this feature shows the notice immediately, which is a lie on every warm load and locally — hence the delay, so the banner only ever appears when there is genuinely something to explain. The subtler half is the failure path: the realistic cold start isn't page load (Render holds that request while booting), it's a **search fired from a tab that stayed open while the container fell asleep**. That surfaces as a `TypeError`, not an HTTP status, and the first implementation here showed "search failed" for something the user cannot act on. Now it explains, waits, and retries the original query. Backoff caps at 5 s deliberately: a booting container is loading a 254 MB model on a tenth of a CPU, and retry traffic competes with it for exactly that.
 
 One implementation detail worth the comment it carries: the delay is a `setTimeout`, not a check inside the retry loop. The loop spends most of its time asleep in the backoff, so an inline check would only notice the deadline on the *next* iteration — showing a "please wait" notice several seconds after the wait it explains had begun.
+
+---
+
+## Session 12 — Portfolio polish: reproducibility, licensing, documentation
+
+### The quickstart downloads the index the *deploy* already pins
+**Decision:** `scripts/download_artifacts.py` pulls **only** `index-artifacts.tar.gz` (~26 MB) from the same `deploy-artifacts-v1` release the Render build uses, unpacks it into `data/`, and imports its download/extract helpers from `fetch_deploy_artifacts.py` rather than copying them.
+
+**Why:** `data/` is gitignored and rebuilding the index is an overnight job, so without this the README quickstart would be a lie — the single most common failure of portfolio repos. Two smaller calls inside it are the interesting ones. First, it unpacks into `data/`, not `data/space/`, because `NumpyStore.load` already falls back to the fp16/slim names when the full-precision pair is absent (Session 11b) — so a fresh clone needs **no env var**, and the quickstart stays four commands. Second, the release tag lives in exactly one file: sharing `BASE`/`TAG` via a `sys.path` import of the sibling script means the quickstart and the deploy can never drift onto different indexes, which is a bug that would present as "the demo and my local copy disagree" and take an hour to find.
+
+What it deliberately does *not* fetch is the 184 MB ONNX encoder. A reader cloning the repo wants to search; they don't want the deploy's text tower, and making them wait for it would trade the headline number (10 minutes to first search) for nothing.
+
+### LICENSE covers the code, and says out loud what it doesn't cover
+**Decision:** MIT for the source, with a second section in the `LICENSE` file itself naming the Unsplash Lite terms, the Unsplash License, and the CLIP weights — and stating that `data/` is not redistributed.
+
+**Why:** An MIT file alone, sitting in a repo whose whole subject is someone else's photographs, makes a claim broader than the one we're entitled to make. Putting the boundary *in the license file* — not only in the README, which is the file people skim — means the limitation travels with the code when someone vendors it. The licensing reasoning from Session 11 stays in DECISIONS.md and the README; the LICENSE just refuses to be misread.
+
+### A separate technical document, because the README has a different job
+**Decision:** Ship `docs/DOCUMENTATION.md` — module reference, full API reference, artifact table, configuration, troubleshooting, glossary — and keep the README to the 90-second skim plus the evaluation results.
+
+**Why:** These two audiences want opposite things and the usual mistake is serving neither. A recruiter skimming for 90 seconds needs the pitch, the demo link, and the one number that proves it works; an engineer who has decided to look properly needs the request flow, the env vars, and the reason a filter silently returns zero results. Merging them produces a README that is too long to skim and too shallow to work from. Splitting them also means the troubleshooting table can be *specific* — "a filter returns zero results and nothing is wrong in the logs" is the single best entry in it, and it would never have survived a README edit for length.
+
+The three files now divide cleanly: `README.md` is the front door, `DOCUMENTATION.md` is the manual, `DECISIONS.md` is the *why*. Nothing is duplicated between them except the evaluation table, which earns its place in both.
+
+### The build log stays honest about Session 1
+**Decision:** Mark Session 1 done but annotate it as a learning script pointed at your own photos, rather than silently checking it off with the rest.
+
+**Why:** Every other session produced code that CI exercises; `00_hello_clip.py` produces a printed matrix on a folder that isn't in the repo. Checking it off identically would be a small lie of the kind that, if a reviewer catches it, retroactively taxes the credibility of every other measured claim in the README — and there are a lot of those. The cheap fix is a parenthesis.
