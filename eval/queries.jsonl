@@ -1,0 +1,24 @@
+{"id": "e1", "bucket": "easy", "query": "a dog on a beach", "rephrasings": ["dog running on sand by the sea", "puppy at the seaside"]}
+{"id": "e2", "bucket": "easy", "query": "a red vintage car", "rephrasings": ["old red automobile", "classic car in red paint"]}
+{"id": "e3", "bucket": "easy", "query": "snow-covered mountain peaks", "rephrasings": ["snowy mountain range", "alpine summit under snow"]}
+{"id": "e4", "bucket": "easy", "query": "a cup of coffee on a table", "rephrasings": ["latte in a ceramic mug", "espresso cup on a wooden surface"]}
+{"id": "e5", "bucket": "easy", "query": "city skyline at night", "rephrasings": ["downtown skyscrapers after dark", "illuminated urban skyline"]}
+{"id": "e6", "bucket": "easy", "query": "a person riding a bicycle", "rephrasings": ["cyclist on a bike", "someone cycling down a street"]}
+{"id": "c1", "bucket": "compositional", "query": "a man in a red jacket on a mountain", "rephrasings": ["hiker wearing red standing on a summit", "person in red coat in the mountains"]}
+{"id": "c2", "bucket": "compositional", "query": "two people sitting on a bench by the water", "rephrasings": ["couple on a bench facing the sea", "two figures seated near a lake"]}
+{"id": "c3", "bucket": "compositional", "query": "a woman holding an umbrella in the rain", "rephrasings": ["girl with umbrella on a rainy street", "person under an umbrella during rainfall"]}
+{"id": "c4", "bucket": "compositional", "query": "an empty road leading to snowy mountains", "rephrasings": ["deserted highway towards snowy peaks", "road vanishing into the mountains"]}
+{"id": "c5", "bucket": "compositional", "query": "a black cat sitting on a windowsill", "rephrasings": ["dark cat by a window", "black cat looking out of a window"]}
+{"id": "c6", "bucket": "compositional", "query": "a street without any people", "rephrasings": ["completely empty street", "deserted road with nobody on it"]}
+{"id": "a1", "bucket": "abstract", "query": "loneliness", "rephrasings": ["a lonely solitary figure", "feeling alone and isolated"]}
+{"id": "a2", "bucket": "abstract", "query": "nostalgia", "rephrasings": ["a wistful memory of the past", "faded nostalgic scene"]}
+{"id": "a3", "bucket": "abstract", "query": "quiet minimalist interior", "rephrasings": ["calm empty minimal room", "spare uncluttered interior space"]}
+{"id": "a4", "bucket": "abstract", "query": "the chaos of a crowded market", "rephrasings": ["busy chaotic bazaar full of people", "packed noisy street market"]}
+{"id": "a5", "bucket": "abstract", "query": "a sense of freedom", "rephrasings": ["arms outstretched feeling free", "wide open space and liberation"]}
+{"id": "a6", "bucket": "abstract", "query": "melancholy winter afternoon", "rephrasings": ["sad grey winter day", "somber cold afternoon light"]}
+{"id": "j1", "bucket": "jargon", "query": "shallow depth of field portrait with creamy bokeh", "rephrasings": ["portrait shot wide open with blurred background", "subject isolated against out-of-focus background"]}
+{"id": "j2", "bucket": "jargon", "query": "long exposure light trails", "rephrasings": ["car headlight streaks at night", "slow shutter motion blur of lights"]}
+{"id": "j3", "bucket": "jargon", "query": "golden hour backlit silhouette", "rephrasings": ["silhouetted figure against a low sun", "rim-lit subject at sunset"]}
+{"id": "j4", "bucket": "jargon", "query": "high-contrast black and white street photography", "rephrasings": ["monochrome candid street scene", "gritty black and white urban photo"]}
+{"id": "j5", "bucket": "jargon", "query": "macro shot of water droplets", "rephrasings": ["extreme close-up of dew drops", "tiny water beads photographed up close"]}
+{"id": "j6", "bucket": "jargon", "query": "wide-angle interior with leading lines", "rephrasings": ["architectural interior with strong perspective lines", "wide lens view down a corridor"]}

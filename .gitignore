@@ -21,6 +21,12 @@ wheels/
 /space/*.npy
 /space/*.parquet
 
+# Eval: the judgments and the pool ARE committed (they're the gold set — photo ids
+# and labels, no pixels). The downloaded thumbnails and rendered contact sheets are
+# images, so they follow the same never-redistribute rule as data/.
+/eval/cache/
+/eval/sheets/
+
 # OS / editor cruft
 .DS_Store
 Thumbs.db

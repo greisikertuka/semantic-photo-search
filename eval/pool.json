@@ -1,0 +1,6425 @@
+{
+ "clip_depth": 12,
+ "bm25_depth": 12,
+ "queries": {
+  "e1": {
+   "query": "a dog on a beach",
+   "bucket": "easy",
+   "candidates": [
+    {
+     "photo_id": "U_5ePt5_IaU",
+     "url": "https://images.unsplash.com/photo-1458530970867-aaa3700e966d",
+     "arms": [
+      "clip",
+      "clip_rephrase1",
+      "bm25"
+     ],
+     "best_rank": 2,
+     "caption": "short-coated white and brown dog running in the seashore"
+    },
+    {
+     "photo_id": "iuqsjQ_GhCo",
+     "url": "https://images.unsplash.com/photo-1543850268-efa0aaf20881",
+     "arms": [
+      "clip",
+      "clip_rephrase1",
+      "clip_rephrase2"
+     ],
+     "best_rank": 2,
+     "caption": "adult Italian grayhound standing on brown floor during daytime"
+    },
+    {
+     "photo_id": "nAnv-ayK1wE",
+     "url": "https://images.unsplash.com/photo-1560945927-9cec08c705cc",
+     "arms": [
+      "clip",
+      "clip_rephrase1",
+      "clip_rephrase2"
+     ],
+     "best_rank": 2,
+     "caption": "brown short-coated dog sitting on seashore"
+    },
+    {
+     "photo_id": "-ZaQMp3-53M",
+     "url": "https://images.unsplash.com/photo-1542366065-e17e94633155",
+     "arms": [
+      "clip",
+      "clip_rephrase1",
+      "clip_rephrase2"
+     ],
+     "best_rank": 5,
+     "caption": "long coated white dog running on sand"
+    },
+    {
+     "photo_id": "1nPPNXTMcjk",
+     "url": "https://images.unsplash.com/photo-1511886514115-9bb891179dac",
+     "arms": [
+      "clip",
+      "clip_rephrase1"
+     ],
+     "best_rank": 1,
+     "caption": "person riding on horse running in seashore"
+    },
+    {
+     "photo_id": "53nKeaK402I",
+     "url": "https://images.unsplash.com/photo-1580331519553-0d4496f67179",
+     "arms": [
+      "clip",
+      "clip_rephrase2"
+     ],
+     "best_rank": 1,
+     "caption": "white short coated dog lying on brown sand near body of water during daytime"
+    },
+    {
+     "photo_id": "6f3SH_MUPw0",
+     "url": "https://images.unsplash.com/photo-1580657768351-a35cc035f945",
+     "arms": [
+      "clip",
+      "clip_rephrase2"
+     ],
+     "best_rank": 5,
+     "caption": "white and brown short coated dog on gray sand during daytime"
+    },
+    {
+     "photo_id": "Vy7VdLXh_nU",
+     "url": "https://images.unsplash.com/photo-1541549007638-a31eec5cb94d",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 1,
+     "caption": "dog running on sand beach near cave"
+    },
+    {
+     "photo_id": "PAiSxyby4Eg",
+     "url": "https://images.unsplash.com/photo-1568093116401-f08e57d03b0c",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 3,
+     "caption": "a dog laying in the sand with a frisbee on its head"
+    },
+    {
+     "photo_id": "464wfabbCGQ",
+     "url": "https://images.unsplash.com/photo-1557375030-674b3eb8b9b5",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 4,
+     "caption": "adult fawn pug on sand close-up photography"
+    },
+    {
+     "photo_id": "8ZDzy80c8K4",
+     "url": "https://images.unsplash.com/photo-1557374649-46bf336c05cf",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 4,
+     "caption": "adult fawn pug on sand"
+    },
+    {
+     "photo_id": "Bx7ibIKcGkA",
+     "url": "https://images.unsplash.com/photo-1558472416-01e8e521446a",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 4,
+     "caption": "black dog on seashore looking at ocean during daytime"
+    },
+    {
+     "photo_id": "L5eAUfaiZLo",
+     "url": "https://images.unsplash.com/photo-1584729885292-789d9e1a645f",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 4,
+     "caption": "silhouette of woman and dog on beach during sunset"
+    },
+    {
+     "photo_id": "SqhcwFqVlyI",
+     "url": "https://images.unsplash.com/photo-1478029973231-f42d99fe5c20",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 5,
+     "caption": "focus photography short-coated white dog"
+    },
+    {
+     "photo_id": "e-Bvu4S6sII",
+     "url": "https://images.unsplash.com/photo-1459881128886-544963e934a9",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 6,
+     "caption": "brown dog on shore"
+    },
+    {
+     "photo_id": "ytS63u0_n2A",
+     "url": "https://images.unsplash.com/photo-1579451487056-e79c432ec63c",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 6,
+     "caption": "a white and black dog laying on top of a sandy beach"
+    },
+    {
+     "photo_id": "nYwfKdzB_Ds",
+     "url": "https://images.unsplash.com/photo-1591797762236-77dd6dcaa956",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 7,
+     "caption": "brown wooden beach lounge chairs on beach during daytime"
+    },
+    {
+     "photo_id": "oQVpLmHmyKQ",
+     "url": "https://images.unsplash.com/photo-1577263964074-0816b20adbd6",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 8,
+     "caption": "dog lying on sofa"
+    },
+    {
+     "photo_id": "sWw5VwBK1ew",
+     "url": "https://images.unsplash.com/photo-1569491939710-ea0d90d8df86",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 8,
+     "caption": "white dog on desert"
+    },
+    {
+     "photo_id": "hXS33oa8eo0",
+     "url": "https://images.unsplash.com/photo-1541293888444-d1c8df328209",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 9,
+     "caption": "long-coated brown dog on stairs"
+    },
+    {
+     "photo_id": "o_raXRpXiW8",
+     "url": "https://images.unsplash.com/photo-1583610995939-95cd478ee11e",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 9,
+     "caption": "brown short coated dog on brown sand near body of water during daytime"
+    },
+    {
+     "photo_id": "gweOVL1QjPo",
+     "url": "https://images.unsplash.com/photo-1434600705575-4285a88363a8",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 10,
+     "caption": "person swimming on beach during daytime"
+    },
+    {
+     "photo_id": "-DueXI-0AO0",
+     "url": "https://images.unsplash.com/photo-1578856800682-f4430c6598e1",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 11,
+     "caption": "tan dog"
+    },
+    {
+     "photo_id": "QPKJZvqMaDs",
+     "url": "https://images.unsplash.com/reserve/F8ruu701TEav6vckFBND_kimdanielarthur-onto-the-sea.jpg",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 11,
+     "caption": "girl running towards beach"
+    },
+    {
+     "photo_id": "8SdM5VnbZ4E",
+     "url": "https://images.unsplash.com/photo-1585492240514-f2df7da4e006",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 12,
+     "caption": "people on beach during daytime"
+    }
+   ]
+  },
+  "e2": {
+   "query": "a red vintage car",
+   "bucket": "easy",
+   "candidates": [
+    {
+     "photo_id": "PkXHRgGSw4o",
+     "url": "https://images.unsplash.com/photo-1566689423506-9b918d4fdc8c",
+     "arms": [
+      "clip",
+      "clip_rephrase1",
+      "clip_rephrase2",
+      "bm25"
+     ],
+     "best_rank": 1,
+     "caption": "red vehicle"
+    },
+    {
+     "photo_id": "4pxfaTdfDXQ",
+     "url": "https://images.unsplash.com/photo-1436221324040-e01b22d986c1",
+     "arms": [
+      "clip",
+      "clip_rephrase1",
+      "clip_rephrase2",
+      "bm25"
+     ],
+     "best_rank": 2,
+     "caption": "vintage brown vehicle with red petaled flower s"
+    },
+    {
+     "photo_id": "UyjP9vIVPnk",
+     "url": "https://images.unsplash.com/photo-1565405737485-728a84bd4eee",
+     "arms": [
+      "clip",
+      "clip_rephrase2",
+      "bm25"
+     ],
+     "best_rank": 2,
+     "caption": "red car"
+    },
+    {
+     "photo_id": "7FY-hkN1TYo",
+     "url": "https://images.unsplash.com/photo-1554068741-59715d0a7d10",
+     "arms": [
+      "clip",
+      "clip_rephrase1",
+      "clip_rephrase2"
+     ],
+     "best_rank": 3,
+     "caption": "Resend Crew paint on vehicle"
+    },
+    {
+     "photo_id": "tXpEEuQYikg",
+     "url": "https://images.unsplash.com/photo-1562168138-e7949cd3d33c",
+     "arms": [
+      "clip",
+      "clip_rephrase1",
+      "clip_rephrase2"
+     ],
+     "best_rank": 3,
+     "caption": "white petaled flower"
+    },
+    {
+     "photo_id": "bT8AbTBh2Eo",
+     "url": "https://images.unsplash.com/photo-1563970382012-f52e94ec24da",
+     "arms": [
+      "clip",
+      "clip_rephrase1"
+     ],
+     "best_rank": 3,
+     "caption": "gray Volkswagen Beetle on road"
+    },
+    {
+     "photo_id": "5Uvy1WMaUHw",
+     "url": "https://images.unsplash.com/photo-1577727047860-dbe623f85b63",
+     "arms": [
+      "clip",
+      "clip_rephrase2"
+     ],
+     "best_rank": 5,
+     "caption": "brown Volkswagen beetle"
+    },
+    {
+     "photo_id": "KnJKGaYwZY0",
+     "url": "https://images.unsplash.com/photo-1560879164-0b1574bb5ad6",
+     "arms": [
+      "clip",
+      "clip_rephrase1"
+     ],
+     "best_rank": 6,
+     "caption": "black Porsche car parking near road"
+    },
+    {
+     "photo_id": "65SjWi7gTao",
+     "url": "https://images.unsplash.com/photo-1564614009571-f0603831e8d5",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 2,
+     "caption": "black car"
+    },
+    {
+     "photo_id": "llMaQatZdGQ",
+     "url": "https://images.unsplash.com/photo-1746903781349-bd2a9e45960c",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 3,
+     "caption": "A vintage yellow car's side mirror."
+    },
+    {
+     "photo_id": "pBrHNFqcX-M",
+     "url": "https://images.unsplash.com/photo-1503221507150-dcb5a13416ca",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 4,
+     "caption": "red car blowing turbo"
+    },
+    {
+     "photo_id": "9mCc1JLmAx8",
+     "url": "https://images.unsplash.com/photo-1516919039483-043bb808028f",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 5,
+     "caption": "person holding red tubular lantern"
+    },
+    {
+     "photo_id": "DsF_vkRMAuA",
+     "url": "https://images.unsplash.com/photo-1568556612080-6353ba48eb8a",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 6,
+     "caption": "red building and cable car"
+    },
+    {
+     "photo_id": "b8O1SJEvKIo",
+     "url": "https://images.unsplash.com/photo-1575468745581-b1b0692bfd32",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 8,
+     "caption": "red petaled flowers"
+    },
+    {
+     "photo_id": "JS8FZel_JeE",
+     "url": "https://images.unsplash.com/photo-1544533137-22bc0cf8a788",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 9,
+     "caption": "red vehicle under green tree"
+    },
+    {
+     "photo_id": "tBTOdkeTn8s",
+     "url": "https://images.unsplash.com/photo-1579985106844-ca6beda2ceac",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 9,
+     "caption": "red car on the road during night time"
+    },
+    {
+     "photo_id": "5jbjClZI8SA",
+     "url": "https://images.unsplash.com/photo-1743885143645-b28cdaacf8b5",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 10,
+     "caption": "Cozy room with two red chairs and car memorabilia."
+    },
+    {
+     "photo_id": "qLnrOTpo5bA",
+     "url": "https://images.unsplash.com/photo-1558395932-0c020639315f",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 10,
+     "caption": "yellow Volkswagen Beetle"
+    },
+    {
+     "photo_id": "NCpD5mHUVv8",
+     "url": "https://images.unsplash.com/photo-1590076082844-9cbfcef747d7",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 11,
+     "caption": "red and white cable car over green trees during daytime"
+    },
+    {
+     "photo_id": "gp_vO-CVgNY",
+     "url": "https://images.unsplash.com/photo-1556857997-d4aab6724758",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 11,
+     "caption": "red vehicle on road"
+    },
+    {
+     "photo_id": "OFQzn3V1JKU",
+     "url": "https://images.unsplash.com/photo-1560671440-145940d8f0a7",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 12,
+     "caption": "dog standing near car"
+    }
+   ]
+  },
+  "e3": {
+   "query": "snow-covered mountain peaks",
+   "bucket": "easy",
+   "candidates": [
+    {
+     "photo_id": "5m6ysBpTSGM",
+     "url": "https://images.unsplash.com/photo-1559377240-78cf31def798",
+     "arms": [
+      "clip",
+      "clip_rephrase1"
+     ],
+     "best_rank": 1,
+     "caption": "aerial photography of mountain"
+    },
+    {
+     "photo_id": "2pekDO6qPIM",
+     "url": "https://images.unsplash.com/photo-1633539247013-6e59a7825d86",
+     "arms": [
+      "clip",
+      "bm25"
+     ],
+     "best_rank": 2,
+     "caption": "a large mountain covered in snow under a cloudy sky"
+    },
+    {
+     "photo_id": "QRdX9dO8poY",
+     "url": "https://images.unsplash.com/photo-1542379521-3410aec637d1",
+     "arms": [
+      "clip",
+      "clip_rephrase1"
+     ],
+     "best_rank": 2,
+     "caption": "snow covered mountains during daytime"
+    },
+    {
+     "photo_id": "HUzwWsLCcg4",
+     "url": "https://images.unsplash.com/photo-1582032224511-d6a8a1d21c0a",
+     "arms": [
+      "clip",
+      "clip_rephrase1"
+     ],
+     "best_rank": 3,
+     "caption": "snow covered mountain during daytime"
+    },
+    {
+     "photo_id": "OXDHzL6h3CU",
+     "url": "https://images.unsplash.com/photo-1548012635-ae6b263b8d3d",
+     "arms": [
+      "clip",
+      "clip_rephrase1"
+     ],
+     "best_rank": 4,
+     "caption": "snow covered mountain under white clouds"
+    },
+    {
+     "photo_id": "RCWdP4sQVuQ",
+     "url": "https://images.unsplash.com/photo-1434481746818-da7c83114f08",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 1,
+     "caption": "house on top of mountain under cloudy sky"
+    },
+    {
+     "photo_id": "oQgZrmpNwoY",
+     "url": "https://images.unsplash.com/photo-1455753723382-4febf29162e0",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 1,
+     "caption": "snow covered mountain"
+    },
+    {
+     "photo_id": "TLJImI78VRg",
+     "url": "https://images.unsplash.com/photo-1432117068802-b224427256a5",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 2,
+     "caption": "snow covered mountain with clouds"
+    },
+    {
+     "photo_id": "mGD3kFB5MYY",
+     "url": "https://images.unsplash.com/photo-1468359526060-f3b07d4f057e",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 2,
+     "caption": "green and brown rocky mountain during daytime"
+    },
+    {
+     "photo_id": "-9skRfZcJ5E",
+     "url": "https://images.unsplash.com/photo-1607170475950-3023bc66be94",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 3,
+     "caption": "snow covered mountain during daytime"
+    },
+    {
+     "photo_id": "TSuGZ6_GMcs",
+     "url": "https://images.unsplash.com/photo-1477218703483-4503f1c188a5",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 3,
+     "caption": "aerial photography of snow-coated mountains"
+    },
+    {
+     "photo_id": "eQaUlrIdgfA",
+     "url": "https://images.unsplash.com/photo-1508022765447-e02eea59edb4",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 3,
+     "caption": "mountains covered with snow"
+    },
+    {
+     "photo_id": "R2cWLl7yj1o",
+     "url": "https://images.unsplash.com/photo-1447127480722-84cc5d1c5dfe",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 4,
+     "caption": "mountain peak during daytime"
+    },
+    {
+     "photo_id": "e5SLMOjckxo",
+     "url": "https://images.unsplash.com/photo-1417436026361-a033044d901f",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 4,
+     "caption": "brown and white mountain under cloudy sky"
+    },
+    {
+     "photo_id": "z7PAkCMyOFg",
+     "url": "https://images.unsplash.com/photo-1744614053463-491122164435",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 4,
+     "caption": "Moon rises over snow-capped mountain peaks."
+    },
+    {
+     "photo_id": "HXbAioPEVyQ",
+     "url": "https://images.unsplash.com/photo-1745750747234-5df61f67a7bc",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 5,
+     "caption": "Mountains and snow-covered peaks bask in the sunlight."
+    },
+    {
+     "photo_id": "XafbdHES4Co",
+     "url": "https://images.unsplash.com/photo-1439189659892-2c3b5fa61a70",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 5,
+     "caption": "snow mountain"
+    },
+    {
+     "photo_id": "arOA3Q38OEY",
+     "url": "https://images.unsplash.com/photo-1550096392-eb33e9d895df",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 6,
+     "caption": "snow covered mountain under white clouds"
+    },
+    {
+     "photo_id": "lDUXpI3xmPg",
+     "url": "https://images.unsplash.com/photo-1505758440052-02b7afa8cfcf",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 6,
+     "caption": "photo of green forest near mountain range"
+    },
+    {
+     "photo_id": "GAg4h8_mPCs",
+     "url": "https://images.unsplash.com/photo-1496542386008-62c44d5acbaa",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 7,
+     "caption": "snow covered mountain"
+    },
+    {
+     "photo_id": "RVgzZCsg8dA",
+     "url": "https://images.unsplash.com/photo-1577014962948-b0af1879e7be",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 7,
+     "caption": "rocky mountain painting"
+    },
+    {
+     "photo_id": "QWXMd3DUFW8",
+     "url": "https://images.unsplash.com/photo-1476400424721-e25994a9f0ff",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 8,
+     "caption": "landscape photography of green leafed trees and mountain coated with white snow"
+    },
+    {
+     "photo_id": "bgY0Xemuqf8",
+     "url": "https://images.unsplash.com/photo-1448259308456-7ae55f03a7c8",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 8,
+     "caption": "snow covered mountain"
+    },
+    {
+     "photo_id": "5hDMPpCjAEo",
+     "url": "https://images.unsplash.com/photo-1444655632395-39cb88c88367",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 9,
+     "caption": "aerial photography of mountains covered with snow"
+    },
+    {
+     "photo_id": "HZ7aNCzjaxw",
+     "url": "https://images.unsplash.com/photo-1578836537821-51bbf9ca7080",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 9,
+     "caption": "snow covered mountain"
+    },
+    {
+     "photo_id": "E2GXbvCJc58",
+     "url": "https://images.unsplash.com/photo-1578836537282-3171d77f8632",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 10,
+     "caption": "snow covered mountains"
+    },
+    {
+     "photo_id": "tGFxSUHySxk",
+     "url": "https://images.unsplash.com/photo-1560121160-d0d230141128",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 10,
+     "caption": "snow covered mountain"
+    },
+    {
+     "photo_id": "Cb_9pdHkCPY",
+     "url": "https://images.unsplash.com/photo-1554292291-cdbcd1681d03",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 11,
+     "caption": "mountain covered with ice during daytime"
+    },
+    {
+     "photo_id": "ZcaCRNRtrzE",
+     "url": "https://images.unsplash.com/photo-1561140067-ab0e4b8ba009",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 11,
+     "caption": "snow-covered mountain"
+    },
+    {
+     "photo_id": "DBUjPtumnEI",
+     "url": "https://images.unsplash.com/photo-1573314872940-a7007d0736dc",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 12,
+     "caption": "snow-covered mountain"
+    },
+    {
+     "photo_id": "YtsMrnUCpZg",
+     "url": "https://images.unsplash.com/photo-1559710831-a50fc66ae57e",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 12,
+     "caption": "snow covered mountain"
+    }
+   ]
+  },
+  "e4": {
+   "query": "a cup of coffee on a table",
+   "bucket": "easy",
+   "candidates": [
+    {
+     "photo_id": "Bcqceawc4Gc",
+     "url": "https://images.unsplash.com/photo-1566852766232-66a16bdc0328",
+     "arms": [
+      "clip",
+      "clip_rephrase2",
+      "bm25"
+     ],
+     "best_rank": 1,
+     "caption": "filled white cup"
+    },
+    {
+     "photo_id": "qeIh0T2ZKPI",
+     "url": "https://images.unsplash.com/photo-1592319866469-a1016ff5fe89",
+     "arms": [
+      "clip",
+      "clip_rephrase1",
+      "clip_rephrase2"
+     ],
+     "best_rank": 1,
+     "caption": "white ceramic mug on white ceramic saucer on white table"
+    },
+    {
+     "photo_id": "g1jeM28bCWs",
+     "url": "https://images.unsplash.com/photo-1557748363-9669f484bda8",
+     "arms": [
+      "clip",
+      "clip_rephrase1",
+      "bm25"
+     ],
+     "best_rank": 2,
+     "caption": "cup on board"
+    },
+    {
+     "photo_id": "u_jt9A7FADk",
+     "url": "https://images.unsplash.com/photo-1590422749897-47036da0b0ff",
+     "arms": [
+      "clip_rephrase1",
+      "clip_rephrase2"
+     ],
+     "best_rank": 1,
+     "caption": "white ceramic mug on white table"
+    },
+    {
+     "photo_id": "VPrJtXMySLg",
+     "url": "https://images.unsplash.com/photo-1573847498280-e9a053816bca",
+     "arms": [
+      "clip",
+      "clip_rephrase2"
+     ],
+     "best_rank": 2,
+     "caption": "black bowl on brown surface"
+    },
+    {
+     "photo_id": "dp1xHhVu2bg",
+     "url": "https://images.unsplash.com/photo-1543407873-30b91e5003e6",
+     "arms": [
+      "clip",
+      "bm25"
+     ],
+     "best_rank": 2,
+     "caption": "person holding filled coffee cup"
+    },
+    {
+     "photo_id": "TRY6tTONVSk",
+     "url": "https://images.unsplash.com/photo-1519944990593-1ac66b41ac9a",
+     "arms": [
+      "clip_rephrase1",
+      "bm25"
+     ],
+     "best_rank": 3,
+     "caption": "close-up photo of filled white ceramic cup"
+    },
+    {
+     "photo_id": "-k6vEu5I-dE",
+     "url": "https://images.unsplash.com/photo-1557947149-b43c4f1bcf12",
+     "arms": [
+      "clip",
+      "clip_rephrase2"
+     ],
+     "best_rank": 4,
+     "caption": "gray smoking pipe"
+    },
+    {
+     "photo_id": "T8QAKeKDPXY",
+     "url": "https://images.unsplash.com/photo-1558254587-4b5ab7910c4b",
+     "arms": [
+      "clip_rephrase1",
+      "clip_rephrase2"
+     ],
+     "best_rank": 5,
+     "caption": "peace lily flower"
+    },
+    {
+     "photo_id": "AFKd1GWSNTU",
+     "url": "https://images.unsplash.com/photo-1569851379911-88fd7a408731",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 1,
+     "caption": "cup of latte and coffee seeds"
+    },
+    {
+     "photo_id": "5qVObnWoC74",
+     "url": "https://images.unsplash.com/photo-1569430521197-9fc169649d43",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 2,
+     "caption": "a towel, sunglasses, and a cup of coffee on a wooden table next to"
+    },
+    {
+     "photo_id": "mtuYqjDzaXM",
+     "url": "https://images.unsplash.com/photo-1564992982896-cb2a99f64a25",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 3,
+     "caption": "two glasses of coffee on brown table"
+    },
+    {
+     "photo_id": "BeDY9KuP0sI",
+     "url": "https://images.unsplash.com/photo-1526385159909-196a9ac0ef64",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 4,
+     "caption": "shallow focus photography of hot coffee in mug with saucer"
+    },
+    {
+     "photo_id": "S_LhjpfIdm4",
+     "url": "https://images.unsplash.com/photo-1548084769-1b94d5c3168e",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 4,
+     "caption": "person holding white ceramic bowl with halved coconut"
+    },
+    {
+     "photo_id": "t7htLG6DkzE",
+     "url": "https://images.unsplash.com/photo-1575519215536-78521ad8b803",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 4,
+     "caption": "yellow Farm Cup Coffee truck parked beside sidewalk"
+    },
+    {
+     "photo_id": "WyHC6czLoU0",
+     "url": "https://images.unsplash.com/photo-1745433972680-6f4d34b602c3",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 5,
+     "caption": "A smiling woman holds a coffee cup and wears a hat."
+    },
+    {
+     "photo_id": "azhcOje9rHM",
+     "url": "https://images.unsplash.com/photo-1588857605868-3d81c9dc8608",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 5,
+     "caption": "white flowers in white ceramic vase"
+    },
+    {
+     "photo_id": "PSdLyggSvZc",
+     "url": "https://images.unsplash.com/photo-1564556575222-6a31391d027f",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 6,
+     "caption": "selective focus photography of white flower arrangement beside mug of coffee"
+    },
+    {
+     "photo_id": "AbcqHhW5hpk",
+     "url": "https://images.unsplash.com/photo-1578881748981-ce22565657b1",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 7,
+     "caption": "time-lapse photography of smoke from a white ceramic coffee mug"
+    },
+    {
+     "photo_id": "W2zipE1V-iQ",
+     "url": "https://images.unsplash.com/photo-1541253227331-5d8857b020c1",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 7,
+     "caption": "person holding maple leaf near coffee cup"
+    },
+    {
+     "photo_id": "rZQq3bdOsJU",
+     "url": "https://images.unsplash.com/photo-1592203876948-60386b640f62",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 9,
+     "caption": "pink flowers in clear glass vase"
+    },
+    {
+     "photo_id": "Np4aW71utRo",
+     "url": "https://images.unsplash.com/photo-1744638628542-12578d73179b",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 10,
+     "caption": "Coffee and pastries on a wooden tray."
+    },
+    {
+     "photo_id": "s9MtDihD3ZA",
+     "url": "https://images.unsplash.com/photo-1745827213105-59dfd024ad2a",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 10,
+     "caption": "A table is set up in a coffee shop window."
+    },
+    {
+     "photo_id": "gxvJ4Z1Cy6o",
+     "url": "https://images.unsplash.com/photo-1555118786-e18070997e5d",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 12,
+     "caption": "white ceramic teacup with coffee"
+    }
+   ]
+  },
+  "e5": {
+   "query": "city skyline at night",
+   "bucket": "easy",
+   "candidates": [
+    {
+     "photo_id": "JAlBhKQkt4c",
+     "url": "https://images.unsplash.com/photo-1587143545843-a8f570f2c5f8",
+     "arms": [
+      "clip",
+      "clip_rephrase1",
+      "bm25"
+     ],
+     "best_rank": 1,
+     "caption": "city skyline during night time"
+    },
+    {
+     "photo_id": "Qmro3nkePIQ",
+     "url": "https://images.unsplash.com/photo-1663292568360-09dd7155e5f5",
+     "arms": [
+      "clip",
+      "clip_rephrase2",
+      "bm25"
+     ],
+     "best_rank": 1,
+     "caption": "a city skyline at night"
+    },
+    {
+     "photo_id": "7hAiZ_5xuNs",
+     "url": "https://images.unsplash.com/photo-1517440121734-f1b675cc0693",
+     "arms": [
+      "clip",
+      "clip_rephrase1",
+      "clip_rephrase2"
+     ],
+     "best_rank": 3,
+     "caption": "black bridge during night time"
+    },
+    {
+     "photo_id": "Mcfczoal76I",
+     "url": "https://images.unsplash.com/photo-1542175104-0489b7b09d6a",
+     "arms": [
+      "clip",
+      "clip_rephrase1"
+     ],
+     "best_rank": 1,
+     "caption": "three high rise buildings"
+    },
+    {
+     "photo_id": "X00ZafKUdBo",
+     "url": "https://images.unsplash.com/photo-1547214103-e019e56f2032",
+     "arms": [
+      "clip",
+      "clip_rephrase2"
+     ],
+     "best_rank": 2,
+     "caption": "cityscape during nighttime"
+    },
+    {
+     "photo_id": "smjgqsH07JQ",
+     "url": "https://images.unsplash.com/photo-1551609010-b9cefe547196",
+     "arms": [
+      "clip",
+      "clip_rephrase2"
+     ],
+     "best_rank": 5,
+     "caption": "gray city buildings beside beach photo"
+    },
+    {
+     "photo_id": "e5fIUZGgEaU",
+     "url": "https://images.unsplash.com/photo-1542634169-914f1d475130",
+     "arms": [
+      "clip",
+      "clip_rephrase2"
+     ],
+     "best_rank": 6,
+     "caption": "aerial photography of building"
+    },
+    {
+     "photo_id": "BywYl0Fp3pI",
+     "url": "https://images.unsplash.com/photo-1581196598931-6ee285b60e31",
+     "arms": [
+      "clip",
+      "bm25"
+     ],
+     "best_rank": 7,
+     "caption": "city skyline during night time"
+    },
+    {
+     "photo_id": "EKmDKzYAs0c",
+     "url": "https://images.unsplash.com/photo-1565712317183-665357af7e02",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 1,
+     "caption": "multicolored bokeh lights"
+    },
+    {
+     "photo_id": "4e9eeHdiBi0",
+     "url": "https://images.unsplash.com/photo-1544259342-306eccfec481",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 2,
+     "caption": "view of city at night"
+    },
+    {
+     "photo_id": "4eAioMhTd6Y",
+     "url": "https://images.unsplash.com/photo-1577647585786-1b9444e24f2a",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 2,
+     "caption": "a very tall building sitting next to a very tall building"
+    },
+    {
+     "photo_id": "XuByo4C_c6E",
+     "url": "https://images.unsplash.com/photo-1582634046772-e68ad47e5e33",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 3,
+     "caption": "city skyline during night time"
+    },
+    {
+     "photo_id": "mGfJjxPSvAw",
+     "url": "https://images.unsplash.com/photo-1550658362-668dc0fa7ba4",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 3,
+     "caption": "low-angle photography of city skylne"
+    },
+    {
+     "photo_id": "ckT1cixLmvQ",
+     "url": "https://images.unsplash.com/photo-1581521057090-52a0e17ba9f6",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 4,
+     "caption": "city skyline during night time"
+    },
+    {
+     "photo_id": "hW7PNjnCcQ0",
+     "url": "https://images.unsplash.com/photo-1580360119983-e5ce02e78b75",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 4,
+     "caption": "low angle photography of high rise building"
+    },
+    {
+     "photo_id": "ws3jxXaOxAM",
+     "url": "https://images.unsplash.com/photo-1579693735478-7b4c1a250f26",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 5,
+     "caption": "city skyline during night time"
+    },
+    {
+     "photo_id": "8z_IyuOwcIQ",
+     "url": "https://images.unsplash.com/photo-1615250121502-de4d01e49f51",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 6,
+     "caption": "city skyline during night time"
+    },
+    {
+     "photo_id": "X5qmIdSwSWI",
+     "url": "https://images.unsplash.com/photo-1581415398493-9e7d60b2a87a",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 6,
+     "caption": "a person standing on top of a roof at night"
+    },
+    {
+     "photo_id": "cRI3lSM7040",
+     "url": "https://images.unsplash.com/photo-1581874831324-bf9760d12b73",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 6,
+     "caption": "city skyline during night time"
+    },
+    {
+     "photo_id": "StnT3S1ZMxI",
+     "url": "https://images.unsplash.com/photo-1592174484502-c80c13e2b9de",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 8,
+     "caption": "city skyline during night time"
+    },
+    {
+     "photo_id": "_xpOzVgCCMs",
+     "url": "https://images.unsplash.com/photo-1592688866581-0ba66e61ea84",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 9,
+     "caption": "city skyline during night time"
+    },
+    {
+     "photo_id": "ZHYAOcS_nfQ",
+     "url": "https://images.unsplash.com/photo-1546458422-e3bba407439e",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 10,
+     "caption": "city skyline"
+    },
+    {
+     "photo_id": "fFmCevlfWlo",
+     "url": "https://images.unsplash.com/photo-1577907796119-7118da053fab",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 10,
+     "caption": "aerial photography of city with high-rise buildings viewing blue sea during night time"
+    },
+    {
+     "photo_id": "Nfa9MxBhYdc",
+     "url": "https://images.unsplash.com/photo-1545277658-7e284bf1585a",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 11,
+     "caption": "skyline city"
+    },
+    {
+     "photo_id": "Hgx1jpfYTqc",
+     "url": "https://images.unsplash.com/photo-1591537580018-04f735250c5f",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 12,
+     "caption": "city skyline under cloudy sky during night time"
+    }
+   ]
+  },
+  "e6": {
+   "query": "a person riding a bicycle",
+   "bucket": "easy",
+   "candidates": [
+    {
+     "photo_id": "8CJ6HSeCWU0",
+     "url": "https://images.unsplash.com/photo-1555126417-38de941cba37",
+     "arms": [
+      "clip",
+      "clip_rephrase1",
+      "clip_rephrase2",
+      "bm25"
+     ],
+     "best_rank": 1,
+     "caption": "man riding on bicycle"
+    },
+    {
+     "photo_id": "M34IAftLLsY",
+     "url": "https://images.unsplash.com/photo-1580150674494-d5f0682cee6f",
+     "arms": [
+      "clip",
+      "clip_rephrase1",
+      "clip_rephrase2",
+      "bm25"
+     ],
+     "best_rank": 1,
+     "caption": "man in black t-shirt riding on bicycle"
+    },
+    {
+     "photo_id": "vSl1odYyd8w",
+     "url": "https://images.unsplash.com/photo-1465869117406-1ca1ebbd6aa7",
+     "arms": [
+      "clip",
+      "clip_rephrase1",
+      "clip_rephrase2",
+      "bm25"
+     ],
+     "best_rank": 4,
+     "caption": "white bicycle with potted flower beside yellow wall"
+    },
+    {
+     "photo_id": "-jXsYZeA7tQ",
+     "url": "https://images.unsplash.com/photo-1550716457-9f0a34178956",
+     "arms": [
+      "clip",
+      "clip_rephrase1",
+      "clip_rephrase2"
+     ],
+     "best_rank": 2,
+     "caption": "black and gray BMX bike"
+    },
+    {
+     "photo_id": "okNjFhwkfm0",
+     "url": "https://images.unsplash.com/photo-1580301584041-3954f2224d17",
+     "arms": [
+      "clip",
+      "clip_rephrase1",
+      "bm25"
+     ],
+     "best_rank": 4,
+     "caption": "silhouette of person riding bicycle on beach during sunset"
+    },
+    {
+     "photo_id": "qPdn1Oo03-g",
+     "url": "https://images.unsplash.com/photo-1549777703-adec19d2e8a7",
+     "arms": [
+      "clip",
+      "clip_rephrase2"
+     ],
+     "best_rank": 3,
+     "caption": "winding road near calm body of water"
+    },
+    {
+     "photo_id": "tokYjYqaPB0",
+     "url": "https://images.unsplash.com/photo-1555482000-9ea363917a18",
+     "arms": [
+      "clip",
+      "bm25"
+     ],
+     "best_rank": 3,
+     "caption": "girl riding bicycle outdoor during daytime"
+    },
+    {
+     "photo_id": "At7_9PyVkh4",
+     "url": "https://images.unsplash.com/photo-1745772352544-bd8f1d144497",
+     "arms": [
+      "clip",
+      "clip_rephrase1"
+     ],
+     "best_rank": 4,
+     "caption": "Riding a bmx bike through a sunlit forest."
+    },
+    {
+     "photo_id": "AxEY1mFTozo",
+     "url": "https://images.unsplash.com/photo-1553633004-0b7255515c71",
+     "arms": [
+      "clip",
+      "clip_rephrase2"
+     ],
+     "best_rank": 6,
+     "caption": "women riding on skateboard near trees"
+    },
+    {
+     "photo_id": "bTBnQ1DUycI",
+     "url": "https://images.unsplash.com/photo-1567948316933-2c721ed744b3",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 1,
+     "caption": "person riding bicycle on highway"
+    },
+    {
+     "photo_id": "qgBMQWmwY8U",
+     "url": "https://images.unsplash.com/photo-1542809981-21f65602bca8",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 6,
+     "caption": "person riding camel on desert"
+    },
+    {
+     "photo_id": "b22BrJh3yMI",
+     "url": "https://images.unsplash.com/photo-1566205190627-11c82bfb9e74",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 7,
+     "caption": "person riding motorcycle while raining"
+    },
+    {
+     "photo_id": "3AbwSH1y9dc",
+     "url": "https://images.unsplash.com/photo-1467385829985-2b0fb82b5193",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 8,
+     "caption": "purple cruiser bicycle"
+    },
+    {
+     "photo_id": "TvF_tbXRTV8",
+     "url": "https://images.unsplash.com/photo-1504913975043-74e9acec408d",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 9,
+     "caption": "yellow and black bicycles"
+    },
+    {
+     "photo_id": "U-ROch-TGZg",
+     "url": "https://images.unsplash.com/photo-1549737524-aef1a1f12ccd",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 9,
+     "caption": "silhouette photography of person riding horse"
+    },
+    {
+     "photo_id": "0MqeFyrZsoA",
+     "url": "https://images.unsplash.com/photo-1578925732846-7f7f3999fcb3",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 10,
+     "caption": "black bicycle on snow"
+    },
+    {
+     "photo_id": "RRcYcdGY630",
+     "url": "https://images.unsplash.com/photo-1571068316344-75bc76f77890",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 11,
+     "caption": "gray bike"
+    },
+    {
+     "photo_id": "r8AdMFmtKho",
+     "url": "https://images.unsplash.com/photo-1565750045037-cd09e4e22af9",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 12,
+     "caption": "brown and white bicycle signage"
+    },
+    {
+     "photo_id": "u7HTdpOiAV0",
+     "url": "https://images.unsplash.com/photo-1426001094903-70f302dc2d24",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 12,
+     "caption": "person riding on boat during golden hour"
+    }
+   ]
+  },
+  "c1": {
+   "query": "a man in a red jacket on a mountain",
+   "bucket": "compositional",
+   "candidates": [
+    {
+     "photo_id": "eIB0N3v8Kk0",
+     "url": "https://images.unsplash.com/photo-1565624487818-2c25f3f1d094",
+     "arms": [
+      "clip",
+      "clip_rephrase2"
+     ],
+     "best_rank": 1,
+     "caption": "man and dog standing near black and white mountain view"
+    },
+    {
+     "photo_id": "ef5cHVJ5AIo",
+     "url": "https://images.unsplash.com/photo-1556180506-ddc9d89d8d98",
+     "arms": [
+      "clip",
+      "clip_rephrase1"
+     ],
+     "best_rank": 1,
+     "caption": "silhouette of man on hill"
+    },
+    {
+     "photo_id": "7jXeOA3Hil0",
+     "url": "https://images.unsplash.com/photo-1566116388747-a8b459580e46",
+     "arms": [
+      "clip",
+      "clip_rephrase1"
+     ],
+     "best_rank": 2,
+     "caption": "person standing on cliff during daytime"
+    },
+    {
+     "photo_id": "RCWdP4sQVuQ",
+     "url": "https://images.unsplash.com/photo-1434481746818-da7c83114f08",
+     "arms": [
+      "clip",
+      "clip_rephrase1"
+     ],
+     "best_rank": 2,
+     "caption": "house on top of mountain under cloudy sky"
+    },
+    {
+     "photo_id": "EJd9Ydi7ULY",
+     "url": "https://images.unsplash.com/photo-1566119122738-d25ebf3b05ef",
+     "arms": [
+      "clip",
+      "bm25"
+     ],
+     "best_rank": 11,
+     "caption": "man in jacket carrying backpack"
+    },
+    {
+     "photo_id": "3SHAsRWNlUo",
+     "url": "https://images.unsplash.com/photo-1578552369915-80063778fffe",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 1,
+     "caption": "man in forest in red jacket"
+    },
+    {
+     "photo_id": "-9XaVmKS82w",
+     "url": "https://images.unsplash.com/photo-1571623325801-e531a117a0a8",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 2,
+     "caption": "man in red jacket facing waterfall during daytime"
+    },
+    {
+     "photo_id": "n3i9j5qPiE4",
+     "url": "https://images.unsplash.com/photo-1551039966-d8355922c65f",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 2,
+     "caption": "aerial photography of pine trees during night"
+    },
+    {
+     "photo_id": "-87JyMb9ZfU",
+     "url": "https://images.unsplash.com/photo-1491555103944-7c647fd857e6",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 3,
+     "caption": "person in red hoodie standing on snowy mountain during daytime"
+    },
+    {
+     "photo_id": "0LsBP2oxR58",
+     "url": "https://images.unsplash.com/photo-1464402355196-2816bd02d74c",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 3,
+     "caption": "person standing on top on boulder"
+    },
+    {
+     "photo_id": "daI3bMiVYd8",
+     "url": "https://images.unsplash.com/photo-1573615168235-5b20c7c642ce",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 3,
+     "caption": "road beside red trees"
+    },
+    {
+     "photo_id": "w6eLyP1Ib9M",
+     "url": "https://images.unsplash.com/photo-1547471607-267264bda1ce",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 3,
+     "caption": "man in black jacket standing on top of mountain"
+    },
+    {
+     "photo_id": "2Ruer-0N9ig",
+     "url": "https://images.unsplash.com/photo-1575073685727-aea566bc99c4",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 4,
+     "caption": "man in red jacket walking on plant field"
+    },
+    {
+     "photo_id": "ci9flZ-rVjU",
+     "url": "https://images.unsplash.com/photo-1569001108539-05a1de059b37",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 4,
+     "caption": "man wearing yellow jacket"
+    },
+    {
+     "photo_id": "mpMieSW9P_A",
+     "url": "https://images.unsplash.com/photo-1567575797656-55c185052e4d",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 4,
+     "caption": "person standing on hill"
+    },
+    {
+     "photo_id": "pibsjChY-jk",
+     "url": "https://images.unsplash.com/photo-1573615185495-3d4dba4d5dd7",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 4,
+     "caption": "selective color photography of river at forest"
+    },
+    {
+     "photo_id": "QBAMncfwXr8",
+     "url": "https://images.unsplash.com/photo-1579791175342-173b3b60c9ac",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 5,
+     "caption": "man in brown t-shirt and white shorts standing on brown rock formation under blue sky"
+    },
+    {
+     "photo_id": "Wj_Z2r4H5tM",
+     "url": "https://images.unsplash.com/photo-1579215752458-2450e8fcbc61",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 5,
+     "caption": "man wearing red jacket sitting on the snowy field"
+    },
+    {
+     "photo_id": "f-7gaZJmMzo",
+     "url": "https://images.unsplash.com/photo-1564307746906-b71b1852eafb",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 5,
+     "caption": "person paragliding during daytime"
+    },
+    {
+     "photo_id": "3WPceWtJOn0",
+     "url": "https://images.unsplash.com/photo-1587382668076-5101b7cd8eae",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 6,
+     "caption": "person in red jacket sitting on rock near mountain during daytime"
+    },
+    {
+     "photo_id": "Bd7YLDIXJXg",
+     "url": "https://images.unsplash.com/photo-1568197355910-4de260fb52ce",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 6,
+     "caption": "snow-covered mountains"
+    },
+    {
+     "photo_id": "WZVIl9YOa-o",
+     "url": "https://images.unsplash.com/photo-1566116386970-74b26642e8af",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 6,
+     "caption": "man wears orange knit cap"
+    },
+    {
+     "photo_id": "oBisHPrVo84",
+     "url": "https://images.unsplash.com/photo-1565121526866-8029ab572c80",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 7,
+     "caption": "man in grey jacket on hay"
+    },
+    {
+     "photo_id": "oXw-WCFqeO0",
+     "url": "https://images.unsplash.com/photo-1545291115-0f52c682438d",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 7,
+     "caption": "man standing on peak"
+    },
+    {
+     "photo_id": "9PDBbyJc2eE",
+     "url": "https://images.unsplash.com/photo-1486189483439-9ec17bf65ecc",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 8,
+     "caption": "man kneeling near flowing water time lapse photo during cloudy day"
+    },
+    {
+     "photo_id": "WZ5Hu1NNMpc",
+     "url": "https://images.unsplash.com/photo-1579722596711-2cb159fc04bb",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 8,
+     "caption": "man in brown jacket sitting on sand"
+    },
+    {
+     "photo_id": "Fsnssr0vbzg",
+     "url": "https://images.unsplash.com/photo-1634466265016-b710d579a475",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 9,
+     "caption": "a mountain range with snow covered mountains in the background"
+    },
+    {
+     "photo_id": "bMwZche8JCw",
+     "url": "https://images.unsplash.com/photo-1581210021057-9f4cc7ac7425",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 9,
+     "caption": "man in black jacket walking on hallway"
+    },
+    {
+     "photo_id": "8PP9jUHyMXg",
+     "url": "https://images.unsplash.com/photo-1547913817-0ebfc721bc85",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 10,
+     "caption": "man in brown leather jacket"
+    },
+    {
+     "photo_id": "2xf2beBy7Wo",
+     "url": "https://images.unsplash.com/photo-1579637199935-fad9c47d7eaa",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 12,
+     "caption": "man in black jacket standing on the stage"
+    },
+    {
+     "photo_id": "oPQn7cy0c4Y",
+     "url": "https://images.unsplash.com/photo-1515587906528-824f0bbcd580",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 12,
+     "caption": "person standing on cliff with city lights as view"
+    }
+   ]
+  },
+  "c2": {
+   "query": "two people sitting on a bench by the water",
+   "bucket": "compositional",
+   "candidates": [
+    {
+     "photo_id": "sBZGuKJVHcY",
+     "url": "https://images.unsplash.com/photo-1592550091573-64b50a614258",
+     "arms": [
+      "clip",
+      "clip_rephrase1"
+     ],
+     "best_rank": 2,
+     "caption": "brown and gray rocks near body of water during sunset"
+    },
+    {
+     "photo_id": "pV87YnElHow",
+     "url": "https://images.unsplash.com/uploads/14122598645355eb0b65d/d1524764",
+     "arms": [
+      "clip",
+      "clip_rephrase1"
+     ],
+     "best_rank": 4,
+     "caption": "two woman playing in shoreline"
+    },
+    {
+     "photo_id": "tEirXq_Kqbw",
+     "url": "https://images.unsplash.com/photo-1548004390-cef32f05c1a3",
+     "arms": [
+      "clip",
+      "bm25"
+     ],
+     "best_rank": 5,
+     "caption": "man sitting on brown bench near trees"
+    },
+    {
+     "photo_id": "1exzG3_f4XM",
+     "url": "https://images.unsplash.com/photo-1529434230777-5ee11ac5888e",
+     "arms": [
+      "clip",
+      "clip_rephrase2"
+     ],
+     "best_rank": 6,
+     "caption": "man and woman sitting near body of water during sunset"
+    },
+    {
+     "photo_id": "55v5LszEpGI",
+     "url": "https://images.unsplash.com/photo-1554346508-8a555bbf5481",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 1,
+     "caption": "a person standing on a beach at sunset"
+    },
+    {
+     "photo_id": "A6pK6vCywBg",
+     "url": "https://images.unsplash.com/photo-1566296906137-2367d1561746",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 1,
+     "caption": "green and yellow trees"
+    },
+    {
+     "photo_id": "BVFc_M6_KoU",
+     "url": "https://images.unsplash.com/photo-1542317650-957f072aa69b",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 1,
+     "caption": "two person sitting on bench outdoor during daytime"
+    },
+    {
+     "photo_id": "d_qAeReozXY",
+     "url": "https://images.unsplash.com/photo-1417919385600-606273a94766",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 1,
+     "caption": "person wearing black jacket and gray bonnet sitting on a chair"
+    },
+    {
+     "photo_id": "H7S1R42g_CA",
+     "url": "https://images.unsplash.com/photo-1571740744962-87996baa780d",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 2,
+     "caption": "dog sitting on bench"
+    },
+    {
+     "photo_id": "b2JrArs5QW0",
+     "url": "https://images.unsplash.com/photo-1545066230-32c6985556a4",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 2,
+     "caption": "two ducks on water"
+    },
+    {
+     "photo_id": "gAXbwdDpbc8",
+     "url": "https://images.unsplash.com/photo-1567951339325-935299120760",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 2,
+     "caption": "two green and blue deer decors on shore near mountain"
+    },
+    {
+     "photo_id": "DgSnapS1itA",
+     "url": "https://images.unsplash.com/photo-1440262206549-8fe2c3b8bf8f",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 3,
+     "caption": "log on shore"
+    },
+    {
+     "photo_id": "G4lCBsvvz8M",
+     "url": "https://images.unsplash.com/photo-1414872837206-7620d2ae7566",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 3,
+     "caption": "man and woman sitting beside toddler"
+    },
+    {
+     "photo_id": "Gzm1yUip9Yw",
+     "url": "https://images.unsplash.com/photo-1550398771-bfdc2135cac7",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 3,
+     "caption": "grayscale photo of two person sitting near fence"
+    },
+    {
+     "photo_id": "Yi06GUt3rA4",
+     "url": "https://images.unsplash.com/photo-1576158129799-c4a7a6436de4",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 3,
+     "caption": "brown and green abstract art"
+    },
+    {
+     "photo_id": "JiphyElpixM",
+     "url": "https://images.unsplash.com/photo-1446717157973-03f219469f59",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 4,
+     "caption": "brown wooden dock and lake"
+    },
+    {
+     "photo_id": "QTIugFX1Gug",
+     "url": "https://images.unsplash.com/photo-1541447237128-f4cac6138fbe",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 4,
+     "caption": "two people surfing on water"
+    },
+    {
+     "photo_id": "jJuYXZdLg84",
+     "url": "https://images.unsplash.com/photo-1445277547562-477f4b504b7b",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 4,
+     "caption": "brown wooden bench near body of warter"
+    },
+    {
+     "photo_id": "EcsdAlwpmrw",
+     "url": "https://images.unsplash.com/photo-1554691017-9b118d1086f5",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 5,
+     "caption": "a bird is sitting on a rock by the water"
+    },
+    {
+     "photo_id": "df-BFy8gah0",
+     "url": "https://images.unsplash.com/photo-1572546537400-3c8e4e42e132",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 5,
+     "caption": "two person sitting on skimboard"
+    },
+    {
+     "photo_id": "vZ5KmUoYrF4",
+     "url": "https://images.unsplash.com/photo-1568986132434-232c6ba0607d",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 5,
+     "caption": "green-leafed trees"
+    },
+    {
+     "photo_id": "24IRUV5nIYM",
+     "url": "https://images.unsplash.com/photo-1555633514-2c65edd93fc0",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 6,
+     "caption": "a woman in a fur coat sitting on a bench"
+    },
+    {
+     "photo_id": "36plOdZK_uY",
+     "url": "https://images.unsplash.com/photo-1539213690067-dab68d432167",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 6,
+     "caption": "man standing near rock viewing calm sea"
+    },
+    {
+     "photo_id": "_wiwIptkADo",
+     "url": "https://images.unsplash.com/photo-1441965307395-e1ac024188dc",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 7,
+     "caption": "a person sitting on a bench under a night sky"
+    },
+    {
+     "photo_id": "fWGGP00UrjA",
+     "url": "https://images.unsplash.com/photo-1632619545742-0932542bcf0c",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 7,
+     "caption": "a couple of people standing next to a body of water"
+    },
+    {
+     "photo_id": "1jEcoFpvfEI",
+     "url": "https://images.unsplash.com/photo-1510736404329-281ed6760bba",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 8,
+     "caption": "brown wooden bench beside wall"
+    },
+    {
+     "photo_id": "IYfdJNXIaas",
+     "url": "https://images.unsplash.com/photo-1560925969-1d1fdb75ad70",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 9,
+     "caption": "a wooden bench sitting in the middle of a room"
+    },
+    {
+     "photo_id": "f9g1HGn6fK8",
+     "url": "https://images.unsplash.com/photo-1566336140381-0bfdffda9ea5",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 10,
+     "caption": "two person sitting on bench near seashore viewing calm sea and mountain during daytime"
+    },
+    {
+     "photo_id": "TxdmI9tHX54",
+     "url": "https://images.unsplash.com/photo-1556566508-d96bdd485aaf",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 11,
+     "caption": "a person sitting on a bench in front of a building"
+    },
+    {
+     "photo_id": "UBNLocquEhk",
+     "url": "https://images.unsplash.com/photo-1556447785-7d9eb82897ea",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 11,
+     "caption": "man sitting on sofa chair with electric guitar near bare tree"
+    },
+    {
+     "photo_id": "BOwybt_4EbM",
+     "url": "https://images.unsplash.com/photo-1555380345-b55e1d9267d3",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 12,
+     "caption": "man and woman sitting on concrete road near white-leaf trees during daytime"
+    },
+    {
+     "photo_id": "HVWVERp33tQ",
+     "url": "https://images.unsplash.com/photo-1541542684-be0c46417a12",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 12,
+     "caption": "two people walking on mountain"
+    }
+   ]
+  },
+  "c3": {
+   "query": "a woman holding an umbrella in the rain",
+   "bucket": "compositional",
+   "candidates": [
+    {
+     "photo_id": "uTad53fcxss",
+     "url": "https://images.unsplash.com/photo-1562492575-c65d9dce17a0",
+     "arms": [
+      "clip",
+      "clip_rephrase1",
+      "clip_rephrase2"
+     ],
+     "best_rank": 1,
+     "caption": "woman walking using umbrella going up on stairs"
+    },
+    {
+     "photo_id": "viUZRdsd8jM",
+     "url": "https://images.unsplash.com/photo-1559729460-a841fc9d36c3",
+     "arms": [
+      "clip",
+      "clip_rephrase1",
+      "clip_rephrase2"
+     ],
+     "best_rank": 1,
+     "caption": "man under black and pink umbrella"
+    },
+    {
+     "photo_id": "f-X4hUILms0",
+     "url": "https://images.unsplash.com/photo-1504350987704-6f027af335c5",
+     "arms": [
+      "clip",
+      "clip_rephrase2",
+      "bm25"
+     ],
+     "best_rank": 2,
+     "caption": "person holding black umbrella"
+    },
+    {
+     "photo_id": "1vYkQVDWXl0",
+     "url": "https://images.unsplash.com/photo-1432836431433-925d3cc0a5cd",
+     "arms": [
+      "clip",
+      "clip_rephrase2",
+      "bm25"
+     ],
+     "best_rank": 3,
+     "caption": "person with red umbrella walking on street during nighttime"
+    },
+    {
+     "photo_id": "uFomxGheuGk",
+     "url": "https://images.unsplash.com/photo-1468476396571-4d6f2a427ee7",
+     "arms": [
+      "clip",
+      "clip_rephrase2",
+      "bm25"
+     ],
+     "best_rank": 5,
+     "caption": "person walking on street while holding black umbrella near cars on road at nighttime"
+    },
+    {
+     "photo_id": "cVWqlb4HtH8",
+     "url": "https://images.unsplash.com/photo-1510243755-8d08c88677ab",
+     "arms": [
+      "clip",
+      "clip_rephrase1"
+     ],
+     "best_rank": 2,
+     "caption": "man in black suit jacket under umbrella"
+    },
+    {
+     "photo_id": "kNZd7qT8ASY",
+     "url": "https://images.unsplash.com/photo-1553164030-a66e95809356",
+     "arms": [
+      "clip",
+      "clip_rephrase2"
+     ],
+     "best_rank": 2,
+     "caption": "woman carrying bags while using umbrella"
+    },
+    {
+     "photo_id": "o0SJlx_Y1mY",
+     "url": "https://images.unsplash.com/photo-1591729259517-e2d0553fd4ec",
+     "arms": [
+      "clip",
+      "clip_rephrase1"
+     ],
+     "best_rank": 2,
+     "caption": "person in black leather boots standing on brown and black concrete floor"
+    },
+    {
+     "photo_id": "YQPTf86GvpM",
+     "url": "https://images.unsplash.com/photo-1515539113938-a0d7843c15fd",
+     "arms": [
+      "clip",
+      "clip_rephrase1"
+     ],
+     "best_rank": 3,
+     "caption": "person standing on street holding umbrella during night time"
+    },
+    {
+     "photo_id": "p_HYA_T-1WU",
+     "url": "https://images.unsplash.com/photo-1447584402565-2a5b35a7ea8a",
+     "arms": [
+      "clip",
+      "bm25"
+     ],
+     "best_rank": 8,
+     "caption": "person standing on gray surface while holding umbrella"
+    },
+    {
+     "photo_id": "0fZGLERdNdM",
+     "url": "https://images.unsplash.com/photo-1579405151409-a1bef6bd9f15",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 1,
+     "caption": "a woman walking down a street holding an umbrella"
+    },
+    {
+     "photo_id": "1mvRowZSXIk",
+     "url": "https://images.unsplash.com/photo-1559782034-5fd0ada5f81b",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 1,
+     "caption": "unknown persons walking outdoors"
+    },
+    {
+     "photo_id": "tA1PNCDcAzI",
+     "url": "https://images.unsplash.com/photo-1559538829-6f337b8499e4",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 3,
+     "caption": "person holding umbrella"
+    },
+    {
+     "photo_id": "qNhaNFeZz7k",
+     "url": "https://images.unsplash.com/photo-1574892561477-7249f4be2f6f",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 4,
+     "caption": "man holding umbrella"
+    },
+    {
+     "photo_id": "GsWllROMURg",
+     "url": "https://images.unsplash.com/photo-1551596210-0b9ed313f604",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 5,
+     "caption": "a digital painting of a person holding an umbrella"
+    },
+    {
+     "photo_id": "VpsoFlLWp-8",
+     "url": "https://images.unsplash.com/photo-1557138926-823b0c483b9a",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 7,
+     "caption": "man wearing black bubble jacket holding yellow umbrella crossing street"
+    },
+    {
+     "photo_id": "pahwqq2sFU0",
+     "url": "https://images.unsplash.com/photo-1566205190430-536f5c93d8ca",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 7,
+     "caption": "upside down umbrella on road during rain"
+    },
+    {
+     "photo_id": "Ay69ybDp6hY",
+     "url": "https://images.unsplash.com/photo-1570308479913-24afed9197d8",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 9,
+     "caption": "greyscale photography of man holding umbrella"
+    },
+    {
+     "photo_id": "EJ8wV3reASw",
+     "url": "https://images.unsplash.com/photo-1578539620989-30b4e85151eb",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 9,
+     "caption": "water drops"
+    },
+    {
+     "photo_id": "0hHCIHyUN0E",
+     "url": "https://images.unsplash.com/photo-1543874875-5a88400b1648",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 10,
+     "caption": "selective focus photography of person holding umbrella"
+    },
+    {
+     "photo_id": "YcVLxYFBFbA",
+     "url": "https://images.unsplash.com/photo-1565926442299-474cd1e10855",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 11,
+     "caption": "women's blue coat holding umbrella close-up photography"
+    }
+   ]
+  },
+  "c4": {
+   "query": "an empty road leading to snowy mountains",
+   "bucket": "compositional",
+   "candidates": [
+    {
+     "photo_id": "mQhJZKRWV-Y",
+     "url": "https://images.unsplash.com/photo-1558728056-cbe0d30b4871",
+     "arms": [
+      "clip",
+      "clip_rephrase1",
+      "clip_rephrase2"
+     ],
+     "best_rank": 4,
+     "caption": "road near trees during daytime"
+    },
+    {
+     "photo_id": "VFarxJ7jpBk",
+     "url": "https://images.unsplash.com/photo-1577262243046-9a09d4eb6483",
+     "arms": [
+      "clip",
+      "clip_rephrase2",
+      "bm25"
+     ],
+     "best_rank": 6,
+     "caption": "empty road"
+    },
+    {
+     "photo_id": "4nzsa65t3LI",
+     "url": "https://images.unsplash.com/photo-1590133971207-8092c34ead5c",
+     "arms": [
+      "clip",
+      "clip_rephrase1"
+     ],
+     "best_rank": 1,
+     "caption": "snow covered mountain under white sky during daytime"
+    },
+    {
+     "photo_id": "anE0V1ljPUI",
+     "url": "https://images.unsplash.com/photo-1546480771-43932e42a04d",
+     "arms": [
+      "clip",
+      "clip_rephrase1"
+     ],
+     "best_rank": 1,
+     "caption": "land covered with snow"
+    },
+    {
+     "photo_id": "UsbMGphPWw4",
+     "url": "https://images.unsplash.com/photo-1519948539518-bdeb70f90618",
+     "arms": [
+      "clip_rephrase1",
+      "clip_rephrase2"
+     ],
+     "best_rank": 2,
+     "caption": "road between desert"
+    },
+    {
+     "photo_id": "fikcvtc8OWc",
+     "url": "https://images.unsplash.com/photo-1502251510325-521f87af7b9b",
+     "arms": [
+      "clip",
+      "clip_rephrase1"
+     ],
+     "best_rank": 2,
+     "caption": "photo of highway road between trees"
+    },
+    {
+     "photo_id": "eK46BxcHWz8",
+     "url": "https://images.unsplash.com/photo-1443904364754-fb9a64fe19e5",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 1,
+     "caption": "landscape photography of road leading to mountains"
+    },
+    {
+     "photo_id": "wzi3gB3UwYw",
+     "url": "https://images.unsplash.com/photo-1542994947-9397d5560a74",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 1,
+     "caption": "two vehicles between cliffs"
+    },
+    {
+     "photo_id": "667uUSwqLiY",
+     "url": "https://images.unsplash.com/photo-1465268147247-6183ad2c6508",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 2,
+     "caption": "widening road leading to mountain"
+    },
+    {
+     "photo_id": "dSi6VjMrLG8",
+     "url": "https://images.unsplash.com/photo-1553075735-2cb4e300b125",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 3,
+     "caption": "pathway leading to blue lake between mountains"
+    },
+    {
+     "photo_id": "pcoKkN3NsX0",
+     "url": "https://images.unsplash.com/photo-1429042007245-890c9e2603af",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 3,
+     "caption": "landscape photography of green mountain"
+    },
+    {
+     "photo_id": "hjaXORXT1dI",
+     "url": "https://images.unsplash.com/photo-1546111225-8d93d018da7b",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 4,
+     "caption": "empty road filled with snow"
+    },
+    {
+     "photo_id": "qGQNmBE7mYw",
+     "url": "https://images.unsplash.com/photo-1451481086097-f6a15d5f8d18",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 4,
+     "caption": "empty road between trees"
+    },
+    {
+     "photo_id": "5KxbOrjB4Ag",
+     "url": "https://images.unsplash.com/photo-1550129460-d47c2040f9df",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 5,
+     "caption": "an empty road with a mountain in the background"
+    },
+    {
+     "photo_id": "K_BHBCPIqZQ",
+     "url": "https://images.unsplash.com/photo-1440524984794-6e0aa2c476c5",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 5,
+     "caption": "gray concrete road near mountain"
+    },
+    {
+     "photo_id": "-y-v-wi0kHU",
+     "url": "https://images.unsplash.com/photo-1516217947194-6b0dd995fb99",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 6,
+     "caption": "brown soil pathway during winter season"
+    },
+    {
+     "photo_id": "04tWq2fcl_E",
+     "url": "https://images.unsplash.com/photo-1567667193837-54c9535df692",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 6,
+     "caption": "empty road"
+    },
+    {
+     "photo_id": "S3B7ggBYwqM",
+     "url": "https://images.unsplash.com/photo-1528252122473-98c53b28a929",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 6,
+     "caption": "road near forest during cloudy day"
+    },
+    {
+     "photo_id": "Q9Zyow5yC7o",
+     "url": "https://images.unsplash.com/photo-1575948864484-583bc327e60a",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 7,
+     "caption": "landscape photography of black and white mountain"
+    },
+    {
+     "photo_id": "f_cfBQSZgTo",
+     "url": "https://images.unsplash.com/photo-1434908077514-811c7e8e7d56",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 7,
+     "caption": "empty road"
+    },
+    {
+     "photo_id": "BRgGcYwDp1c",
+     "url": "https://images.unsplash.com/photo-1589439201060-079bf36ca134",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 8,
+     "caption": "gray concrete road between green trees near mountain"
+    },
+    {
+     "photo_id": "NWPia8-EDH8",
+     "url": "https://images.unsplash.com/photo-1576827624734-4e61206d6b17",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 9,
+     "caption": "empty road"
+    },
+    {
+     "photo_id": "jvng1_tzfZo",
+     "url": "https://images.unsplash.com/photo-1443891393725-26e4451907ee",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 9,
+     "caption": "cloudy sky above road"
+    },
+    {
+     "photo_id": "9sOpMec31PM",
+     "url": "https://images.unsplash.com/photo-1576820911212-721397237627",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 10,
+     "caption": "empty road"
+    },
+    {
+     "photo_id": "Ui8rcq9bG90",
+     "url": "https://images.unsplash.com/photo-1550354520-86a81c515d44",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 10,
+     "caption": "snow-covered mountain during golden hour"
+    },
+    {
+     "photo_id": "prd5CXMsD68",
+     "url": "https://images.unsplash.com/photo-1470114756101-d58df39917b7",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 11,
+     "caption": "aerial photography of asphalt road surrounded with trees"
+    },
+    {
+     "photo_id": "3bdiIO1vjuU",
+     "url": "https://images.unsplash.com/photo-1542340412-a709e5b5a70f",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 12,
+     "caption": "empty road between browns"
+    },
+    {
+     "photo_id": "n78buPU6Wow",
+     "url": "https://images.unsplash.com/photo-1442612636743-35014399b8bc",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 12,
+     "caption": "snow beside road under blue sky during day time"
+    }
+   ]
+  },
+  "c5": {
+   "query": "a black cat sitting on a windowsill",
+   "bucket": "compositional",
+   "candidates": [
+    {
+     "photo_id": "5J-yzBqARMk",
+     "url": "https://images.unsplash.com/photo-1586631181418-2bbf1727c41f",
+     "arms": [
+      "clip",
+      "clip_rephrase1",
+      "clip_rephrase2"
+     ],
+     "best_rank": 1,
+     "caption": "black cat on white and blue textile"
+    },
+    {
+     "photo_id": "Pkb5_XBteRA",
+     "url": "https://images.unsplash.com/photo-1571788867262-a68e06fe6c51",
+     "arms": [
+      "clip",
+      "clip_rephrase1",
+      "clip_rephrase2"
+     ],
+     "best_rank": 1,
+     "caption": "grey cat on window panel"
+    },
+    {
+     "photo_id": "m8HsSWh-y6E",
+     "url": "https://images.unsplash.com/photo-1568552660092-bec1b0d07852",
+     "arms": [
+      "clip",
+      "clip_rephrase1",
+      "clip_rephrase2"
+     ],
+     "best_rank": 3,
+     "caption": "silver tabby cat"
+    },
+    {
+     "photo_id": "aFyD5aWKu6k",
+     "url": "https://images.unsplash.com/photo-1578509346069-76dc8926e077",
+     "arms": [
+      "clip",
+      "clip_rephrase1",
+      "clip_rephrase2"
+     ],
+     "best_rank": 6,
+     "caption": "black cat"
+    },
+    {
+     "photo_id": "7XJ3d0xK444",
+     "url": "https://images.unsplash.com/photo-1572173733176-96bced653611",
+     "arms": [
+      "clip",
+      "clip_rephrase2"
+     ],
+     "best_rank": 2,
+     "caption": "black cat"
+    },
+    {
+     "photo_id": "3LPGWASiSbM",
+     "url": "https://images.unsplash.com/photo-1531704118376-ec637130bfa0",
+     "arms": [
+      "clip",
+      "clip_rephrase1"
+     ],
+     "best_rank": 3,
+     "caption": "closeup photo of black cat"
+    },
+    {
+     "photo_id": "JiMenx-vBL8",
+     "url": "https://images.unsplash.com/photo-1571608192336-8db4acc4fb35",
+     "arms": [
+      "clip",
+      "clip_rephrase1"
+     ],
+     "best_rank": 5,
+     "caption": "black cat on green grass near brick wall"
+    },
+    {
+     "photo_id": "Yw8m90EyL2U",
+     "url": "https://images.unsplash.com/photo-1505246001198-2c22957cfa42",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 1,
+     "caption": "brown and black cat sitting on green grass"
+    },
+    {
+     "photo_id": "URnWOJX8wW4",
+     "url": "https://images.unsplash.com/photo-1518843025960-d60217f226f5",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 2,
+     "caption": "cat sitting on cushion"
+    },
+    {
+     "photo_id": "chLi1_pz0Yg",
+     "url": "https://images.unsplash.com/photo-1562221236-55a354987833",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 3,
+     "caption": "pet cat sitting on tabl"
+    },
+    {
+     "photo_id": "Ew2FI_2T7Xc",
+     "url": "https://images.unsplash.com/photo-1548707519-d9908cfebe7a",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 4,
+     "caption": "black cat in brown pot"
+    },
+    {
+     "photo_id": "yA_nMH_XjP0",
+     "url": "https://images.unsplash.com/photo-1585421621926-48e334cb08c8",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 4,
+     "caption": "grayscale photo of cat on window"
+    },
+    {
+     "photo_id": "zESCoTmVaaw",
+     "url": "https://images.unsplash.com/photo-1562320593-636f13695363",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 4,
+     "caption": "sitting brown cat"
+    },
+    {
+     "photo_id": "bngdOJ4Kr0Q",
+     "url": "https://images.unsplash.com/photo-1548888694-a6ced066f762",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 5,
+     "caption": "brown cat sitting on grey armchair"
+    },
+    {
+     "photo_id": "I-YJ-gaJNaw",
+     "url": "https://images.unsplash.com/photo-1578016737802-01af4a7424e5",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 6,
+     "caption": "brown tabby cat sitting on stroller"
+    },
+    {
+     "photo_id": "R9Lm61DXrtA",
+     "url": "https://images.unsplash.com/photo-1430024759857-660f9aa67c47",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 7,
+     "caption": "potted green plant near window"
+    },
+    {
+     "photo_id": "B8krQ458J44",
+     "url": "https://images.unsplash.com/photo-1574235664854-92e1da7d229a",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 8,
+     "caption": "black and white coated cat"
+    },
+    {
+     "photo_id": "CzcK8pMZ1Kw",
+     "url": "https://images.unsplash.com/photo-1549288498-bbec5bc4a554",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 8,
+     "caption": "black cat prone lying on surface"
+    },
+    {
+     "photo_id": "VWZ3OTlhqyE",
+     "url": "https://images.unsplash.com/photo-1565611647009-ff47e45ba670",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 9,
+     "caption": "short-fur black cat"
+    },
+    {
+     "photo_id": "kjERLXaHjXc",
+     "url": "https://images.unsplash.com/photo-1472157592780-9e5265f17f8f",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 9,
+     "caption": "brown tabby cat sitting on bar stool"
+    },
+    {
+     "photo_id": "8TI2DzFJmGU",
+     "url": "https://images.unsplash.com/photo-1589811214507-96fea403c931",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 10,
+     "caption": "brown tabby cat on white table"
+    },
+    {
+     "photo_id": "vTkam84Z20c",
+     "url": "https://images.unsplash.com/photo-1549206708-dc27e4e30648",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 10,
+     "caption": "orange Persian cat sitting on snow field"
+    },
+    {
+     "photo_id": "7ALrGfHusf4",
+     "url": "https://images.unsplash.com/photo-1583120513418-c078286682f4",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 11,
+     "caption": "orange tabby cat on gray textile"
+    },
+    {
+     "photo_id": "SAQpfOzWGBs",
+     "url": "https://images.unsplash.com/photo-1571830019562-ce057c4be690",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 11,
+     "caption": "black cat"
+    },
+    {
+     "photo_id": "UMyfDjQ6Ep8",
+     "url": "https://images.unsplash.com/photo-1577127195024-97ac1faa3178",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 12,
+     "caption": "black cat"
+    }
+   ]
+  },
+  "c6": {
+   "query": "a street without any people",
+   "bucket": "compositional",
+   "candidates": [
+    {
+     "photo_id": "UNZZaAUlGzo",
+     "url": "https://images.unsplash.com/photo-1550613903-facd5fe4f4b7",
+     "arms": [
+      "clip",
+      "clip_rephrase1"
+     ],
+     "best_rank": 1,
+     "caption": "empty highway covered in snow"
+    },
+    {
+     "photo_id": "2DADsNcfqqs",
+     "url": "https://images.unsplash.com/photo-1550710770-ad0eb545e23e",
+     "arms": [
+      "clip",
+      "clip_rephrase1"
+     ],
+     "best_rank": 2,
+     "caption": "bare trees with snow"
+    },
+    {
+     "photo_id": "QwsCqHTim98",
+     "url": "https://images.unsplash.com/photo-1566267277082-9ebca06c04ad",
+     "arms": [
+      "clip",
+      "clip_rephrase1"
+     ],
+     "best_rank": 2,
+     "caption": "man crossing road"
+    },
+    {
+     "photo_id": "jQ4KKtB9_n4",
+     "url": "https://images.unsplash.com/photo-1547419482-6021eca9af12",
+     "arms": [
+      "clip",
+      "clip_rephrase1"
+     ],
+     "best_rank": 4,
+     "caption": "empty road at night"
+    },
+    {
+     "photo_id": "7kw8x4SdAVw",
+     "url": "https://images.unsplash.com/photo-1565928473425-e4a3c2c4b851",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 1,
+     "caption": "people about to cross street"
+    },
+    {
+     "photo_id": "anE0V1ljPUI",
+     "url": "https://images.unsplash.com/photo-1546480771-43932e42a04d",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 1,
+     "caption": "land covered with snow"
+    },
+    {
+     "photo_id": "4nzsa65t3LI",
+     "url": "https://images.unsplash.com/photo-1590133971207-8092c34ead5c",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 2,
+     "caption": "snow covered mountain under white sky during daytime"
+    },
+    {
+     "photo_id": "xXVUgTPNoWk",
+     "url": "https://images.unsplash.com/photo-1545352873-7eca70c62c01",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 2,
+     "caption": "people on street between buildings"
+    },
+    {
+     "photo_id": "0TvvHQKcwRI",
+     "url": "https://images.unsplash.com/photo-1572164713746-342cf1799a5a",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 3,
+     "caption": "people walking on street"
+    },
+    {
+     "photo_id": "hcfyt4OHHgY",
+     "url": "https://images.unsplash.com/photo-1512041017435-1c3eac3cee2b",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 3,
+     "caption": "street covered with snow"
+    },
+    {
+     "photo_id": "swACMn-yCn8",
+     "url": "https://images.unsplash.com/photo-1470102554992-1431851a32a6",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 3,
+     "caption": "brown sand"
+    },
+    {
+     "photo_id": "ZcU6yvg6CMo",
+     "url": "https://images.unsplash.com/photo-1548224428-a7b2cb01eeed",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 4,
+     "caption": "grey concrete highway winding across desert hills"
+    },
+    {
+     "photo_id": "hH7B7uQvVrQ",
+     "url": "https://images.unsplash.com/photo-1744124371777-e7b5984deb77",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 4,
+     "caption": "People walk along a city sidewalk near union street."
+    },
+    {
+     "photo_id": "hiy_bs9MrOE",
+     "url": "https://images.unsplash.com/photo-1536221236547-04007cfc3d8b",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 4,
+     "caption": "empty concrete road"
+    },
+    {
+     "photo_id": "Aqwz4ylfVds",
+     "url": "https://images.unsplash.com/photo-1581086027507-142894ddb898",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 5,
+     "caption": "people walking on street during night time"
+    },
+    {
+     "photo_id": "LGCIWbBGnxQ",
+     "url": "https://images.unsplash.com/photo-1468386150076-13c9d6fff68b",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 5,
+     "caption": "highway road photo during daytime"
+    },
+    {
+     "photo_id": "UDWowwUvlGw",
+     "url": "https://images.unsplash.com/photo-1590953852393-87703d7d5960",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 5,
+     "caption": "yellow line on gray asphalt road during daytime"
+    },
+    {
+     "photo_id": "5IVa9hrd9x4",
+     "url": "https://images.unsplash.com/photo-1575090973547-6c9387c8f9e7",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 6,
+     "caption": "photograph of city at night"
+    },
+    {
+     "photo_id": "93aN5XCAlJs",
+     "url": "https://images.unsplash.com/photo-1551192287-85281fde70fe",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 6,
+     "caption": "glass moist photo of people walking on street"
+    },
+    {
+     "photo_id": "cFbNlpRZKi0",
+     "url": "https://images.unsplash.com/photo-1519376108558-7b6471e87264",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 6,
+     "caption": "gray concrete road between trees at daytime"
+    },
+    {
+     "photo_id": "jvng1_tzfZo",
+     "url": "https://images.unsplash.com/photo-1443891393725-26e4451907ee",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 6,
+     "caption": "cloudy sky above road"
+    },
+    {
+     "photo_id": "PZXfCAeAeXE",
+     "url": "https://images.unsplash.com/photo-1583941212888-e363b5f8234f",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 7,
+     "caption": "people walking on the street during night time"
+    },
+    {
+     "photo_id": "nRVn-_k1uMI",
+     "url": "https://images.unsplash.com/photo-1541766029309-8d7fa5bb773b",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 7,
+     "caption": "Soho signage on gray concrete wall"
+    },
+    {
+     "photo_id": "-SdD0KbD7N0",
+     "url": "https://images.unsplash.com/photo-1551887374-8015502fe40b",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 8,
+     "caption": "silhouette photo of people at middle of street"
+    },
+    {
+     "photo_id": "uHsQou9tWTQ",
+     "url": "https://images.unsplash.com/photo-1582118970103-17c42f4b01a9",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 8,
+     "caption": "grayscale photo of empty street between buildings"
+    },
+    {
+     "photo_id": "LpvrYs8m1Dc",
+     "url": "https://images.unsplash.com/photo-1585455499888-445b2360d8b0",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 9,
+     "caption": "grayscale photo of city buildings"
+    },
+    {
+     "photo_id": "sY3yB1rjDUA",
+     "url": "https://images.unsplash.com/photo-1563284202-746a243e07a4",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 9,
+     "caption": "a group of people walking down a street under a bridge"
+    },
+    {
+     "photo_id": "8yMMPaZ_e28",
+     "url": "https://images.unsplash.com/photo-1579405151566-7b397d5decb2",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 10,
+     "caption": "a group of people walking down a snow covered street"
+    },
+    {
+     "photo_id": "v0sFWsMb1Ls",
+     "url": "https://images.unsplash.com/photo-1575531961756-261c6efc147a",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 10,
+     "caption": "photography of white and brown buildings during daytime"
+    },
+    {
+     "photo_id": "yRIoJsE74uE",
+     "url": "https://images.unsplash.com/photo-1538719630660-e61115cb194f",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 11,
+     "caption": "snow mountain"
+    },
+    {
+     "photo_id": "5yOefHJEaGw",
+     "url": "https://images.unsplash.com/photo-1423853978401-35df4077ff7d",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 12,
+     "caption": "grayscale photo of people walking on street"
+    },
+    {
+     "photo_id": "jlb0nJeVT30",
+     "url": "https://images.unsplash.com/photo-1585841561200-57c24023c7ee",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 12,
+     "caption": "silhouette of building during sunset"
+    }
+   ]
+  },
+  "a1": {
+   "query": "loneliness",
+   "bucket": "abstract",
+   "candidates": [
+    {
+     "photo_id": "2qLT_Rq-2tk",
+     "url": "https://images.unsplash.com/uploads/14134890947503c6effdc/72adf455",
+     "arms": [
+      "clip",
+      "clip_rephrase2"
+     ],
+     "best_rank": 1,
+     "caption": "white wooden lifeguard station near seashore at golden hour"
+    },
+    {
+     "photo_id": "jlk3NsmBuJw",
+     "url": "https://images.unsplash.com/photo-1543943165-f227ed58c39e",
+     "arms": [
+      "clip",
+      "clip_rephrase1"
+     ],
+     "best_rank": 1,
+     "caption": "man on seashore"
+    },
+    {
+     "photo_id": "bSaVjeyYsGg",
+     "url": "https://images.unsplash.com/photo-1548386776-77420c9a5628",
+     "arms": [
+      "clip",
+      "clip_rephrase2"
+     ],
+     "best_rank": 3,
+     "caption": "person standing on shore under cloudy sky"
+    },
+    {
+     "photo_id": "5YTIx-zvujk",
+     "url": "https://images.unsplash.com/photo-1515941610711-70f9d4a6bd4c",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 1,
+     "caption": "swam on lake"
+    },
+    {
+     "photo_id": "AL4oxw2UD8E",
+     "url": "https://images.unsplash.com/photo-1542729214-97b5ef6dc098",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 1,
+     "caption": "pink rose"
+    },
+    {
+     "photo_id": "-fiPzmOG8sU",
+     "url": "https://images.unsplash.com/photo-1485317886836-b07b2b47fa4e",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 2,
+     "caption": "person wearing pink dress sitting near ocean"
+    },
+    {
+     "photo_id": "HwSfH-qsLII",
+     "url": "https://images.unsplash.com/photo-1563297592-84e5b1fdfcd2",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 2,
+     "caption": "white clouds"
+    },
+    {
+     "photo_id": "JJgsdqvKBIc",
+     "url": "https://images.unsplash.com/photo-1551949729-6011e1a71916",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 2,
+     "caption": "road and field during day"
+    },
+    {
+     "photo_id": "wAy3MicEu74",
+     "url": "https://images.unsplash.com/photo-1574619309164-1ecba8514a35",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 2,
+     "caption": "a lone tree in the middle of a foggy field"
+    },
+    {
+     "photo_id": "2o5cSEwAWyI",
+     "url": "https://images.unsplash.com/photo-1456635891046-3a285444795d",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 3,
+     "caption": "bird standing on rock shore above body of water"
+    },
+    {
+     "photo_id": "tBXThvAz36M",
+     "url": "https://images.unsplash.com/photo-1551949730-8c2a6e759808",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 3,
+     "caption": "a long white line on the side of a road"
+    },
+    {
+     "photo_id": "Ncof1bHoJUI",
+     "url": "https://images.unsplash.com/photo-1562532092-c67e6d824a19",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 4,
+     "caption": "person walking on shore"
+    },
+    {
+     "photo_id": "hdUAn6byEZE",
+     "url": "https://images.unsplash.com/photo-1431352913972-1fe2a3d189b0",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 4,
+     "caption": "photo of person standing on rock looking sea during daytime"
+    },
+    {
+     "photo_id": "cf6DevYtu-0",
+     "url": "https://images.unsplash.com/photo-1641580296531-a7e9d657e5c1",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 5,
+     "caption": "a person standing in the middle of a snowy field"
+    },
+    {
+     "photo_id": "hkJPX2nvmIQ",
+     "url": "https://images.unsplash.com/photo-1576753634120-53617961eb04",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 5,
+     "caption": "two trees in a field with a half moon in the background"
+    },
+    {
+     "photo_id": "kwZKWu3OqzU",
+     "url": "https://images.unsplash.com/photo-1569163290221-8357703fbc93",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 5,
+     "caption": "woman wearing white long-sleeved dress"
+    },
+    {
+     "photo_id": "88Kt5KHUe_8",
+     "url": "https://images.unsplash.com/photo-1503925008906-d20ab3489c35",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 6,
+     "caption": "man in black shirt standing in the middle of peach-colored flower field under gray skies"
+    },
+    {
+     "photo_id": "EMRBGSgeIVs",
+     "url": "https://images.unsplash.com/photo-1517203658273-7f2c369a7737",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 6,
+     "caption": "man standing on cliff near the bodies of water"
+    },
+    {
+     "photo_id": "OTTIkYClEyI",
+     "url": "https://images.unsplash.com/photo-1518122043280-ffd6c8f273d1",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 6,
+     "caption": "man catching waves"
+    },
+    {
+     "photo_id": "Fgp8p6KD_Ks",
+     "url": "https://images.unsplash.com/photo-1550167862-b1f33359eba0",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 7,
+     "caption": "bare tree in middle of snowy field"
+    },
+    {
+     "photo_id": "0VD9TGRVrBs",
+     "url": "https://images.unsplash.com/photo-1542687452-6edb9af51205",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 9,
+     "caption": "person in a foggy forest"
+    },
+    {
+     "photo_id": "IXmdOrGcUyU",
+     "url": "https://images.unsplash.com/photo-1549294934-18ff31e6a09a",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 10,
+     "caption": "three orange petaled flowers in bloom"
+    },
+    {
+     "photo_id": "zdpgrMdIja0",
+     "url": "https://images.unsplash.com/photo-1578762625693-1b24888086d7",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 11,
+     "caption": "grayscale photography of lakeshore during daytime"
+    },
+    {
+     "photo_id": "u7QKnD8Y_aQ",
+     "url": "https://images.unsplash.com/photo-1579550860870-d42f8f14288f",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 12,
+     "caption": "a lone tree in the middle of a snowy field"
+    }
+   ]
+  },
+  "a2": {
+   "query": "nostalgia",
+   "bucket": "abstract",
+   "candidates": [
+    {
+     "photo_id": "OSbw1oA6Mjo",
+     "url": "https://images.unsplash.com/photo-1574207393471-f6a566683941",
+     "arms": [
+      "clip",
+      "clip_rephrase2"
+     ],
+     "best_rank": 1,
+     "caption": "empty road with blacklight"
+    },
+    {
+     "photo_id": "kyvZVGdqwBk",
+     "url": "https://images.unsplash.com/photo-1746185766852-8f4dfa81c879",
+     "arms": [
+      "clip_rephrase1",
+      "clip_rephrase2"
+     ],
+     "best_rank": 1,
+     "caption": "An old, dark room with an open door."
+    },
+    {
+     "photo_id": "a0dGKKDQUQ8",
+     "url": "https://images.unsplash.com/photo-1573706375595-fa829a0e226a",
+     "arms": [
+      "clip",
+      "clip_rephrase2"
+     ],
+     "best_rank": 2,
+     "caption": "white and blue gas station at night"
+    },
+    {
+     "photo_id": "pl1Pp-mDzfw",
+     "url": "https://images.unsplash.com/photo-1575135402964-e2be8d9b5a9c",
+     "arms": [
+      "clip",
+      "clip_rephrase2"
+     ],
+     "best_rank": 2,
+     "caption": "vehicle on road"
+    },
+    {
+     "photo_id": "l2EfYTbFilA",
+     "url": "https://images.unsplash.com/photo-1579554887947-44ff887bef89",
+     "arms": [
+      "clip",
+      "clip_rephrase2"
+     ],
+     "best_rank": 4,
+     "caption": "red and white store signage during night time"
+    },
+    {
+     "photo_id": "ZDhtEaSKZsU",
+     "url": "https://images.unsplash.com/photo-1744939823677-eaafa17ed879",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 1,
+     "caption": "A miniature, vintage macintosh computer toy."
+    },
+    {
+     "photo_id": "AL4oxw2UD8E",
+     "url": "https://images.unsplash.com/photo-1542729214-97b5ef6dc098",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 2,
+     "caption": "pink rose"
+    },
+    {
+     "photo_id": "TWQ8b6jH368",
+     "url": "https://images.unsplash.com/photo-1437376789784-118cb4630fa8",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 3,
+     "caption": "dirt road between grass"
+    },
+    {
+     "photo_id": "YpqqApYeB9E",
+     "url": "https://images.unsplash.com/photo-1590698763144-af7fa49b14c3",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 3,
+     "caption": "red balloon on green grass field during daytime"
+    },
+    {
+     "photo_id": "TwZiXqHfvYg",
+     "url": "https://images.unsplash.com/photo-1574420901244-ba7875bfd367",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 4,
+     "caption": "desert under cloudy sky"
+    },
+    {
+     "photo_id": "d5PYB17O9jE",
+     "url": "https://images.unsplash.com/photo-1515594515116-863345d8507c",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 5,
+     "caption": "white Orcan fuel station"
+    },
+    {
+     "photo_id": "omq2HpcGv-g",
+     "url": "https://images.unsplash.com/photo-1552583088-876769891a9d",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 5,
+     "caption": "red-petaled flowers"
+    },
+    {
+     "photo_id": "7_3j_SYuIKQ",
+     "url": "https://images.unsplash.com/photo-1440725021966-b9741373bd13",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 6,
+     "caption": "brown wooden shed on green grass field"
+    },
+    {
+     "photo_id": "N56pNPcli_0",
+     "url": "https://images.unsplash.com/photo-1562684446-23fe3ace6117",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 6,
+     "caption": "woman on roof"
+    },
+    {
+     "photo_id": "vqTrcOyr3uA",
+     "url": "https://images.unsplash.com/photo-1572056652133-50d6032dc57a",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 6,
+     "caption": "brown wheat"
+    },
+    {
+     "photo_id": "eOffmzHe2fA",
+     "url": "https://images.unsplash.com/photo-1572588787078-558097d94596",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 8,
+     "caption": "gray digital devoce"
+    },
+    {
+     "photo_id": "4YXTRhKGdoI",
+     "url": "https://images.unsplash.com/photo-1744089326555-4508e029f2f5",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 9,
+     "caption": "A white turntable rests on a wooden cabinet."
+    },
+    {
+     "photo_id": "nM5uErhbiGw",
+     "url": "https://images.unsplash.com/photo-1576258405325-6ae2a1e8dbcd",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 11,
+     "caption": "a person walking down a hallway in the dark"
+    },
+    {
+     "photo_id": "qwpJqXStKbY",
+     "url": "https://images.unsplash.com/photo-1538946456990-1fd23c29790a",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 12,
+     "caption": "photo of night sky"
+    }
+   ]
+  },
+  "a3": {
+   "query": "quiet minimalist interior",
+   "bucket": "abstract",
+   "candidates": [
+    {
+     "photo_id": "dMQSSJvbkG4",
+     "url": "https://images.unsplash.com/photo-1575302187464-99fb08c5219d",
+     "arms": [
+      "clip",
+      "clip_rephrase1"
+     ],
+     "best_rank": 1,
+     "caption": "green-leafed plant on grey surface"
+    },
+    {
+     "photo_id": "sPIiyhDxu8M",
+     "url": "https://images.unsplash.com/photo-1584603327310-9952d026f645",
+     "arms": [
+      "clip",
+      "clip_rephrase1"
+     ],
+     "best_rank": 2,
+     "caption": "green plant near brown wooden cabinet"
+    },
+    {
+     "photo_id": "urH155LONWs",
+     "url": "https://images.unsplash.com/photo-1745794621090-d856c53b0cc2",
+     "arms": [
+      "clip",
+      "clip_rephrase2"
+     ],
+     "best_rank": 2,
+     "caption": "Modern dining room with table, chairs, and kitchen."
+    },
+    {
+     "photo_id": "FObU8l6PyLA",
+     "url": "https://images.unsplash.com/photo-1515137519421-fe7758e1d27e",
+     "arms": [
+      "clip",
+      "clip_rephrase2"
+     ],
+     "best_rank": 5,
+     "caption": "green cactus plant near wall"
+    },
+    {
+     "photo_id": "qeIh0T2ZKPI",
+     "url": "https://images.unsplash.com/photo-1592319866469-a1016ff5fe89",
+     "arms": [
+      "clip",
+      "clip_rephrase1"
+     ],
+     "best_rank": 6,
+     "caption": "white ceramic mug on white ceramic saucer on white table"
+    },
+    {
+     "photo_id": "2rYEzFBUenI",
+     "url": "https://images.unsplash.com/photo-1569414074182-ff4d79d52b6c",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 1,
+     "caption": "brown wooden table"
+    },
+    {
+     "photo_id": "EGbnaltr0v4",
+     "url": "https://images.unsplash.com/photo-1571993003534-d55c7adb0d17",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 1,
+     "caption": "grey stone"
+    },
+    {
+     "photo_id": "JRsZWmRd_Ws",
+     "url": "https://images.unsplash.com/photo-1438032005730-c779502df39b",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 1,
+     "caption": "church interior"
+    },
+    {
+     "photo_id": "XZyD6CTOAIU",
+     "url": "https://images.unsplash.com/photo-1433437654806-3e548529a487",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 2,
+     "caption": "green bus interior"
+    },
+    {
+     "photo_id": "6i1nP6VR-rU",
+     "url": "https://images.unsplash.com/photo-1518117823675-9a4bb23df61c",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 3,
+     "caption": "silver MacBook"
+    },
+    {
+     "photo_id": "9zfcMAo6m-o",
+     "url": "https://images.unsplash.com/photo-1748183781742-a2473d27a763",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 3,
+     "caption": "Modern kitchen with light wood cabinets and a dining table."
+    },
+    {
+     "photo_id": "Fgp8p6KD_Ks",
+     "url": "https://images.unsplash.com/photo-1550167862-b1f33359eba0",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 3,
+     "caption": "bare tree in middle of snowy field"
+    },
+    {
+     "photo_id": "droTbsEL2HA",
+     "url": "https://images.unsplash.com/photo-1546967027-a2e6d9058b39",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 3,
+     "caption": "wooden building interior"
+    },
+    {
+     "photo_id": "2pBpO-zsXMw",
+     "url": "https://images.unsplash.com/photo-1512428442882-a71471996d37",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 4,
+     "caption": "green leaf plant"
+    },
+    {
+     "photo_id": "5jbjClZI8SA",
+     "url": "https://images.unsplash.com/photo-1743885143645-b28cdaacf8b5",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 4,
+     "caption": "Cozy room with two red chairs and car memorabilia."
+    },
+    {
+     "photo_id": "Arn2315Gqlw",
+     "url": "https://images.unsplash.com/photo-1583659377865-8845f61de95a",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 4,
+     "caption": "brown wooden chairs and table"
+    },
+    {
+     "photo_id": "NXciM5wByZg",
+     "url": "https://images.unsplash.com/photo-1433086981895-12ca61d33d40",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 4,
+     "caption": "grayscale photography of rock formations"
+    },
+    {
+     "photo_id": "btjqFXX97l0",
+     "url": "https://images.unsplash.com/photo-1506717774818-488ff8834fc7",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 5,
+     "caption": "gray concrete building interior"
+    },
+    {
+     "photo_id": "qJh5xKlzEks",
+     "url": "https://images.unsplash.com/photo-1575424908740-e08177cffd5a",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 5,
+     "caption": "yellow rose flower in the pot"
+    },
+    {
+     "photo_id": "Uh4ylA6VWYQ",
+     "url": "https://images.unsplash.com/photo-1581333293462-ee963adf0786",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 6,
+     "caption": "brown and white cathedral interior"
+    },
+    {
+     "photo_id": "VJX5imdELxo",
+     "url": "https://images.unsplash.com/photo-1559548290-d6b0cb6c9050",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 6,
+     "caption": "two white tea light candles"
+    },
+    {
+     "photo_id": "r-PmMq3jlgM",
+     "url": "https://images.unsplash.com/photo-1574706461301-7ab0455f4bf2",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 7,
+     "caption": "green and gray room interior"
+    },
+    {
+     "photo_id": "1tq5ryTMT3Y",
+     "url": "https://images.unsplash.com/photo-1556256224-4f41505ec710",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 8,
+     "caption": "white painted wall"
+    },
+    {
+     "photo_id": "XGeILxcyxJI",
+     "url": "https://images.unsplash.com/photo-1590261697089-ebf5223862a6",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 8,
+     "caption": "brown and black building interior"
+    },
+    {
+     "photo_id": "tt2t8M69mX4",
+     "url": "https://images.unsplash.com/photo-1576717385568-740b713ae42c",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 9,
+     "caption": "minimalist photography of brown pine cones"
+    },
+    {
+     "photo_id": "1Vb2b02D1UE",
+     "url": "https://images.unsplash.com/photo-1572451594757-52a9c5e6ffcd",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 10,
+     "caption": "white concrete building"
+    },
+    {
+     "photo_id": "m7WaoObIM4g",
+     "url": "https://images.unsplash.com/photo-1564468515177-81aced52f4fa",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 10,
+     "caption": "white flower decor"
+    },
+    {
+     "photo_id": "Bf8YHJcECkA",
+     "url": "https://images.unsplash.com/photo-1572861030391-c7960204a573",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 11,
+     "caption": "Grand Canyon interior"
+    },
+    {
+     "photo_id": "bQHSWgJrlXg",
+     "url": "https://images.unsplash.com/photo-1548860768-f06bde3b42f6",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 11,
+     "caption": "white petaled flower in glass vase beside book"
+    },
+    {
+     "photo_id": "87111nn8z_w",
+     "url": "https://images.unsplash.com/photo-1573346092555-5f516ef74673",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 12,
+     "caption": "closeup photo of brown wooden door panel"
+    },
+    {
+     "photo_id": "z9jMuYsjzgw",
+     "url": "https://images.unsplash.com/photo-1744274800385-ce878e73e30c",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 12,
+     "caption": "Geometric shapes and shadows create a minimalist composition."
+    }
+   ]
+  },
+  "a4": {
+   "query": "the chaos of a crowded market",
+   "bucket": "abstract",
+   "candidates": [
+    {
+     "photo_id": "oe4Hn5QTuzk",
+     "url": "https://images.unsplash.com/photo-1744729907498-e2186ea615be",
+     "arms": [
+      "clip",
+      "clip_rephrase1",
+      "clip_rephrase2"
+     ],
+     "best_rank": 1,
+     "caption": "Nighttime street scene in a bustling city."
+    },
+    {
+     "photo_id": "sY3yB1rjDUA",
+     "url": "https://images.unsplash.com/photo-1563284202-746a243e07a4",
+     "arms": [
+      "clip",
+      "clip_rephrase1",
+      "clip_rephrase2"
+     ],
+     "best_rank": 1,
+     "caption": "a group of people walking down a street under a bridge"
+    },
+    {
+     "photo_id": "AZVG-xEZioM",
+     "url": "https://images.unsplash.com/photo-1572429765691-04b6924fe8cc",
+     "arms": [
+      "clip",
+      "clip_rephrase1",
+      "clip_rephrase2"
+     ],
+     "best_rank": 2,
+     "caption": "reflection of man on puddle of water"
+    },
+    {
+     "photo_id": "kjt8njhhy7U",
+     "url": "https://images.unsplash.com/photo-1571055409561-1ec0dbc6cff3",
+     "arms": [
+      "clip",
+      "clip_rephrase1",
+      "clip_rephrase2"
+     ],
+     "best_rank": 4,
+     "caption": "people between buildings"
+    },
+    {
+     "photo_id": "iq1x1V8kCOw",
+     "url": "https://images.unsplash.com/photo-1571616595354-be7d3e1a802a",
+     "arms": [
+      "clip",
+      "clip_rephrase2"
+     ],
+     "best_rank": 2,
+     "caption": "people on road"
+    },
+    {
+     "photo_id": "-wtTtc3KAAU",
+     "url": "https://images.unsplash.com/photo-1746311372686-e164b0bcb333",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 1,
+     "caption": "A large crowd of penguins stands together."
+    },
+    {
+     "photo_id": "l5Tv4eB5P4s",
+     "url": "https://images.unsplash.com/photo-1489529903858-8c8144bfda87",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 1,
+     "caption": "flower bouquet lot"
+    },
+    {
+     "photo_id": "UB6pOE7b0UQ",
+     "url": "https://images.unsplash.com/photo-1457665934810-5e0f59ea1fce",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 2,
+     "caption": "silhouette of wooden docks during golden hour"
+    },
+    {
+     "photo_id": "19IdBsV5ofg",
+     "url": "https://images.unsplash.com/photo-1544361263-bbb3ef73999c",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 3,
+     "caption": "brown wooden framed wall decor"
+    },
+    {
+     "photo_id": "JxfCQHpInnY",
+     "url": "https://images.unsplash.com/photo-1587657565461-d0ca5f645b0d",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 3,
+     "caption": "aerial view of city buildings during night time"
+    },
+    {
+     "photo_id": "pvTzM0GGHgA",
+     "url": "https://images.unsplash.com/photo-1575496118770-e9d002940031",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 3,
+     "caption": "green leafed plant"
+    },
+    {
+     "photo_id": "rXkvnIliIGs",
+     "url": "https://images.unsplash.com/photo-1643400812627-288aa24ccd29",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 3,
+     "caption": "a group of people standing on top of a sandy beach"
+    },
+    {
+     "photo_id": "iOzvpb5XErM",
+     "url": "https://images.unsplash.com/photo-1549736448-490abdfe6468",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 4,
+     "caption": "Public Market signage during night time"
+    },
+    {
+     "photo_id": "zKDDRyQcM04",
+     "url": "https://images.unsplash.com/photo-1550107319-b90144fc945d",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 4,
+     "caption": "empty streets covered by snow during daytime"
+    },
+    {
+     "photo_id": "kAxl973l9LI",
+     "url": "https://images.unsplash.com/photo-1557768440-b4ac5f37cc43",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 5,
+     "caption": "herd of white sheeps"
+    },
+    {
+     "photo_id": "pwaaqfoMibI",
+     "url": "https://images.unsplash.com/11/santa-monica-beach.jpg",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 5,
+     "caption": "aerial view of people near beach"
+    },
+    {
+     "photo_id": "-zmrmCYFveg",
+     "url": "https://images.unsplash.com/photo-1553431437-a6c856a3518f",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 6,
+     "caption": "women sitting on boat during daytime"
+    },
+    {
+     "photo_id": "P6fU9OIpO4A",
+     "url": "https://images.unsplash.com/photo-1447878035468-f6464b327023",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 6,
+     "caption": "group of people on white sand beach"
+    },
+    {
+     "photo_id": "TBaEUj5-J7Q",
+     "url": "https://images.unsplash.com/photo-1456655010498-adf10969b75f",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 7,
+     "caption": "flowers on white plant pots"
+    },
+    {
+     "photo_id": "7XJYx5d81MI",
+     "url": "https://images.unsplash.com/photo-1745565086938-06a209614d5d",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 8,
+     "caption": "A festive outdoor market with paper boats and fountains."
+    },
+    {
+     "photo_id": "bZvdX5Ysm44",
+     "url": "https://images.unsplash.com/photo-1550064762-4a75f2f90764",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 8,
+     "caption": "group of penguins"
+    },
+    {
+     "photo_id": "XvQNHn_alRA",
+     "url": "https://images.unsplash.com/photo-1496003429252-973451cfdc2e",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 9,
+     "caption": "fresh cut flowers sign hanged on door beside flowers"
+    },
+    {
+     "photo_id": "mmfqg90Ujb8",
+     "url": "https://images.unsplash.com/photo-1743930286867-acbd47f58e8b",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 9,
+     "caption": "People wait at a crosswalk in a city."
+    },
+    {
+     "photo_id": "hrG7v0JK34k",
+     "url": "https://images.unsplash.com/photo-1584705813575-491a02919976",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 10,
+     "caption": "red apple fruit on yellow table"
+    },
+    {
+     "photo_id": "1CjTWVqg3c8",
+     "url": "https://images.unsplash.com/photo-1579962413351-8433f65815f1",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 11,
+     "caption": "herd of goats on brown field during daytime"
+    },
+    {
+     "photo_id": "z56L143KBvE",
+     "url": "https://images.unsplash.com/photo-1578825141469-690ba22eede0",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 11,
+     "caption": "no business on a dead planet sign"
+    },
+    {
+     "photo_id": "oBxYg1kDLAE",
+     "url": "https://images.unsplash.com/photo-1545313324-32fe38861b41",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 12,
+     "caption": "white and brown owl"
+    }
+   ]
+  },
+  "a5": {
+   "query": "a sense of freedom",
+   "bucket": "abstract",
+   "candidates": [
+    {
+     "photo_id": "Cee6-HjqSEM",
+     "url": "https://images.unsplash.com/photo-1563575044224-569da2f35b01",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 1,
+     "caption": "person surfing in a wave close-up photography"
+    },
+    {
+     "photo_id": "L4EsOAoU8-M",
+     "url": "https://images.unsplash.com/photo-1585934263617-65e5f0518803",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 1,
+     "caption": "black and white eagle flying"
+    },
+    {
+     "photo_id": "OdMK8m5G8qk",
+     "url": "https://images.unsplash.com/photo-1552784154-7ca7ab49201d",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 1,
+     "caption": "woman raised both hands near fence"
+    },
+    {
+     "photo_id": "Uq9Q307bINk",
+     "url": "https://images.unsplash.com/photo-1434968268317-c3671a536662",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 1,
+     "caption": "green grass field"
+    },
+    {
+     "photo_id": "1GxT-yz-PGQ",
+     "url": "https://images.unsplash.com/photo-1467092294924-70d4f220997a",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 2,
+     "caption": "person standing in front of brown mountain"
+    },
+    {
+     "photo_id": "69OUchIv4Po",
+     "url": "https://images.unsplash.com/photo-1629477044833-4f336f04a5f5",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 2,
+     "caption": "silhouette of 2 person raising hands"
+    },
+    {
+     "photo_id": "OjQgsR1oyEw",
+     "url": "https://images.unsplash.com/photo-1557401622-cfc0aa5d146c",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 2,
+     "caption": "bald eagle flying on skies"
+    },
+    {
+     "photo_id": "P896nPJ-BOQ",
+     "url": "https://images.unsplash.com/photo-1505494823402-3a4dd55f30cc",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 2,
+     "caption": "herd of horses on green grass field during daytime"
+    },
+    {
+     "photo_id": "D1NVJHAat4Q",
+     "url": "https://images.unsplash.com/photo-1557401620-f75dad793220",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 3,
+     "caption": "American bald eagle in flight"
+    },
+    {
+     "photo_id": "GLyY47CZI5E",
+     "url": "https://images.unsplash.com/photo-1436463971918-f6f039f752c4",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 3,
+     "caption": "man walking on green grass field during daytime"
+    },
+    {
+     "photo_id": "H8-9t0vvWJA",
+     "url": "https://images.unsplash.com/photo-1587749872715-e645a868ab7a",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 3,
+     "caption": "person walking on brown field near snow covered mountain during daytime"
+    },
+    {
+     "photo_id": "upOaNNzAstE",
+     "url": "https://images.unsplash.com/photo-1543482740-9636afc2f9db",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 3,
+     "caption": "silhouette of person's hand during golden hour"
+    },
+    {
+     "photo_id": "IYtp7I_yfIY",
+     "url": "https://images.unsplash.com/photo-1567996293198-c7bc7c5d5ff7",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 4,
+     "caption": "macro photography of bald eagle"
+    },
+    {
+     "photo_id": "WnqZcnwPZ1Y",
+     "url": "https://images.unsplash.com/photo-1564136756275-749f62a6d2c2",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 4,
+     "caption": "snow covered mountain"
+    },
+    {
+     "photo_id": "YkQIl0pfbTM",
+     "url": "https://images.unsplash.com/photo-1567596249817-39e841efd3ec",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 4,
+     "caption": "a flock of birds flying over the ocean"
+    },
+    {
+     "photo_id": "gVpKmdfiHbk",
+     "url": "https://images.unsplash.com/photo-1564470787931-f9a435128b34",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 4,
+     "caption": "woman standing on brown grass field"
+    },
+    {
+     "photo_id": "RYEZAnpxZl8",
+     "url": "https://images.unsplash.com/photo-1494227752635-dc45d187555f",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 5,
+     "caption": "flying eagle below cumulus clouds"
+    },
+    {
+     "photo_id": "VOHt4OUorNY",
+     "url": "https://images.unsplash.com/photo-1579377322679-b982d9cb8ae4",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 5,
+     "caption": "a tree with a green light in the sky"
+    },
+    {
+     "photo_id": "cs7Qw-UxWac",
+     "url": "https://images.unsplash.com/photo-1465146411845-99e7ab1f3488",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 5,
+     "caption": "green grass field under blue and white sky"
+    },
+    {
+     "photo_id": "fwD_GFyaOQ8",
+     "url": "https://images.unsplash.com/photo-1526588203529-fbfb299730cf",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 5,
+     "caption": "person holding purple flowers"
+    },
+    {
+     "photo_id": "BALZ8uogVjs",
+     "url": "https://images.unsplash.com/photo-1431222606267-e445510bc100",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 6,
+     "caption": "house on green grass field"
+    },
+    {
+     "photo_id": "cokIcMulPJA",
+     "url": "https://images.unsplash.com/photo-1508178828646-9dddefd2b4e1",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 6,
+     "caption": "bird flying on the sky"
+    },
+    {
+     "photo_id": "p6FnBHVepRc",
+     "url": "https://images.unsplash.com/photo-1495652715132-7aafc87c147e",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 6,
+     "caption": "person standing on seashore between mountains"
+    },
+    {
+     "photo_id": "r8-rx-S6vic",
+     "url": "https://images.unsplash.com/photo-1554167520-7806896b11b7",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 6,
+     "caption": "grayscale photo of tree near water"
+    },
+    {
+     "photo_id": "mFbw9Nxk-JY",
+     "url": "https://images.unsplash.com/photo-1544435534-fe74beac3ac7",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 7,
+     "caption": "aerial view of body of water"
+    },
+    {
+     "photo_id": "zzWCZDaeSRw",
+     "url": "https://images.unsplash.com/photo-1572849848573-5842e3e65eee",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 7,
+     "caption": "black and white eagle on bare tree"
+    },
+    {
+     "photo_id": "PwjPYvRWf2Y",
+     "url": "https://images.unsplash.com/photo-1484886738597-d2e20a5320e5",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 8,
+     "caption": "photography of assorted-color leaves on surface"
+    },
+    {
+     "photo_id": "QsEO-fynmos",
+     "url": "https://images.unsplash.com/photo-1583384991428-d3dca43177f3",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 8,
+     "caption": "black and white car on desert"
+    },
+    {
+     "photo_id": "0goAIAtLlF4",
+     "url": "https://images.unsplash.com/photo-1578279043004-e218349bfdfd",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 9,
+     "caption": "black eagle on mid air"
+    },
+    {
+     "photo_id": "wn7Vdl8_yXc",
+     "url": "https://images.unsplash.com/photo-1484353890732-25113ccdd04f",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 9,
+     "caption": "high angle landscape photography of snow covered mountain ranges during golden hour"
+    },
+    {
+     "photo_id": "2IITGgRhrQU",
+     "url": "https://images.unsplash.com/photo-1493501471057-d774f693bd69",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 10,
+     "caption": "green and purple flowers"
+    },
+    {
+     "photo_id": "wIhdsYo9g6w",
+     "url": "https://images.unsplash.com/photo-1548206284-e340bcb9591b",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 10,
+     "caption": "Bald Eagle above body of water"
+    },
+    {
+     "photo_id": "GDoowhDHbko",
+     "url": "https://images.unsplash.com/photo-1572928564866-8cc4ab964ee9",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 11,
+     "caption": "shallow focus photo of bald eagle flying under body of water"
+    },
+    {
+     "photo_id": "r52CS5op2Ao",
+     "url": "https://images.unsplash.com/photo-1556438545-3ccf35efacb0",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 11,
+     "caption": "a close up of a metal object with a blurry background"
+    },
+    {
+     "photo_id": "KSvHFcWYGAg",
+     "url": "https://images.unsplash.com/photo-1565250605192-4586b7c557b7",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 12,
+     "caption": "green leafed plant"
+    },
+    {
+     "photo_id": "pODpVzUS-yA",
+     "url": "https://images.unsplash.com/photo-1558225566-4af8161cbf1e",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 12,
+     "caption": "bird flying near mountain during daytime"
+    }
+   ]
+  },
+  "a6": {
+   "query": "melancholy winter afternoon",
+   "bucket": "abstract",
+   "candidates": [
+    {
+     "photo_id": "2-CW6LScbn0",
+     "url": "https://images.unsplash.com/photo-1577910344269-6e6d4facc0ee",
+     "arms": [
+      "clip",
+      "clip_rephrase1"
+     ],
+     "best_rank": 1,
+     "caption": "a branch with berries on it against a white background"
+    },
+    {
+     "photo_id": "QJSWD8bkn0w",
+     "url": "https://images.unsplash.com/photo-1445258278150-e40be86fe7a3",
+     "arms": [
+      "clip",
+      "clip_rephrase2"
+     ],
+     "best_rank": 1,
+     "caption": "sun shining over snow"
+    },
+    {
+     "photo_id": "JcYQ67_TCmY",
+     "url": "https://images.unsplash.com/photo-1418232387624-c8f585008901",
+     "arms": [
+      "clip",
+      "clip_rephrase2"
+     ],
+     "best_rank": 5,
+     "caption": "selective focus photography of trees"
+    },
+    {
+     "photo_id": "H7nMkBMgcNw",
+     "url": "https://images.unsplash.com/photo-1583189560522-2765131529a8",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 1,
+     "caption": "green trees and mountain under white clouds"
+    },
+    {
+     "photo_id": "QP1dUyQ8WsI",
+     "url": "https://images.unsplash.com/reserve/J3URHssSQyqifuJVcgKu_Wald.jpg",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 1,
+     "caption": "tall trees lot"
+    },
+    {
+     "photo_id": "GEaSmg3JM50",
+     "url": "https://images.unsplash.com/photo-1516757300321-1c412e07195b",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 2,
+     "caption": "green leafed trees coated snow"
+    },
+    {
+     "photo_id": "TYxCBJp_QNI",
+     "url": "https://images.unsplash.com/photo-1554369630-1c086fcb0dfa",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 2,
+     "caption": "the sun is setting over a snowy hill"
+    },
+    {
+     "photo_id": "l6KamCXeB4U",
+     "url": "https://images.unsplash.com/photo-1447434734417-8263fc2c69f8",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 2,
+     "caption": "photo of mountain covered with trees"
+    },
+    {
+     "photo_id": "xbbf342IqCg",
+     "url": "https://images.unsplash.com/photo-1571063626111-1e534e42776a",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 2,
+     "caption": "brown and green bare trees"
+    },
+    {
+     "photo_id": "Ae0JXUayWzs",
+     "url": "https://images.unsplash.com/photo-1477989796302-10f080b03500",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 3,
+     "caption": "yellow flower field during cloudy day"
+    },
+    {
+     "photo_id": "SRoqaeEb7Nk",
+     "url": "https://images.unsplash.com/photo-1556812455-bc61a9e69205",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 3,
+     "caption": "leafless tree during daytime"
+    },
+    {
+     "photo_id": "UtT2q-H5Wy8",
+     "url": "https://images.unsplash.com/photo-1571101281124-93ab00fb9643",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 3,
+     "caption": "body of water"
+    },
+    {
+     "photo_id": "n1h2kVc549c",
+     "url": "https://images.unsplash.com/reserve/unsplash_52cee6d9df810_1.JPG",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 3,
+     "caption": "animal walking on land covered with snow near bare trees"
+    },
+    {
+     "photo_id": "jFYLpHPizQM",
+     "url": "https://images.unsplash.com/photo-1566321514303-e88a4fb22095",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 4,
+     "caption": "pink roses"
+    },
+    {
+     "photo_id": "tDwc_wK57Pk",
+     "url": "https://images.unsplash.com/photo-1515525678453-104f395e6bfa",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 4,
+     "caption": "architectural photography of train railway"
+    },
+    {
+     "photo_id": "vKobEPBoHKQ",
+     "url": "https://images.unsplash.com/photo-1548540985-c6b4c6376c91",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 4,
+     "caption": "dried-leafed tree selective focus photography"
+    },
+    {
+     "photo_id": "02f3KC3zKPk",
+     "url": "https://images.unsplash.com/photo-1423589989400-cc0270157ed0",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 5,
+     "caption": "aerial photography of high-rise buildings"
+    },
+    {
+     "photo_id": "tLZFUp_fRt8",
+     "url": "https://images.unsplash.com/photo-1640889241129-b417f8841291",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 5,
+     "caption": "a forest covered in snow with lots of trees"
+    },
+    {
+     "photo_id": "42BrRL_xejU",
+     "url": "https://images.unsplash.com/photo-1476504701816-076ebab73c84",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 6,
+     "caption": "mountain under heavy clouds"
+    },
+    {
+     "photo_id": "HfDasDyQCPQ",
+     "url": "https://images.unsplash.com/photo-1435820876491-c2cb37e8e7ff",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 6,
+     "caption": "bare tree in the middle of snow field"
+    },
+    {
+     "photo_id": "fufI8gQTfoE",
+     "url": "https://images.unsplash.com/photo-1481871185025-9c4fece49d49",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 6,
+     "caption": "rocky mountain under dim sky"
+    },
+    {
+     "photo_id": "wdFMjN3f548",
+     "url": "https://images.unsplash.com/photo-1427807104000-0b7a0d9a6be3",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 6,
+     "caption": "forest under clear skies"
+    },
+    {
+     "photo_id": "1x6oHMV6Bik",
+     "url": "https://images.unsplash.com/photo-1521756395334-aaf5c7a2e838",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 7,
+     "caption": "tree under gray sky"
+    },
+    {
+     "photo_id": "WXbb62kB7pE",
+     "url": "https://images.unsplash.com/photo-1545059170-d6b47e120a29",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 7,
+     "caption": "flowers during winter"
+    },
+    {
+     "photo_id": "8-cqlcHZF9o",
+     "url": "https://images.unsplash.com/photo-1579592511502-17ba9193915a",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 8,
+     "caption": "white grass field during daytime"
+    },
+    {
+     "photo_id": "qfW8wOkZkEU",
+     "url": "https://images.unsplash.com/photo-1544012806-5cd42efdf451",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 8,
+     "caption": "high-rise buildings"
+    },
+    {
+     "photo_id": "0iP9e8u_zhA",
+     "url": "https://images.unsplash.com/photo-1548252824-95a3a8564481",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 9,
+     "caption": "snow covered road and tress on daytime"
+    },
+    {
+     "photo_id": "_NEEHin3N5s",
+     "url": "https://images.unsplash.com/photo-1546534505-d534e27ecb35",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 9,
+     "caption": "pine trees during winter"
+    },
+    {
+     "photo_id": "5TmdCtpV-s0",
+     "url": "https://images.unsplash.com/photo-1543585279-6927af942931",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 10,
+     "caption": "mountain during winter season"
+    },
+    {
+     "photo_id": "HYDL8uARCN8",
+     "url": "https://images.unsplash.com/photo-1453033999175-4ed3ad562807",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 10,
+     "caption": "selective focus photo of red fruits"
+    },
+    {
+     "photo_id": "n4pNuXxyIr4",
+     "url": "https://images.unsplash.com/photo-1575149860301-fda8def1956f",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 11,
+     "caption": "leashed cat sitting on road"
+    },
+    {
+     "photo_id": "C-I_w_Z5cG8",
+     "url": "https://images.unsplash.com/photo-1558300629-7157feef55f8",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 12,
+     "caption": "trees near body of water"
+    },
+    {
+     "photo_id": "Hs5VStZsPt4",
+     "url": "https://images.unsplash.com/photo-1541046663903-68cac0a2f6f5",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 12,
+     "caption": "brown bare trees"
+    }
+   ]
+  },
+  "j1": {
+   "query": "shallow depth of field portrait with creamy bokeh",
+   "bucket": "jargon",
+   "candidates": [
+    {
+     "photo_id": "QdjwwwHELx4",
+     "url": "https://images.unsplash.com/photo-1572174175435-4b07244387ab",
+     "arms": [
+      "clip",
+      "clip_rephrase2"
+     ],
+     "best_rank": 1,
+     "caption": "a blurry photo of a green tree in the background"
+    },
+    {
+     "photo_id": "WSxluGgdlFQ",
+     "url": "https://images.unsplash.com/photo-1581125115037-633f6efa5e00",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 1,
+     "caption": "woman in yellow long sleeve shirt"
+    },
+    {
+     "photo_id": "tEa3C6jgp4o",
+     "url": "https://images.unsplash.com/photo-1546043431-0e9ddefa213b",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 1,
+     "caption": "selective focus photography of purple-petaled flower"
+    },
+    {
+     "photo_id": "uuBBew6g2jM",
+     "url": "https://images.unsplash.com/photo-1501973801540-537f08ccae7b",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 1,
+     "caption": "close-up photography of maple leafs with shallow depth of field"
+    },
+    {
+     "photo_id": "6J_qm8DJWnY",
+     "url": "https://images.unsplash.com/photo-1501275578-61eff411d8bf",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 2,
+     "caption": "lamp on brown wooden box with shallow depth of field"
+    },
+    {
+     "photo_id": "SIDRBSeaX8s",
+     "url": "https://images.unsplash.com/photo-1525785939540-8a33240e4946",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 2,
+     "caption": "woman wearing gray zip-up jacket"
+    },
+    {
+     "photo_id": "wZybkWjETWo",
+     "url": "https://images.unsplash.com/photo-1496787861170-7c8901ee5b41",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 2,
+     "caption": "girl blowing green balloon"
+    },
+    {
+     "photo_id": "xxPXH7azBVs",
+     "url": "https://images.unsplash.com/photo-1570557242726-2290ca262703",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 2,
+     "caption": "white dove"
+    },
+    {
+     "photo_id": "KznfRCHrdos",
+     "url": "https://images.unsplash.com/photo-1465589633553-609c972974fb",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 3,
+     "caption": "depth of field of body of water during daytime"
+    },
+    {
+     "photo_id": "MNf9kU9lvEE",
+     "url": "https://images.unsplash.com/photo-1545796600-39f6ec6185aa",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 3,
+     "caption": "orange bokeh lights"
+    },
+    {
+     "photo_id": "j6OYgSMVuiI",
+     "url": "https://images.unsplash.com/photo-1746310920320-b4d078257303",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 3,
+     "caption": "An elderly woman with a scarf looks directly at viewer."
+    },
+    {
+     "photo_id": "BvUicqkaZZ0",
+     "url": "https://images.unsplash.com/photo-1476458393436-fb857cc4c7b5",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 4,
+     "caption": "close-up photography of brown leaves"
+    },
+    {
+     "photo_id": "S9wM0RPfvVE",
+     "url": "https://images.unsplash.com/photo-1569008477073-ad1129a1dce1",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 4,
+     "caption": "man standing on a grass field"
+    },
+    {
+     "photo_id": "cETX8uGxpDw",
+     "url": "https://images.unsplash.com/photo-1590092059588-e7f01246df54",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 4,
+     "caption": "white flowers in tilt shift lens"
+    },
+    {
+     "photo_id": "iiQ-mmG2NxI",
+     "url": "https://images.unsplash.com/photo-1564767616853-bb86382f6d11",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 4,
+     "caption": "woman wearing black long-sleeved shirt"
+    },
+    {
+     "photo_id": "IxcpqX5BC9s",
+     "url": "https://images.unsplash.com/photo-1552537759-9de6adb38fa9",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 5,
+     "caption": "grey mushroom in selective-focus photography"
+    },
+    {
+     "photo_id": "Jr_DkO3Ow14",
+     "url": "https://images.unsplash.com/photo-1553882809-a4f57e59501d",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 5,
+     "caption": "black and tan Belgian dog"
+    },
+    {
+     "photo_id": "pesu5W2yXmQ",
+     "url": "https://images.unsplash.com/photo-1491764221898-1e495f53639c",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 5,
+     "caption": "gray tabby cat sitting on gray floor"
+    },
+    {
+     "photo_id": "qVjIBN1P-co",
+     "url": "https://images.unsplash.com/photo-1468793507812-b819d7553cfa",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 5,
+     "caption": "shadow depth of field photography of hydrangeas flowers"
+    },
+    {
+     "photo_id": "3tvnHnUXjDU",
+     "url": "https://images.unsplash.com/photo-1558171643-b40f4c8d4bd2",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 6,
+     "caption": "orange flower in bloom"
+    },
+    {
+     "photo_id": "CnpLGmKULrQ",
+     "url": "https://images.unsplash.com/photo-1438417625174-4f3589408f13",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 6,
+     "caption": "pink flowers blooming during daytime"
+    },
+    {
+     "photo_id": "PWPjBNarV0k",
+     "url": "https://images.unsplash.com/photo-1566916350208-da3747267c55",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 6,
+     "caption": "a man in a white shirt is seen through a window"
+    },
+    {
+     "photo_id": "mKWKbHZaN-0",
+     "url": "https://images.unsplash.com/photo-1489251002368-1e38ccbebad1",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 6,
+     "caption": "close-up photography of gray tabby cat"
+    },
+    {
+     "photo_id": "Jr1PTVn00Rs",
+     "url": "https://images.unsplash.com/photo-1574628771337-70dee5920caa",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 7,
+     "caption": "bokeh lights"
+    },
+    {
+     "photo_id": "WrLY3abIUyU",
+     "url": "https://images.unsplash.com/photo-1579452258482-79cb2c698c44",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 7,
+     "caption": "a blurry photo of a plant in the grass"
+    },
+    {
+     "photo_id": "W8Sz4uktWNI",
+     "url": "https://images.unsplash.com/photo-1549361686-a4b394bf1b57",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 8,
+     "caption": "bokeh lights photography"
+    },
+    {
+     "photo_id": "mFECC6AY67E",
+     "url": "https://images.unsplash.com/photo-1590964495161-d05caacbbc3c",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 8,
+     "caption": "blue and white flower in close up photography"
+    },
+    {
+     "photo_id": "OBjKDaPvtKM",
+     "url": "https://images.unsplash.com/photo-1573977593093-620ef30be48e",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 9,
+     "caption": "green-leafed plants"
+    },
+    {
+     "photo_id": "dXYGFCyXhpo",
+     "url": "https://images.unsplash.com/photo-1572262197714-a08b2ef6f0c4",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 9,
+     "caption": "bokeh light"
+    },
+    {
+     "photo_id": "OT9mIcpbpyk",
+     "url": "https://images.unsplash.com/photo-1564858660258-b1830fa4d677",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 10,
+     "caption": "brown dog with leash"
+    },
+    {
+     "photo_id": "vYl8pmmVm2I",
+     "url": "https://images.unsplash.com/photo-1495775395017-c95a18f26caa",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 10,
+     "caption": "close photo of leaf on body of water"
+    },
+    {
+     "photo_id": "_PsClD3drUY",
+     "url": "https://images.unsplash.com/photo-1588424704655-cf71496b58b9",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 11,
+     "caption": "blue flowers in tilt shift lens"
+    },
+    {
+     "photo_id": "l5y-s_v5WxQ",
+     "url": "https://images.unsplash.com/photo-1579203782330-fcdf14df715e",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 11,
+     "caption": "selective focus photography of blue petaled flowers during daytime"
+    },
+    {
+     "photo_id": "QSX8BipPYe8",
+     "url": "https://images.unsplash.com/photo-1573318598087-6b0677574c6a",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 12,
+     "caption": "bokeh photography"
+    },
+    {
+     "photo_id": "zIj-55l0-lk",
+     "url": "https://images.unsplash.com/photo-1517516433317-4de48d8eb15b",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 12,
+     "caption": "shallow focus photography of gray and green bird on tree branch"
+    }
+   ]
+  },
+  "j2": {
+   "query": "long exposure light trails",
+   "bucket": "jargon",
+   "candidates": [
+    {
+     "photo_id": "0ciVnEHQCuI",
+     "url": "https://images.unsplash.com/photo-1578242078110-da4aa1283a1e",
+     "arms": [
+      "clip",
+      "clip_rephrase1",
+      "clip_rephrase2"
+     ],
+     "best_rank": 1,
+     "caption": "white, red, and yellow smokes"
+    },
+    {
+     "photo_id": "aI29TMOR3pc",
+     "url": "https://images.unsplash.com/photo-1552157776-30cdb75ae75c",
+     "arms": [
+      "clip",
+      "clip_rephrase1"
+     ],
+     "best_rank": 1,
+     "caption": "lighted road at night"
+    },
+    {
+     "photo_id": "8Rm-_yO1pD0",
+     "url": "https://images.unsplash.com/photo-1577655077148-0faeb9f6ed12",
+     "arms": [
+      "clip_rephrase1",
+      "clip_rephrase2"
+     ],
+     "best_rank": 3,
+     "caption": "a blurry photo of a street light at night"
+    },
+    {
+     "photo_id": "tghRzdAADXE",
+     "url": "https://images.unsplash.com/photo-1543160482-a2df3b087b27",
+     "arms": [
+      "clip",
+      "clip_rephrase2"
+     ],
+     "best_rank": 6,
+     "caption": "red and black leather bag"
+    },
+    {
+     "photo_id": "rnKqWvO80Y4",
+     "url": "https://images.unsplash.com/photo-1542396601-dca920ea2807",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 1,
+     "caption": "mountain road light trails at night"
+    },
+    {
+     "photo_id": "7Vesk70cnI4",
+     "url": "https://images.unsplash.com/photo-1565246781960-b392d4486ddd",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 2,
+     "caption": "long-exposure photography of waterfalls"
+    },
+    {
+     "photo_id": "8LotN6HsaT4",
+     "url": "https://images.unsplash.com/photo-1550275910-b1757fdddbe4",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 2,
+     "caption": "green light"
+    },
+    {
+     "photo_id": "eaAR5-jBl6k",
+     "url": "https://images.unsplash.com/photo-1591770173619-992e80c78330",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 2,
+     "caption": "time lapse photography of cars on road during night time"
+    },
+    {
+     "photo_id": "7DpEKohpOhQ",
+     "url": "https://images.unsplash.com/photo-1562113321-56425492cb6f",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 3,
+     "caption": "green-leafed plant"
+    },
+    {
+     "photo_id": "tEbRUeGJDfw",
+     "url": "https://images.unsplash.com/photo-1557765818-c725414650ef",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 3,
+     "caption": "neon lights illustration"
+    },
+    {
+     "photo_id": "ugG-_T6_6WQ",
+     "url": "https://images.unsplash.com/photo-1559475956-3d38c1aa17fa",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 3,
+     "caption": "long exposure photography of waterfalls"
+    },
+    {
+     "photo_id": "72_MRoMcxzA",
+     "url": "https://images.unsplash.com/photo-1577378936534-868883f23ebb",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 4,
+     "caption": "long-exposure photography of stars formation"
+    },
+    {
+     "photo_id": "CFT2PXWmKEg",
+     "url": "https://images.unsplash.com/photo-1550986903-574afd59ed76",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 4,
+     "caption": "silhouette of road"
+    },
+    {
+     "photo_id": "v_JzMR1rlTw",
+     "url": "https://images.unsplash.com/photo-1552319704-41c50c38c26e",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 4,
+     "caption": "timelapse photography of road and bare trees"
+    },
+    {
+     "photo_id": "K9X1klwnNxo",
+     "url": "https://images.unsplash.com/photo-1526553144644-bd9d59da0e76",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 5,
+     "caption": "black car on road under Aurora Borealis"
+    },
+    {
+     "photo_id": "Ro1AMuzkjMA",
+     "url": "https://images.unsplash.com/photo-1507306397316-ab5b2e634bec",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 5,
+     "caption": "photo of tree near body of water under blue sky"
+    },
+    {
+     "photo_id": "W8Sz4uktWNI",
+     "url": "https://images.unsplash.com/photo-1549361686-a4b394bf1b57",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 5,
+     "caption": "bokeh lights photography"
+    },
+    {
+     "photo_id": "YicdGUlR8kY",
+     "url": "https://images.unsplash.com/photo-1573155140635-3b198ccd96e1",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 5,
+     "caption": "long-exposure photography of red flame"
+    },
+    {
+     "photo_id": "4gjN6dZn_LI",
+     "url": "https://images.unsplash.com/photo-1581127372434-b074c9f9a4b7",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 6,
+     "caption": "time lapse photography of cars on road during night time"
+    },
+    {
+     "photo_id": "WybQqpmFo7A",
+     "url": "https://images.unsplash.com/photo-1544036775-d184ef591a8e",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 6,
+     "caption": "white and orange plastic toy"
+    },
+    {
+     "photo_id": "keCfMz_BPiY",
+     "url": "https://images.unsplash.com/photo-1547822017-1a6462cea024",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 6,
+     "caption": "long exposure photography of white building"
+    },
+    {
+     "photo_id": "2LG10PhcU44",
+     "url": "https://images.unsplash.com/photo-1557149537-b14d32340398",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 7,
+     "caption": "long exposure photography of brown sand"
+    },
+    {
+     "photo_id": "ebtE5zDS0Ps",
+     "url": "https://images.unsplash.com/photo-1501743406040-f848fb1d6c97",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 8,
+     "caption": "long exposure photo of milky way"
+    },
+    {
+     "photo_id": "1kENJA0o9o0",
+     "url": "https://images.unsplash.com/photo-1574011435834-e5393d4f2d1e",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 9,
+     "caption": "long-exposure photography of star formation"
+    },
+    {
+     "photo_id": "sbZU1j31ggE",
+     "url": "https://images.unsplash.com/photo-1548667512-1300dc2b94bc",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 9,
+     "caption": "curvy road in middle of snow covered mountain"
+    },
+    {
+     "photo_id": "Vbbz9pZmn5o",
+     "url": "https://images.unsplash.com/photo-1543361431-5ab4878e4b26",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 10,
+     "caption": "white Samsung Galaxy Note 3"
+    },
+    {
+     "photo_id": "YJCRjsg1LQw",
+     "url": "https://images.unsplash.com/photo-1552450970-88b9d409fe18",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 10,
+     "caption": "blue and green light artwork"
+    },
+    {
+     "photo_id": "_YTj2yKHyrE",
+     "url": "https://images.unsplash.com/photo-1435224618504-eae823f04f20",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 11,
+     "caption": "person performing fire dancing"
+    },
+    {
+     "photo_id": "hgK2atekdhY",
+     "url": "https://images.unsplash.com/photo-1565765479123-e1a284cb72cf",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 11,
+     "caption": "long-exposure photography body of water"
+    },
+    {
+     "photo_id": "ExM4EPGT_s4",
+     "url": "https://images.unsplash.com/photo-1629108064371-be722adcf71f",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 12,
+     "caption": "time lapse photography of road during night time"
+    },
+    {
+     "photo_id": "U3co5BmlyWE",
+     "url": "https://images.unsplash.com/photo-1506602060040-29387abc54c3",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 12,
+     "caption": "long exposure photography of body of water"
+    }
+   ]
+  },
+  "j3": {
+   "query": "golden hour backlit silhouette",
+   "bucket": "jargon",
+   "candidates": [
+    {
+     "photo_id": "Ti8NogDRMBs",
+     "url": "https://images.unsplash.com/photo-1554427498-94e9837bab25",
+     "arms": [
+      "clip",
+      "bm25"
+     ],
+     "best_rank": 3,
+     "caption": "silhouette of mountain during golden hour"
+    },
+    {
+     "photo_id": "OmfMncXSshw",
+     "url": "https://images.unsplash.com/photo-1563166044-661667b14c33",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 1,
+     "caption": "a shadow of a person's hand on a wall"
+    },
+    {
+     "photo_id": "b-8CyzvGWM4",
+     "url": "https://images.unsplash.com/photo-1447301034957-48240910db11",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 1,
+     "caption": "mountain silhouette silhouette during golden hour"
+    },
+    {
+     "photo_id": "gVU53-ppFMc",
+     "url": "https://images.unsplash.com/photo-1514686435060-fca6efae9594",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 1,
+     "caption": "silhouette of deer during golden hour"
+    },
+    {
+     "photo_id": "i-vgADdh6E4",
+     "url": "https://images.unsplash.com/photo-1470122619772-bf3359cc11e9",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 1,
+     "caption": "silhouette photo of plant"
+    },
+    {
+     "photo_id": "5RY9GtjPXZM",
+     "url": "https://images.unsplash.com/photo-1542806109-e88b46573e79",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 2,
+     "caption": "silhouette of moose near trees"
+    },
+    {
+     "photo_id": "QvmGKgYGHT0",
+     "url": "https://images.unsplash.com/photo-1589439200770-d7614e575538",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 2,
+     "caption": "silhouette of person standing on rock formation during sunset"
+    },
+    {
+     "photo_id": "TG89PYqV4_o",
+     "url": "https://images.unsplash.com/photo-1533199500413-a8aa2bde43c6",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 2,
+     "caption": "trees silhouette during golden hour"
+    },
+    {
+     "photo_id": "e6mgkYUrwaE",
+     "url": "https://images.unsplash.com/photo-1576211220496-a9defb2e7468",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 2,
+     "caption": "silhouette of leaves"
+    },
+    {
+     "photo_id": "CORe99AuCIc",
+     "url": "https://images.unsplash.com/photo-1585396405027-9ac9e836e216",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 3,
+     "caption": "silhouette of mountain during sunset"
+    },
+    {
+     "photo_id": "NwH8vv448IY",
+     "url": "https://images.unsplash.com/photo-1502486017142-d1d4bcaf85ee",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 3,
+     "caption": "still water"
+    },
+    {
+     "photo_id": "gtp_e6B5ZtM",
+     "url": "https://images.unsplash.com/photo-1531770905334-3776f5b54831",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 3,
+     "caption": "silhouette photo of female"
+    },
+    {
+     "photo_id": "4EDoa-XQavg",
+     "url": "https://images.unsplash.com/photo-1440744147460-3236ece72dcb",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 4,
+     "caption": "silhouette of island during golden hour"
+    },
+    {
+     "photo_id": "77AW8rM9KGg",
+     "url": "https://images.unsplash.com/photo-1570997491915-47ade51fed9f",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 4,
+     "caption": "silhouette of person holding dun"
+    },
+    {
+     "photo_id": "oPubZ53L5OE",
+     "url": "https://images.unsplash.com/photo-1553429526-f61fb26671ac",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 4,
+     "caption": "silhouette of transmission tower over the trees"
+    },
+    {
+     "photo_id": "pkeEVKXssug",
+     "url": "https://images.unsplash.com/photo-1576621155894-7a022a344b23",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 4,
+     "caption": "silhouette of mountains"
+    },
+    {
+     "photo_id": "4JNVKCuPikc",
+     "url": "https://images.unsplash.com/photo-1504270159110-876cfaca9ece",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 5,
+     "caption": "silhouette of bird"
+    },
+    {
+     "photo_id": "5NyN-wyH3qE",
+     "url": "https://images.unsplash.com/photo-1564584171331-c92bbc51d37a",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 5,
+     "caption": "pine trees during sunrise"
+    },
+    {
+     "photo_id": "5ckOdg-HQ0A",
+     "url": "https://images.unsplash.com/photo-1567601959922-0dab9726707e",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 5,
+     "caption": "silhouette of tree during golden hour"
+    },
+    {
+     "photo_id": "pZ8qegUxTwI",
+     "url": "https://images.unsplash.com/photo-1546716522-f07eaab4c2c6",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 5,
+     "caption": "woman wearing jacket and cowboy hat while facing the trees during sunset"
+    },
+    {
+     "photo_id": "LTCVqZfvSZE",
+     "url": "https://images.unsplash.com/photo-1439700265536-12ae3f1df68d",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 6,
+     "caption": "silhouette of mountain at golden hour"
+    },
+    {
+     "photo_id": "he_GLVSR4sU",
+     "url": "https://images.unsplash.com/photo-1557363763-828f93b4108d",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 6,
+     "caption": "silhouette of hugging man and woman"
+    },
+    {
+     "photo_id": "r2IKVRskVsI",
+     "url": "https://images.unsplash.com/photo-1581016523223-552e890ab855",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 6,
+     "caption": "silhouette of man standing under white sky during daytime"
+    },
+    {
+     "photo_id": "tB4-ftQ4zyI",
+     "url": "https://images.unsplash.com/photo-1436076838903-fd4dd41d99c4",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 6,
+     "caption": "person's hand holding round silver analog watch with black leather strap"
+    },
+    {
+     "photo_id": "6cZZN5io02o",
+     "url": "https://images.unsplash.com/photo-1591937654513-dafcca62082b",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 7,
+     "caption": "silhouette of trees and mountains during daytime"
+    },
+    {
+     "photo_id": "kNYhzQ4yXW0",
+     "url": "https://images.unsplash.com/photo-1544896990-333044d0114c",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 7,
+     "caption": "silhouette of mountain during golden hour"
+    },
+    {
+     "photo_id": "YPA2Jg3lLKM",
+     "url": "https://images.unsplash.com/photo-1559626568-890aff71834d",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 8,
+     "caption": "man and woman kissing during golden hour"
+    },
+    {
+     "photo_id": "iFl4y04pK78",
+     "url": "https://images.unsplash.com/photo-1551230284-1df61355e19e",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 8,
+     "caption": "silhouette of mountain during golden hour"
+    },
+    {
+     "photo_id": "n7ovRFBtOtI",
+     "url": "https://images.unsplash.com/photo-1568842651880-4fca9e5139ee",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 9,
+     "caption": "silhouette of grass during golden hour"
+    },
+    {
+     "photo_id": "oQGzIvv1vE0",
+     "url": "https://images.unsplash.com/photo-1541757089-bc55ff4d0fec",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 10,
+     "caption": "silhouette of woman standing at sunset"
+    },
+    {
+     "photo_id": "vV-GtPHCgb8",
+     "url": "https://images.unsplash.com/photo-1575588352280-e41a3f06369c",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 10,
+     "caption": "silhouette of building at golden hour"
+    },
+    {
+     "photo_id": "TwdXGGFj9Kc",
+     "url": "https://images.unsplash.com/photo-1424735881677-788d6b2f3eb0",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 11,
+     "caption": "silhouette of man and woman near trees"
+    },
+    {
+     "photo_id": "wNKGgnlzxAw",
+     "url": "https://images.unsplash.com/photo-1553117595-47f8eda3177d",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 11,
+     "caption": "silhouette of mountains during golden hour"
+    },
+    {
+     "photo_id": "DwUDNpfFqUQ",
+     "url": "https://images.unsplash.com/photo-1569223572170-ef61ebf7db52",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 12,
+     "caption": "silhouette of island during golden hour"
+    },
+    {
+     "photo_id": "ljcMuR7lDoU",
+     "url": "https://images.unsplash.com/photo-1569930649684-5bd7532bb8a6",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 12,
+     "caption": "black bird close-up photography"
+    }
+   ]
+  },
+  "j4": {
+   "query": "high-contrast black and white street photography",
+   "bucket": "jargon",
+   "candidates": [
+    {
+     "photo_id": "ECfXzVx-E5c",
+     "url": "https://images.unsplash.com/photo-1562120394-6ead16824ed4",
+     "arms": [
+      "clip",
+      "clip_rephrase1",
+      "clip_rephrase2"
+     ],
+     "best_rank": 4,
+     "caption": "a black and white photo of a door at night"
+    },
+    {
+     "photo_id": "Gzm1yUip9Yw",
+     "url": "https://images.unsplash.com/photo-1550398771-bfdc2135cac7",
+     "arms": [
+      "clip",
+      "clip_rephrase1"
+     ],
+     "best_rank": 1,
+     "caption": "grayscale photo of two person sitting near fence"
+    },
+    {
+     "photo_id": "LpvrYs8m1Dc",
+     "url": "https://images.unsplash.com/photo-1585455499888-445b2360d8b0",
+     "arms": [
+      "clip",
+      "clip_rephrase1"
+     ],
+     "best_rank": 2,
+     "caption": "grayscale photo of city buildings"
+    },
+    {
+     "photo_id": "JBO8vdcy4Mo",
+     "url": "https://images.unsplash.com/photo-1465417001205-3e465bfad702",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 1,
+     "caption": "grayscale photography of building under cloudy sky"
+    },
+    {
+     "photo_id": "ae3CP4sZLV8",
+     "url": "https://images.unsplash.com/photo-1552545094-4328a537ced1",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 1,
+     "caption": "a black and white photo of a street light"
+    },
+    {
+     "photo_id": "RIrYF6_HwOY",
+     "url": "https://images.unsplash.com/photo-1549075288-a51a01a0b100",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 2,
+     "caption": "high-rise building greyscale photography"
+    },
+    {
+     "photo_id": "UMftJn4b9yM",
+     "url": "https://images.unsplash.com/photo-1490331331212-f7d35817aa7e",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 2,
+     "caption": "silhouette of a person walking on gray concrete floor"
+    },
+    {
+     "photo_id": "aolmXcUxr7Y",
+     "url": "https://images.unsplash.com/photo-1475724017904-b712052c192a",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 2,
+     "caption": "brown butterfly on orange petaled flower"
+    },
+    {
+     "photo_id": "5yOefHJEaGw",
+     "url": "https://images.unsplash.com/photo-1423853978401-35df4077ff7d",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 3,
+     "caption": "grayscale photo of people walking on street"
+    },
+    {
+     "photo_id": "DMnHQUitTQU",
+     "url": "https://images.unsplash.com/photo-1570283485750-edbcd989f0c9",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 3,
+     "caption": "space needle building"
+    },
+    {
+     "photo_id": "Wv_GN3Vtrrk",
+     "url": "https://images.unsplash.com/photo-1504889100631-d557a48f0d30",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 3,
+     "caption": "high-angle photography of high-rise building and concrete road"
+    },
+    {
+     "photo_id": "bT8AbTBh2Eo",
+     "url": "https://images.unsplash.com/photo-1563970382012-f52e94ec24da",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 3,
+     "caption": "gray Volkswagen Beetle on road"
+    },
+    {
+     "photo_id": "BgAoqqc229M",
+     "url": "https://images.unsplash.com/photo-1553677484-cec6da1dc15e",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 4,
+     "caption": "wood logs on wall"
+    },
+    {
+     "photo_id": "p0Yupww_SNM",
+     "url": "https://images.unsplash.com/photo-1501619757722-90657a99803b",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 4,
+     "caption": "black high trees under white and black sky at golden hour"
+    },
+    {
+     "photo_id": "pahwqq2sFU0",
+     "url": "https://images.unsplash.com/photo-1566205190430-536f5c93d8ca",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 4,
+     "caption": "upside down umbrella on road during rain"
+    },
+    {
+     "photo_id": "1mvRowZSXIk",
+     "url": "https://images.unsplash.com/photo-1559782034-5fd0ada5f81b",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 5,
+     "caption": "unknown persons walking outdoors"
+    },
+    {
+     "photo_id": "QKjNKupZj14",
+     "url": "https://images.unsplash.com/photo-1496033388009-263252c537a6",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 5,
+     "caption": "photography of white blossoms"
+    },
+    {
+     "photo_id": "xZX3pXjQQSw",
+     "url": "https://images.unsplash.com/photo-1580405977135-e598295fb06b",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 5,
+     "caption": "grayscale photo of stop sign"
+    },
+    {
+     "photo_id": "FJq0dUHJmz4",
+     "url": "https://images.unsplash.com/photo-1553762816-cca998bbed7d",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 6,
+     "caption": "man with cane walking alone near pathway beside white building during daytime"
+    },
+    {
+     "photo_id": "uosfneTS2eQ",
+     "url": "https://images.unsplash.com/photo-1587203925441-e01e394ca459",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 6,
+     "caption": "black and white short coated small dog"
+    },
+    {
+     "photo_id": "xNZHQn6lyLk",
+     "url": "https://images.unsplash.com/photo-1429043794791-eb8f26f44081",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 7,
+     "caption": "high angel photography of high-rise buildings"
+    },
+    {
+     "photo_id": "y9DcT_iMkI0",
+     "url": "https://images.unsplash.com/photo-1542290425-b5d02738ef3a",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 7,
+     "caption": "man taking photo of flying birds"
+    },
+    {
+     "photo_id": "DICEPtYOr1M",
+     "url": "https://images.unsplash.com/photo-1485102068545-7286b0d199d8",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 8,
+     "caption": "grayscale photography of person wearing hoodie"
+    },
+    {
+     "photo_id": "Fyxq6Paxskw",
+     "url": "https://images.unsplash.com/photo-1588956950580-1527cadda935",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 8,
+     "caption": "red and white flowers on street during daytime"
+    },
+    {
+     "photo_id": "hxb2Xdr3Uhw",
+     "url": "https://images.unsplash.com/photo-1563963274162-7a11d198dc98",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 9,
+     "caption": "grayscale photography of buildings"
+    },
+    {
+     "photo_id": "qeBSukQRyQU",
+     "url": "https://images.unsplash.com/photo-1591856615551-53754fe0ec35",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 9,
+     "caption": "black pug with white and black striped shirt and white pants"
+    },
+    {
+     "photo_id": "egZF6S_3kc4",
+     "url": "https://images.unsplash.com/photo-1583784932052-e2e31867d9ce",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 10,
+     "caption": "grayscale photo of street light"
+    },
+    {
+     "photo_id": "n2UrEEa4yA8",
+     "url": "https://images.unsplash.com/photo-1483329794101-da9f38b4b204",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 10,
+     "caption": "high angle photography of sa and trees"
+    },
+    {
+     "photo_id": "WKW0vmhWKYg",
+     "url": "https://images.unsplash.com/photo-1556627543-75f0d88b0272",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 11,
+     "caption": "building under black cloud"
+    },
+    {
+     "photo_id": "aVQF_pt8zqQ",
+     "url": "https://images.unsplash.com/photo-1432855737999-b561d599dfda",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 11,
+     "caption": "high angle photography brown and green island"
+    },
+    {
+     "photo_id": "o0SJlx_Y1mY",
+     "url": "https://images.unsplash.com/photo-1591729259517-e2d0553fd4ec",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 12,
+     "caption": "person in black leather boots standing on brown and black concrete floor"
+    },
+    {
+     "photo_id": "wni1hBukmzQ",
+     "url": "https://images.unsplash.com/photo-1542931659-bdab572c74d5",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 12,
+     "caption": "high-angle photography of clouds and mountain"
+    }
+   ]
+  },
+  "j5": {
+   "query": "macro shot of water droplets",
+   "bucket": "jargon",
+   "candidates": [
+    {
+     "photo_id": "FahgY_bIPXg",
+     "url": "https://images.unsplash.com/photo-1547593415-3f5465fb2346",
+     "arms": [
+      "clip",
+      "clip_rephrase1",
+      "clip_rephrase2"
+     ],
+     "best_rank": 3,
+     "caption": "black and yellow floral textile"
+    },
+    {
+     "photo_id": "6zKEK46iVIc",
+     "url": "https://images.unsplash.com/photo-1550862595-770d2074546f",
+     "arms": [
+      "clip",
+      "clip_rephrase1"
+     ],
+     "best_rank": 1,
+     "caption": "selective focus photo of water droplet"
+    },
+    {
+     "photo_id": "8v6QE7KSRkU",
+     "url": "https://images.unsplash.com/photo-1583186945822-c6f9a92ebc62",
+     "arms": [
+      "clip",
+      "clip_rephrase2"
+     ],
+     "best_rank": 1,
+     "caption": "blue green and yellow bubbles"
+    },
+    {
+     "photo_id": "OX4iI1cHoJ0",
+     "url": "https://images.unsplash.com/photo-1590715517398-405fe66753e2",
+     "arms": [
+      "clip_rephrase1",
+      "clip_rephrase2"
+     ],
+     "best_rank": 1,
+     "caption": "water droplets on glass window"
+    },
+    {
+     "photo_id": "kA-tdqRoxQI",
+     "url": "https://images.unsplash.com/photo-1590715517368-1c96a671001a",
+     "arms": [
+      "clip",
+      "clip_rephrase1"
+     ],
+     "best_rank": 5,
+     "caption": "water droplets on glass panel"
+    },
+    {
+     "photo_id": "ZtEB4cwsOA4",
+     "url": "https://images.unsplash.com/photo-1463136066180-eb64b37d54ff",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 1,
+     "caption": "macro shot photo of body of water"
+    },
+    {
+     "photo_id": "6o_eitnR-3o",
+     "url": "https://images.unsplash.com/photo-1529521251356-ca145f9cd4d0",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 2,
+     "caption": "macro shot of red flowers"
+    },
+    {
+     "photo_id": "9XBxrbq0nyA",
+     "url": "https://images.unsplash.com/photo-1549310532-19c62a6c3c53",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 2,
+     "caption": "a close up of water droplets on a window"
+    },
+    {
+     "photo_id": "KSHR85btyr4",
+     "url": "https://images.unsplash.com/photo-1571119945254-debb5e49ce21",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 2,
+     "caption": "close-up photography of water dews on leaf"
+    },
+    {
+     "photo_id": "TK1z7nRT6aE",
+     "url": "https://images.unsplash.com/photo-1591610217257-b3e8b1e99f98",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 2,
+     "caption": "blue red and yellow light"
+    },
+    {
+     "photo_id": "9mz2XG6stQg",
+     "url": "https://images.unsplash.com/photo-1507895253950-96a84b54bbc4",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 3,
+     "caption": "macro shot of jelly fish"
+    },
+    {
+     "photo_id": "p7XocVlPUyg",
+     "url": "https://images.unsplash.com/photo-1582136621332-8de1de1bcc5b",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 3,
+     "caption": "water droplets on green surface"
+    },
+    {
+     "photo_id": "5SH4PHlGH_I",
+     "url": "https://images.unsplash.com/photo-1433067886996-c7245dc04a06",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 4,
+     "caption": "water droplet on green leaf"
+    },
+    {
+     "photo_id": "7uAvobwESDU",
+     "url": "https://images.unsplash.com/photo-1588582453314-30e6b5f65629",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 4,
+     "caption": "pink flower in macro photography"
+    },
+    {
+     "photo_id": "YuicvRyGweo",
+     "url": "https://images.unsplash.com/photo-1590715517421-698a60fba93b",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 4,
+     "caption": "water droplets on glass panel"
+    },
+    {
+     "photo_id": "v9MpHbQimqY",
+     "url": "https://images.unsplash.com/photo-1583748531761-3fc26a1e77d7",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 4,
+     "caption": "water droplets on glass panel"
+    },
+    {
+     "photo_id": "PcKm231bGvo",
+     "url": "https://images.unsplash.com/photo-1543309392-d5a4cd761da6",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 5,
+     "caption": "white and black ceramic plate"
+    },
+    {
+     "photo_id": "e7-35H0fB70",
+     "url": "https://images.unsplash.com/photo-1557429742-5a8fec3aba35",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 5,
+     "caption": "grayscale photo of water dews on elaf"
+    },
+    {
+     "photo_id": "esax_xh52zg",
+     "url": "https://images.unsplash.com/photo-1431095384967-d4e60354512d",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 5,
+     "caption": "shallow photography of water drops"
+    },
+    {
+     "photo_id": "a-_VxSSCJw8",
+     "url": "https://images.unsplash.com/photo-1512227377840-c5e988e9e733",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 6,
+     "caption": "macro shot photography of gray soil"
+    },
+    {
+     "photo_id": "6clmbgF1EVs",
+     "url": "https://images.unsplash.com/uploads/141122515468214308073/30ddbd81",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 7,
+     "caption": "selective focus photo of water drew on wire"
+    },
+    {
+     "photo_id": "kvRzI3rR5Gk",
+     "url": "https://images.unsplash.com/photo-1514679444238-3afc671a0a41",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 7,
+     "caption": "macro shot of bird"
+    },
+    {
+     "photo_id": "Eb0x2kbj5eA",
+     "url": "https://images.unsplash.com/photo-1591085883549-6a2d75a19c68",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 8,
+     "caption": "water droplets on glass panel"
+    },
+    {
+     "photo_id": "Zi7hgVlMnqQ",
+     "url": "https://images.unsplash.com/photo-1455491184361-11ae26028976",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 8,
+     "caption": "macro shot of white speedboat frame"
+    },
+    {
+     "photo_id": "YdeNI9QXCoc",
+     "url": "https://images.unsplash.com/photo-1471602671180-19fb2b491359",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 9,
+     "caption": "flamingo in macro shot photography"
+    },
+    {
+     "photo_id": "LPeHNk-pJao",
+     "url": "https://images.unsplash.com/photo-1589396841748-a29538869e7b",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 10,
+     "caption": "pink flower in macro shot"
+    },
+    {
+     "photo_id": "RhJrLG3qqEo",
+     "url": "https://images.unsplash.com/photo-1578165364573-615234564ac7",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 10,
+     "caption": "macro photography of green bubbles"
+    },
+    {
+     "photo_id": "om4O_x_qWD8",
+     "url": "https://images.unsplash.com/photo-1516491575772-bab9f75948c0",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 11,
+     "caption": "purple bubbles on liquid"
+    },
+    {
+     "photo_id": "pg5CVv0FEBU",
+     "url": "https://images.unsplash.com/photo-1588535838557-ba5c5db5dfa1",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 11,
+     "caption": "purple flowers in macro shot"
+    },
+    {
+     "photo_id": "lir0ZA4HqdQ",
+     "url": "https://images.unsplash.com/photo-1591767134753-0d1dffd53d6d",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 12,
+     "caption": "pink flower in macro shot"
+    }
+   ]
+  },
+  "j6": {
+   "query": "wide-angle interior with leading lines",
+   "bucket": "jargon",
+   "candidates": [
+    {
+     "photo_id": "awduhq_uyAQ",
+     "url": "https://images.unsplash.com/photo-1543060534-b26449de61a8",
+     "arms": [
+      "clip",
+      "clip_rephrase2"
+     ],
+     "best_rank": 1,
+     "caption": "low angle photography of building structure"
+    },
+    {
+     "photo_id": "1Vb2b02D1UE",
+     "url": "https://images.unsplash.com/photo-1572451594757-52a9c5e6ffcd",
+     "arms": [
+      "clip",
+      "clip_rephrase1"
+     ],
+     "best_rank": 2,
+     "caption": "white concrete building"
+    },
+    {
+     "photo_id": "jcm-YETcAxI",
+     "url": "https://images.unsplash.com/photo-1588588080392-1aaf4434c7ef",
+     "arms": [
+      "clip",
+      "clip_rephrase2"
+     ],
+     "best_rank": 2,
+     "caption": "blue and white hallway with blue lights"
+    },
+    {
+     "photo_id": "nWkMhTo8Wa4",
+     "url": "https://images.unsplash.com/photo-1517907217138-7283e6cec95a",
+     "arms": [
+      "clip",
+      "clip_rephrase2"
+     ],
+     "best_rank": 2,
+     "caption": "orange wall paint interior"
+    },
+    {
+     "photo_id": "1tq5ryTMT3Y",
+     "url": "https://images.unsplash.com/photo-1556256224-4f41505ec710",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 1,
+     "caption": "white painted wall"
+    },
+    {
+     "photo_id": "eLg61SidxVw",
+     "url": "https://images.unsplash.com/photo-1574695852442-b0a3aa539643",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 1,
+     "caption": "white concrete building"
+    },
+    {
+     "photo_id": "vGhpfizChpY",
+     "url": "https://images.unsplash.com/photo-1576700026126-49340a52c54c",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 1,
+     "caption": "lighted rose shape building"
+    },
+    {
+     "photo_id": "CojYYoyTTjM",
+     "url": "https://images.unsplash.com/photo-1579258258557-3329b7bdcb44",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 2,
+     "caption": "green leafed tree"
+    },
+    {
+     "photo_id": "5wO3ukypCsY",
+     "url": "https://images.unsplash.com/photo-1572708890644-b81bf13e3fb6",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 3,
+     "caption": "empty church building"
+    },
+    {
+     "photo_id": "ACt8ycSzpdE",
+     "url": "https://images.unsplash.com/photo-1518005020951-eccb494ad742",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 3,
+     "caption": "white concrete building during daytime"
+    },
+    {
+     "photo_id": "Mru8WGtMG6c",
+     "url": "https://images.unsplash.com/photo-1575654001033-8befce082f06",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 3,
+     "caption": "wide-angle photography of desert during daytime"
+    },
+    {
+     "photo_id": "hxb2Xdr3Uhw",
+     "url": "https://images.unsplash.com/photo-1563963274162-7a11d198dc98",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 3,
+     "caption": "grayscale photography of buildings"
+    },
+    {
+     "photo_id": "AygJgCM_vto",
+     "url": "https://images.unsplash.com/photo-1485433592409-9018e83a1f0d",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 4,
+     "caption": "wide angle photo of pine trees"
+    },
+    {
+     "photo_id": "TCfCXuhgG4c",
+     "url": "https://images.unsplash.com/photo-1549301610-d34372d745a7",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 4,
+     "caption": "black excalator"
+    },
+    {
+     "photo_id": "pgu1Lju4zqc",
+     "url": "https://images.unsplash.com/photo-1583313202564-c2acde9609e8",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 4,
+     "caption": "white and black concrete building"
+    },
+    {
+     "photo_id": "tmlI2pZAWIA",
+     "url": "https://images.unsplash.com/photo-1555953816-75198f8f71ab",
+     "arms": [
+      "clip_rephrase2"
+     ],
+     "best_rank": 4,
+     "caption": "white lights illustration"
+    },
+    {
+     "photo_id": "0cgCyrCZXH0",
+     "url": "https://images.unsplash.com/photo-1660494510476-a8e549decdd8",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 5,
+     "caption": "a blue background with white lines"
+    },
+    {
+     "photo_id": "SVXht2_xfJw",
+     "url": "https://images.unsplash.com/photo-1575204015190-28962b6919bf",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 5,
+     "caption": "swimming pool"
+    },
+    {
+     "photo_id": "r-PmMq3jlgM",
+     "url": "https://images.unsplash.com/photo-1574706461301-7ab0455f4bf2",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 5,
+     "caption": "green and gray room interior"
+    },
+    {
+     "photo_id": "C_qwHIx6uBw",
+     "url": "https://images.unsplash.com/photo-1572391015781-f29d249b6658",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 6,
+     "caption": "woman sitting on escalator"
+    },
+    {
+     "photo_id": "OPSus5S_6rc",
+     "url": "https://images.unsplash.com/photo-1579729163831-f94a2bc8dccf",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 6,
+     "caption": "low angle photography of trees during daytime"
+    },
+    {
+     "photo_id": "Q3d66UBq6lc",
+     "url": "https://images.unsplash.com/photo-1549485758-9cfdfed76ad3",
+     "arms": [
+      "clip_rephrase1"
+     ],
+     "best_rank": 6,
+     "caption": "a room with a window and a curtain"
+    },
+    {
+     "photo_id": "7BRMAIPDjOQ",
+     "url": "https://images.unsplash.com/photo-1564586213237-6c030abb0f5f",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 7,
+     "caption": "empty gray and black escalator"
+    },
+    {
+     "photo_id": "WZac0ub3c80",
+     "url": "https://images.unsplash.com/photo-1577950536258-9291afceb5f6",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 7,
+     "caption": "wide-angle photography of mountain beside seashore during daytime"
+    },
+    {
+     "photo_id": "GUXk_m0m6hc",
+     "url": "https://images.unsplash.com/photo-1744360820043-59b729149f7d",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 8,
+     "caption": "A car approaches through a wooden structure."
+    },
+    {
+     "photo_id": "JRsZWmRd_Ws",
+     "url": "https://images.unsplash.com/photo-1438032005730-c779502df39b",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 8,
+     "caption": "church interior"
+    },
+    {
+     "photo_id": "3a2A6SkuN8g",
+     "url": "https://images.unsplash.com/photo-1579728887884-2bfaa1ef6f9c",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 9,
+     "caption": "brown trees in forest during daytime"
+    },
+    {
+     "photo_id": "Uh4ylA6VWYQ",
+     "url": "https://images.unsplash.com/photo-1581333293462-ee963adf0786",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 9,
+     "caption": "brown and white cathedral interior"
+    },
+    {
+     "photo_id": "DndBf3D8NKs",
+     "url": "https://images.unsplash.com/photo-1744472920649-e8709305723f",
+     "arms": [
+      "clip"
+     ],
+     "best_rank": 10,
+     "caption": "Looking up through a beautiful, ornate building's ceiling."
+    },
+    {
+     "photo_id": "YOsC9qa303U",
+     "url": "https://images.unsplash.com/photo-1442612580241-96ca4995a8ae",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 10,
+     "caption": "wide angle photo of body of water under cloudy sky"
+    },
+    {
+     "photo_id": "5bxUAt9hP8I",
+     "url": "https://images.unsplash.com/photo-1577950535486-43152c1afdfb",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 11,
+     "caption": "wide-angle photography of mountain cliff beside seashore during daytime"
+    },
+    {
+     "photo_id": "1HW6B-huMc8",
+     "url": "https://images.unsplash.com/photo-1577526242945-7461711bec30",
+     "arms": [
+      "bm25"
+     ],
+     "best_rank": 12,
+     "caption": "wide angle photo of trees"
+    }
+   ]
+  }
+ }
+}
