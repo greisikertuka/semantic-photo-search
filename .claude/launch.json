@@ -6,6 +6,19 @@
       "runtimeExecutable": "uv",
       "runtimeArgs": ["run", "fastapi", "dev", "src/photosearch/api.py", "--port", "8000"],
       "port": 8000
+    },
+    {
+      "name": "photosearch-chroma",
+      "runtimeExecutable": "uv",
+      "runtimeArgs": ["run", "fastapi", "dev", "src/photosearch/api.py", "--port", "8011"],
+      "port": 8011,
+      "env": { "PHOTOSEARCH_STORE": "chroma" }
+    },
+    {
+      "name": "photosearch-space",
+      "runtimeExecutable": "uv",
+      "runtimeArgs": ["run", "--group", "space", "python", "space/app.py"],
+      "port": 7860
     }
   ]
 }

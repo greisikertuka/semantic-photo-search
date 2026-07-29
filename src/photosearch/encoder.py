@@ -37,7 +37,22 @@ class Encoder:
 
     def encode_image(self, image: object) -> np.ndarray:
         """Encode one PIL image to a normalized float32 vector — the Session 8 path."""
-        vec = self.model.encode(
-            [image], normalize_embeddings=True, convert_to_numpy=True
-        )[0]
-        return vec.astype(np.float32)
+        return self.encode_images([image])[0]
+
+    def encode_images(self, images: list, batch_size: int = 16) -> np.ndarray:
+        """Encode many PIL images at once — shape ``(n, 512)``, rows in input order.
+
+        Batching is what makes bulk indexing (Session 9) tolerable on a CPU: the
+        per-call overhead is amortized and the matmuls get wide. Order is preserved,
+        which is the alignment invariant every indexing path in this project rests on.
+        """
+        if not images:
+            return np.empty((0, 512), dtype=np.float32)
+        vecs = self.model.encode(
+            images,
+            batch_size=batch_size,
+            normalize_embeddings=True,
+            convert_to_numpy=True,
+            show_progress_bar=False,
+        )
+        return np.asarray(vecs, dtype=np.float32)

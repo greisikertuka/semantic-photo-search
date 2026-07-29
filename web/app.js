@@ -53,6 +53,16 @@ function unsplashLink(url) {
   return url + (url.includes("?") ? "&" : "?") + UTM;
 }
 
+// Unsplash URLs are imgix endpoints that take sizing params; local-library URLs are
+// our own /api/photo/{id}/thumb, already sized at index time. One helper keeps the
+// card renderer from having to know which corpus a result came from.
+const isRemote = (url) => /^https?:/i.test(url || "");
+const gridSrc = (r) => r.photo_image_url + (isRemote(r.photo_image_url) ? IMG_GRID : "");
+// In library mode photo_url is /api/photo/{id}/full — the original off disk, which is
+// exactly what a lightbox wants; for Unsplash we ask the CDN for a 1400px render.
+const fullSrc = (r) =>
+  isRemote(r.photo_image_url) ? r.photo_image_url + IMG_FULL : r.photo_url;
+
 /* --- BlurHash decoder (compact, standard algorithm) ------------------------ */
 const B83 =
   "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz#$%*+,-.:;=?@[]^_{|}~";
@@ -162,8 +172,8 @@ function makeCard(r, index) {
   const img = document.createElement("img");
   img.loading = "lazy";
   img.decoding = "async";
-  img.alt = r.ai_description || r.description || "Unsplash photograph";
-  img.src = r.photo_image_url + IMG_GRID;
+  img.alt = r.ai_description || r.description || "photograph";
+  img.src = gridSrc(r);
   img.addEventListener("load", () => img.classList.add("loaded"));
   img.addEventListener("error", () => {
     // Occasional 404 (photo deleted from Unsplash) — keep the blurhash, mark it.
@@ -182,7 +192,19 @@ function makeCard(r, index) {
   credit.className = "credit";
   credit.innerHTML = `<span class="by">by</span> ${escapeHtml(r.photographer)}`;
 
-  card.append(frame, badge, credit);
+  // "more like this" — nearest neighbours of this photo's own stored embedding
+  const more = document.createElement("button");
+  more.className = "card-more";
+  more.type = "button";
+  more.title = "Find visually similar photos";
+  more.innerHTML =
+    '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></svg>Similar';
+  more.addEventListener("click", (e) => {
+    e.stopPropagation(); // don't open the lightbox
+    runSimilar(r);
+  });
+
+  card.append(frame, badge, more, credit);
   card.addEventListener("click", () => {
     if (!card.dataset.dead) openModal(r);
   });
@@ -204,15 +226,22 @@ function renderResults(data) {
     statusEl.innerHTML = "";
     const empty = document.createElement("div");
     empty.className = "empty";
-    empty.innerHTML = `Nothing came back for <span>“${escapeHtml(data.query)}”</span>. Try a scene or a mood rather than a proper noun.`;
+    empty.innerHTML = data.filtered
+      ? `No frames match those filters. ${data.exif_count.toLocaleString()} of ${data.corpus.toLocaleString()} frames carry EXIF — try loosening a filter.`
+      : `Nothing came back for <span>“${escapeHtml(data.query)}”</span>. Try a scene or a mood rather than a proper noun.`;
     gridEl.appendChild(empty);
     return;
   }
 
   const top = results[0].score;
   const parts = [
-    `<span class="stat"><b>${results.length}</b> frames · best <b>${top.toFixed(3)}</b> · ${data.search_ms.toFixed(1)}ms</span>`,
+    `<span class="stat"><b>${results.length}</b> frames · best <b>${top.toFixed(3)}</b> · ${data.search_ms.toFixed(1)}ms · ${escapeHtml(data.store)}</span>`,
   ];
+  if (data.filtered) {
+    parts.push(
+      `<span class="stat">filtered · searching <b>${data.exif_count.toLocaleString()}</b> of ${data.corpus.toLocaleString()} frames with EXIF</span>`,
+    );
+  }
   if (top < WEAK_TOP) {
     parts.unshift(
       `<span class="warn">⚠ no strong matches — showing the closest frames anyway</span>`,
@@ -250,7 +279,7 @@ function specRow(label, value) {
 }
 
 function openModal(r) {
-  $("#modal-img").src = r.photo_image_url + IMG_FULL;
+  $("#modal-img").src = fullSrc(r);
   $("#modal-img").alt = r.ai_description || r.description || "";
   $("#modal-score").textContent = `${verdict(r.score)} match · cosine ${r.score.toFixed(3)}`;
   $("#modal-desc").textContent = r.ai_description || r.description || "";
@@ -266,8 +295,16 @@ function openModal(r) {
     specRow("Dimensions", r.width && r.height ? `${r.width} × ${r.height}` : null),
   ].join("");
 
-  const link = unsplashLink(r.photo_url);
-  $("#modal-credit").innerHTML = `Photo by <a href="${link}" target="_blank" rel="noopener">${escapeHtml(r.photographer)}</a> on <a href="https://unsplash.com/?${UTM}" target="_blank" rel="noopener">Unsplash</a>`;
+  // Attribution is source-aware: Unsplash photos carry the photographer + UTM credit
+  // the licence expects; your own files just say where on disk they came from.
+  if (isRemote(r.photo_image_url)) {
+    const link = unsplashLink(r.photo_url);
+    $("#modal-credit").innerHTML = `Photo by <a href="${link}" target="_blank" rel="noopener">${escapeHtml(r.photographer)}</a> on <a href="https://unsplash.com/?${UTM}" target="_blank" rel="noopener">Unsplash</a>`;
+  } else {
+    $("#modal-credit").innerHTML = `<span class="local-credit">${escapeHtml(r.photographer)} / ${escapeHtml(r.description || "")}</span> · <a href="${r.photo_url}" target="_blank" rel="noopener">open original</a>`;
+  }
+
+  $("#modal-more").onclick = () => runSimilar(r);
 
   modal.hidden = false;
   document.body.style.overflow = "hidden";
@@ -283,31 +320,89 @@ modal.addEventListener("click", (e) => {
   if (e.target.dataset.close !== undefined) closeModal();
 });
 
-/* --- search wiring --------------------------------------------------------- */
+/* --- filters --------------------------------------------------------------- */
+// One place that reads the FilterSpec params out of the panel. Empty fields are
+// omitted entirely, so an inactive filter never reaches the API.
+const filterInputs = () => Array.from(document.querySelectorAll("[data-filter]"));
+
+function readFilters() {
+  const out = {};
+  for (const el of filterInputs()) {
+    const v = el.value.trim();
+    if (v !== "") out[el.dataset.filter] = v;
+  }
+  return out;
+}
+
+function filterCount() {
+  return Object.keys(readFilters()).length;
+}
+
+function applyFilterParams(params) {
+  for (const [k, v] of Object.entries(readFilters())) params.set(k, v);
+  return params;
+}
+
+function refreshFilterChrome() {
+  const n = filterCount();
+  const countEl = $("#filter-count");
+  countEl.textContent = String(n);
+  countEl.hidden = n === 0;
+  $("#filter-clear").hidden = n === 0;
+  // mark set selects so they read as active
+  for (const el of filterInputs()) {
+    if (el.tagName === "SELECT") el.classList.toggle("set", el.value.trim() !== "");
+  }
+}
+
+function updateExifNote(data) {
+  const el = $("#exif-note");
+  if (!el || !data || data.corpus == null) return;
+  el.innerHTML = `<b>${data.exif_count.toLocaleString()}</b> of ${data.corpus.toLocaleString()} frames carry EXIF — only these can match filters`;
+}
+
+/* --- corpus source: unsplash | library ------------------------------------- */
+// Both corpora are loaded server-side, so switching is just a query param — the
+// same encoder, the same FilterSpec, the same rendering. Nothing below this line
+// knows whether the frames came from a CDN or from a folder on this machine.
+let activeSource = "unsplash";
+
+// Every request carries the active source + the active filters. One place, so no
+// search path can forget either.
+function searchParams(extra = {}) {
+  const params = new URLSearchParams({ k: RESULTS, source: activeSource, ...extra });
+  return applyFilterParams(params);
+}
+
+/* --- search state: text | image | similar ---------------------------------- */
+// The current query, so changing a filter re-runs *whatever* is on screen.
+let activeMode = null;
 let currentReq = 0;
 
-async function runSearch(query) {
-  const q = query.trim();
-  if (!q) {
-    document.body.classList.remove("searched");
-    gridEl.innerHTML = "";
-    statusEl.innerHTML = "";
-    return;
-  }
+function resetToIdle() {
+  activeMode = null;
+  document.body.classList.remove("searched");
+  hideModeBanner();
+  gridEl.innerHTML = "";
+  statusEl.innerHTML = "";
+}
+
+async function execute(fetchFn) {
   document.body.classList.add("searched");
   const reqId = ++currentReq;
   showSkeletons();
   statusEl.innerHTML = `<span class="stat">searching…</span>`;
-
   try {
-    const resp = await fetch(
-      `/api/search?q=${encodeURIComponent(q)}&k=${RESULTS}`,
-    );
-    if (reqId !== currentReq) return; // a newer keystroke superseded this one
-    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+    const resp = await fetchFn();
+    if (reqId !== currentReq) return; // a newer request superseded this one
+    if (!resp.ok) {
+      const msg = resp.status === 404 ? "photo not in the index" : `HTTP ${resp.status}`;
+      throw new Error(msg);
+    }
     const data = await resp.json();
     if (reqId !== currentReq) return;
     renderResults(data);
+    updateExifNote(data);
   } catch (err) {
     if (reqId !== currentReq) return;
     gridEl.innerHTML = "";
@@ -315,23 +410,157 @@ async function runSearch(query) {
   }
 }
 
-const debouncedSearch = debounce(runSearch, 260);
+function runText(query) {
+  const q = query.trim();
+  if (!q) {
+    resetToIdle();
+    return;
+  }
+  activeMode = { kind: "text", text: q };
+  hideModeBanner();
+  execute(() => fetch(`/api/search?${searchParams({ q })}`));
+}
 
-inputEl.addEventListener("input", (e) => debouncedSearch(e.target.value));
+function runSimilar(r) {
+  // r may be a full result (from a card/modal) or a rehydrated {id,label,thumb}
+  const id = r.photo_id ?? r.id;
+  const label = r.photographer ?? r.label ?? "this frame";
+  const thumb = r.photo_image_url ? gridSrc(r) : r.thumb;
+  activeMode = { kind: "similar", id, label, thumb };
+  closeModal();
+  showModeBanner({ thumbUrl: thumb, text: `Frames visually similar to <b>${escapeHtml(label)}</b>` });
+  execute(() => fetch(`/api/similar/${encodeURIComponent(id)}?${searchParams()}`));
+}
+
+function runImage(file) {
+  if (!file || !file.type.startsWith("image/")) return;
+  activeMode = { kind: "image", file, name: file.name };
+  const thumbUrl = URL.createObjectURL(file);
+  showModeBanner({ thumbUrl, text: `Frames like your upload <b>${escapeHtml(file.name)}</b>` });
+  const body = new FormData();
+  body.append("file", file);
+  execute(() => fetch(`/api/search/by-image?${searchParams()}`, { method: "POST", body }));
+}
+
+// re-run the current query with the current filters (used on every filter change)
+function rerunActive() {
+  if (!activeMode) return;
+  if (activeMode.kind === "text") runText(activeMode.text);
+  else if (activeMode.kind === "similar") runSimilar({ id: activeMode.id, label: activeMode.label, thumb: activeMode.thumb });
+  else if (activeMode.kind === "image") runImage(activeMode.file);
+}
+
+/* --- mode banner (image / similar context) --------------------------------- */
+const modeBanner = $("#mode-banner");
+
+function showModeBanner({ thumbUrl, text }) {
+  const thumb = $("#mode-thumb");
+  if (thumbUrl) {
+    thumb.style.backgroundImage = `url("${thumbUrl}")`;
+    thumb.classList.remove("icon");
+    thumb.innerHTML = "";
+  } else {
+    thumb.style.backgroundImage = "";
+    thumb.classList.add("icon");
+    thumb.innerHTML =
+      '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></svg>';
+  }
+  $("#mode-label").innerHTML = text;
+  modeBanner.hidden = false;
+}
+
+function hideModeBanner() {
+  modeBanner.hidden = true;
+}
+
+$("#mode-clear").addEventListener("click", () => {
+  hideModeBanner();
+  const q = inputEl.value.trim();
+  if (q) runText(q);
+  else resetToIdle();
+});
+
+/* --- wiring: text search --------------------------------------------------- */
+const debouncedText = debounce(runText, 260);
+
+inputEl.addEventListener("input", (e) => debouncedText(e.target.value));
 $("#form").addEventListener("submit", (e) => {
   e.preventDefault();
-  runSearch(inputEl.value);
+  runText(inputEl.value);
 });
 
 document.querySelectorAll(".chip").forEach((chip) => {
   chip.addEventListener("click", () => {
     inputEl.value = chip.textContent;
     inputEl.focus();
-    runSearch(chip.textContent);
+    runText(chip.textContent);
   });
 });
 
-// keyboard: "/" focuses search, Esc closes modal / clears
+/* --- wiring: filters panel ------------------------------------------------- */
+$("#filters-toggle").addEventListener("click", () => {
+  const panel = $("#filters");
+  const open = panel.hidden;
+  panel.hidden = !open;
+  $("#filters-toggle").setAttribute("aria-expanded", String(open));
+});
+
+const debouncedRerun = debounce(rerunActive, 320);
+
+filterInputs().forEach((el) => {
+  // "input" fires for <select>, text, and number inputs alike — one handler, debounced
+  el.addEventListener("input", () => {
+    refreshFilterChrome();
+    debouncedRerun();
+  });
+});
+
+$("#filter-clear").addEventListener("click", () => {
+  for (const el of filterInputs()) el.value = "";
+  refreshFilterChrome();
+  rerunActive();
+});
+
+/* --- wiring: search by image (button + drag-and-drop) ---------------------- */
+const imageInput = $("#image-input");
+$("#image-btn").addEventListener("click", () => imageInput.click());
+imageInput.addEventListener("change", (e) => {
+  const file = e.target.files && e.target.files[0];
+  if (file) runImage(file);
+  imageInput.value = ""; // allow re-selecting the same file
+});
+
+const dropzone = $("#dropzone");
+let dragDepth = 0;
+
+function hasFiles(e) {
+  return e.dataTransfer && Array.from(e.dataTransfer.types || []).includes("Files");
+}
+
+window.addEventListener("dragenter", (e) => {
+  if (!hasFiles(e)) return;
+  e.preventDefault();
+  dragDepth++;
+  dropzone.hidden = false;
+});
+window.addEventListener("dragover", (e) => {
+  if (hasFiles(e)) e.preventDefault();
+});
+window.addEventListener("dragleave", (e) => {
+  if (!hasFiles(e)) return;
+  dragDepth = Math.max(0, dragDepth - 1);
+  if (dragDepth === 0) dropzone.hidden = true;
+});
+window.addEventListener("drop", (e) => {
+  if (!hasFiles(e)) return;
+  e.preventDefault();
+  dragDepth = 0;
+  dropzone.hidden = true;
+  const file = e.dataTransfer.files && e.dataTransfer.files[0];
+  if (file) runImage(file);
+});
+
+/* --- keyboard: "/" focuses search, Esc closes modal ------------------------ */
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") {
     if (!modal.hidden) closeModal();
@@ -342,14 +571,45 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
-/* --- corpus stat in the top bar ------------------------------------------- */
-fetch("/api/health")
-  .then((r) => (r.ok ? r.json() : null))
-  .then((h) => {
-    if (h && h.indexed) {
-      $("#corpus").textContent = `${h.indexed.toLocaleString()} frames indexed`;
-    }
-  })
-  .catch(() => {});
+/* --- wiring: corpus source toggle ------------------------------------------ */
+// The toggle only appears if the server reports more than one source, so a clone of
+// this repo with no local library never shows a button that would 404.
+const sourceToggle = $("#source-toggle");
 
+function selectSource(source) {
+  if (source === activeSource) return;
+  activeSource = source;
+  sourceToggle.querySelectorAll(".source-btn").forEach((b) => {
+    b.classList.toggle("is-active", b.dataset.source === source);
+  });
+  loadHealth();
+  // "similar" is keyed to a photo id that only exists in one corpus — drop back to
+  // the text query rather than firing a request we know would 404.
+  if (activeMode && activeMode.kind === "similar") {
+    hideModeBanner();
+    activeMode = inputEl.value.trim() ? { kind: "text", text: inputEl.value.trim() } : null;
+  }
+  rerunActive();
+}
+
+sourceToggle.querySelectorAll(".source-btn").forEach((btn) => {
+  btn.addEventListener("click", () => selectSource(btn.dataset.source));
+});
+
+/* --- corpus stat in the top bar + EXIF note -------------------------------- */
+function loadHealth() {
+  return fetch(`/api/health?source=${encodeURIComponent(activeSource)}`)
+    .then((r) => (r.ok ? r.json() : null))
+    .then((h) => {
+      if (!h || !h.indexed) return;
+      const label = h.source === "library" ? "my library" : h.store;
+      $("#corpus").textContent = `${h.indexed.toLocaleString()} frames · ${label}`;
+      updateExifNote({ corpus: h.indexed, exif_count: h.exif_count });
+      if (h.sources && h.sources.length > 1) sourceToggle.hidden = false;
+    })
+    .catch(() => {});
+}
+
+loadHealth();
+refreshFilterChrome();
 inputEl.focus();
