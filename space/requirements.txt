@@ -17,6 +17,11 @@
 gradio==6.20.0
 torch==2.13.0
 sentence-transformers==5.6.1
+# transformers holds the actual CLIP model code and is only a *transitive* dep of
+# sentence-transformers, so leaving it unpinned let the Space build on 5.16.1 while
+# the laptop ran 5.14.1 — which made the comment above ('versions mirror uv.lock')
+# false for the one package most able to change what a forward pass returns.
+transformers==5.14.1
 numpy==2.5.1
 pandas==3.0.5
 pyarrow==25.0.0

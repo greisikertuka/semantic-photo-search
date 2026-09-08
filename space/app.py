@@ -126,9 +126,28 @@ print("[space] loading CLIP text encoder...")
 # fail in seconds, not after a 600 MB model download.
 from photosearch.encoder import Encoder
 
-ENCODER = Encoder()
-ENCODER.encode_text("warmup")  # visitor #1 should not pay for the first-call setup
-print("[space] ready")
+# device="cpu" is mandatory here, not a preference. ZeroGPU advertises CUDA as
+# available so that libraries set themselves up for a GPU, but the slice only exists
+# inside a @spaces.GPU call — and this app deliberately never makes one. Left to
+# auto-detect, sentence-transformers picks CUDA and every encode returns a zero
+# vector, which is how the first deploy of this Space served 30 results with 0.000
+# scores for every query.
+ENCODER = Encoder(device="cpu")
+
+# Warm the model so visitor #1 does not pay for first-call setup — and, more
+# importantly, assert the warmup actually encoded something. A zero vector makes
+# `embeddings @ query_vec` all-zero: top-k then returns whatever order the rows are
+# in, the UI renders 30 confident cards, and nothing anywhere raises. Better to
+# refuse to boot than to serve a search that is silently not a search.
+_warm = ENCODER.encode_text("warmup")
+_norm = float(np.linalg.norm(_warm))
+if not np.isfinite(_norm) or _norm < 0.9:
+    raise SystemExit(
+        f"text encoder produced a degenerate vector (L2 norm {_norm:.4f}, expected ~1.0). "
+        "On ZeroGPU this means the model landed on CUDA outside a @spaces.GPU call. "
+        "Encoder(device='cpu') is what prevents it."
+    )
+print(f"[space] ready (encoder on {ENCODER.device or 'auto'}, warmup norm {_norm:.3f})")
 
 
 # --- rendering ---------------------------------------------------------------

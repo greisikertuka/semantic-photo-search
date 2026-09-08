@@ -26,13 +26,22 @@ class Encoder:
     # encoder sets this False; the API checks it instead of type-sniffing.
     supports_images = True
 
-    def __init__(self, model_name: str = MODEL_NAME) -> None:
+    def __init__(self, model_name: str = MODEL_NAME, device: str | None = None) -> None:
         # Imported lazily so importing this module (e.g. in tests using a stub) does
         # not drag in torch + sentence-transformers.
         from sentence_transformers import SentenceTransformer
 
+        # ``device`` is not a knob for its own sake — it is load-bearing on ZeroGPU.
+        # There, the ``spaces`` runtime reports ``torch.cuda.is_available() == True``
+        # so libraries configure themselves for a GPU, but a slice only exists inside
+        # a ``@spaces.GPU`` call. Outside one, sentence-transformers' auto-detection
+        # picks CUDA and the forward pass silently yields a ZERO vector in ~10 ms
+        # instead of raising. Every cosine score is then 0.0 and the ranking is
+        # whatever order the rows happen to be in — search that looks fine and is
+        # entirely fake. Passing "cpu" explicitly is what keeps auto-detection out.
         self.model_name = model_name
-        self.model = SentenceTransformer(model_name)
+        self.device = device or os.environ.get("PHOTOSEARCH_DEVICE") or None
+        self.model = SentenceTransformer(model_name, device=self.device)
 
     def encode_text(self, text: str) -> np.ndarray:
         """Encode one query string to a normalized float32 vector (shape ``(512,)``)."""
