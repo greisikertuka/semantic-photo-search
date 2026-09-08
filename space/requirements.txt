@@ -8,6 +8,11 @@
 #     FastAPI app has no use for it.
 #
 # Versions mirror uv.lock so the Space and the laptop run the same code.
+#
+# NOTE: `gradio` here MUST stay in lockstep with `sdk_version` in README.md's
+# frontmatter. The platform builds the runtime at sdk_version, then pip runs this
+# file; if the two disagree, pip quietly swaps the library out from under the
+# runtime that was already wired up. Matching them makes that a no-op.
 
 gradio==6.20.0
 torch==2.13.0
