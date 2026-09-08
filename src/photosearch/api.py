@@ -23,6 +23,7 @@ import io
 from contextlib import asynccontextmanager
 from pathlib import Path
 
+import numpy as np
 from fastapi import Depends, FastAPI, File, HTTPException, Query, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
@@ -166,7 +167,20 @@ async def lifespan(app: FastAPI):
     try:
         services = build_services()
         primary = services[DEFAULT_SOURCE]
-        # Warm the encoder so visitor #1 doesn't eat the first-call JIT/setup cost.
+        # Warm the encoder so visitor #1 doesn't eat the first-call JIT/setup cost —
+        # and check what it produced. A degenerate query vector is the one failure this
+        # app cannot detect downstream: `embeddings @ 0` is all-zero, argsort on a
+        # constant array is stable, so search returns rows in storage order and every
+        # endpoint answers 200 with confident-looking JSON. That is exactly how the
+        # first HF Space deploy shipped a fake search (see DECISIONS.md, Session 13).
+        # Refusing to start is strictly better than serving rankings that mean nothing.
+        warm = primary.encoder.encode_text("warmup query")
+        norm = float(np.linalg.norm(warm))
+        if not np.isfinite(norm) or norm < 0.9:
+            raise RuntimeError(
+                f"text encoder produced a degenerate vector (L2 norm {norm:.4f}, "
+                f"expected ~1.0) - refusing to serve a search that cannot rank."
+            )
         primary.search("warmup query", k=1)
         app.state.services = services
         store = primary.store
