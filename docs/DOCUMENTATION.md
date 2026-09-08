@@ -935,6 +935,9 @@ have been cosplay.
 | A filter returns **zero results** and nothing looks wrong in the logs | EXIF values ingested as strings, not numbers | re-run `04_ingest_chroma.py --reset`; `$lte` silently matches nothing on strings |
 | Scores look wrong (~0–2 instead of ~0.2–0.35) | the Chroma collection was created with L2, not cosine | recreate it with `metadata={"hnsw:space": "cosine"}` |
 | `/api/health` is missing `store` / `exif_count` / `encoder` | a stale server process is still running old code | stop it and restart `uv run fastapi dev src/photosearch/api.py` |
+| **Every query returns the same photos, all scores `0.000`** | on ZeroGPU, `torch.cuda.is_available()` is `True`, so sentence-transformers put CLIP on a GPU slice that only exists inside a `@spaces.GPU` call; encodes return a zero vector without raising | construct the encoder as `Encoder(device="cpu")` (or set `PHOTOSEARCH_DEVICE=cpu`). The Space now refuses to boot if the warmup vector is not unit-length |
+| Space push rejected: `"colorFrom" must be one of [...]` | `colorFrom`/`colorTo` accept only a fixed palette; `orange` is not in it | use one of red, yellow, green, blue, indigo, purple, pink, gray |
+| Space builds on the wrong Python or Gradio | `python_version` / `sdk_version` absent from `space/README.md` frontmatter, so the platform picks its own | pin both, and keep `sdk_version` equal to the `gradio` pin in `space/requirements.txt` |
 | Search-by-image returns **501** | you are on the Render deploy — no vision tower | use the local app, which has it |
 | Hugging Face symlink warning on Windows | Developer Mode off | enable Settings → System → For developers |
 | `uv python install` fails on Windows | virtualized AppData | set `UV_PYTHON_INSTALL_DIR` to a path outside AppData |

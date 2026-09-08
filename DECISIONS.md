@@ -376,3 +376,30 @@ The three files now divide cleanly: `README.md` is the front door, `DOCUMENTATIO
 **Decision:** Mark Session 1 done but annotate it as a learning script pointed at your own photos, rather than silently checking it off with the rest.
 
 **Why:** Every other session produced code that CI exercises; `00_hello_clip.py` produces a printed matrix on a folder that isn't in the repo. Checking it off identically would be a small lie of the kind that, if a reviewer catches it, retroactively taxes the credibility of every other measured claim in the README — and there are a lot of those. The cheap fix is a parenthesis.
+
+---
+
+## Session 13 — the Space goes live, and lies about it
+
+### CLIP is pinned to the CPU explicitly, because ZeroGPU makes auto-detection wrong
+**Decision:** `Encoder` takes an explicit `device`, the Space passes `"cpu"`, and the app refuses to boot unless the warmup vector is unit-length.
+
+**Why:** The first live deploy served thirty results per query with every cosine score at `0.000` — and returned *the same thirty photos* for "a foggy forest at sunrise" and "a red sports car at night". Nothing raised, nothing logged, and the Space reported `RUNNING`.
+
+The cause is a false assumption written into `space/app.py`'s own docstring: *"undecorated code runs on the host CPU."* That is true of **our** code. It is not true of a library that device-detects. ZeroGPU reports `torch.cuda.is_available() == True` so that libraries configure themselves for a GPU, but a slice only materializes inside a `@spaces.GPU` call — and this app deliberately never makes one. sentence-transformers saw CUDA, put CLIP there, and every forward pass came back a zero vector in ~10 ms instead of erroring.
+
+What makes this the most instructive bug in the project is the *shape* of the failure downstream. `embeddings @ 0` is all-zero; `argsort` on a constant array is stable; so top-k returned rows 0–29 in storage order. The UI then did its job perfectly — thirty cards, score badges, EXIF lines, photographer credits, correct hotlinks. Even the EXIF filter still "worked", because restricting the candidate set changes *which* rows come first when every score ties. Every signal a casual check looks at was green. The only observable that distinguishes a working search from no search at all is **whether two different queries return different photos**, and that is precisely the assertion nobody writes.
+
+Hence the boot guard rather than a comment. A wrong answer that never errors is the worst failure this project can produce: the entire value proposition is that the ranking means something. Crashing on a degenerate warmup vector converts a silent semantic failure into a loud operational one, which is the trade this codebase makes everywhere else (`photo_ids.npy` ships for the same reason — see the element-wise alignment assert).
+
+Two plausible suspects were eliminated before touching the encoder, both worth recording because they were the *obvious* answers and both were wrong: the deployed `embeddings.f16.npy` is byte-identical to the local file (same SHA-256 — so not a Git LFS pointer), and `transformers` 5.16.1, the version the Space actually resolved, encodes correctly on the laptop.
+
+### The deploy manifest pins `transformers`
+**Decision:** Add `transformers==5.14.1` to `space/requirements.txt`.
+
+**Why:** It holds the CLIP model code, it was only a *transitive* dependency of sentence-transformers, and it was unpinned — so the Space built 5.16.1 while the laptop ran 5.14.1. That did not cause the zero-vector bug, but the file's own header claims "versions mirror uv.lock so the Space and the laptop run the same code", and that claim was false for the one package most able to change what a forward pass returns. A deploy manifest that is wrong about its own guarantee is worse than one that makes no promise.
+
+### Three frontmatter fields only the Hub validates
+**Decision:** Pin `sdk_version` and `python_version` in `space/README.md`; use a palette colour for `colorFrom`.
+
+**Why:** All three surfaced only at `git push`, because nothing in the repo validates that YAML. HF's scaffold had set `python_version: '3.12'` and our README had no such key, so the sync would have silently dropped the pin and let the Space build on a different Python; `sdk_version` was absent, which would have let the platform pick a Gradio it wired up and then let pip install a different one underneath; and `colorFrom: orange` is simply not in the Hub's allowed list, which is the one of the three that fails loudly.
