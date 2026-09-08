@@ -817,6 +817,16 @@ anyway. The failure modes you predict are not always the ones you measure.
 
 ## 14. Deployment
 
+Both deployments are live:
+
+| target | url | encoder | search-by-image |
+|---|---|---|---|
+| Hugging Face Space (Gradio) | https://huggingface.co/spaces/greisikertuka/latent-photo-search | CLIP, **CPU-pinned** | no |
+| Render (FastAPI + web UI) | https://semantic-photo-search.onrender.com | ONNX text tower | no (`501` by design) |
+
+Both return byte-identical rankings to a local build — verified by querying each and
+comparing photo ids and cosine scores to four decimal places against the laptop.
+
 ### 14.1 Hugging Face Space (Gradio, ZeroGPU tier)
 
 **Account requirement:** free Space hosting requires an account **30+ days old** with a

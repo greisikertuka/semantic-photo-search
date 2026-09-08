@@ -21,7 +21,7 @@ takes **5 milliseconds**.
 | | link | note |
 |---|---|---|
 | **Gradio demo** — 25k corpus, filters, no server state | <!-- SPACE_URL -->**[Try it →](https://huggingface.co/spaces/greisikertuka/latent-photo-search)**<!-- /SPACE_URL --> | A free Space sleeps after ~48 h idle. It runs the CLIP text encoder on CPU and holds no server state. |
-| **The full app** — the real FastAPI backend + this UI | <!-- RENDER_URL -->*deploying*<!-- /RENDER_URL --> | Render's free instance sleeps after 15 min idle and takes ~a minute to wake. The UI says so, then re-runs your query. |
+| **The full app** — the real FastAPI backend + this UI | <!-- RENDER_URL -->**[Try it →](https://semantic-photo-search.onrender.com)**<!-- /RENDER_URL --> | Render's free instance sleeps after 15 min idle and takes ~a minute to wake. The UI says so, then re-runs your query. |
 
 Both are built and verified locally. See [Deployment](#deployment) for what each one
 had to fit inside.
