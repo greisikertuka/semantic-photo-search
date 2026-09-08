@@ -1,10 +1,11 @@
 ---
 title: latent · semantic photo search
 emoji: 🌅
-colorFrom: orange
+colorFrom: yellow
 colorTo: gray
 sdk: gradio
 sdk_version: 6.20.0
+python_version: '3.12'
 app_file: app.py
 pinned: false
 license: mit
